@@ -1,17 +1,23 @@
 const path = require('path');
 const express = require('express');
 const CLIENT_PATH = path.resolve(__dirname, '../client/dist');
-const app = express();
-app.use(express.json());
 const axios = require('axios');
 require('dotenv').config()
 
+//DB
+require('../server/database/index.js');
+const { Users, Doc, Pod, News, Stamp, Badge } = require('../server/database/schema.js');
+
+
+const app = express();
+app.use(express.json());
 app.use(express.static(CLIENT_PATH));
 
 //KEYS
 const newsKey = process.env.NEWS_KEY;
 const smithKey = process.env.SMITH_KEY;
 const nasaKey = process.env.NASA_KEY;
+
 // const youtubeApi = process.env.YOUTUBE_API_KEY;
 
 // NASA PotD - return title, url, explanation (SOMETIMES VIDEO)
