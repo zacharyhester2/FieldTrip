@@ -71,6 +71,15 @@ app.get('/newsQ/:search', (req, res) => {
 });
 
 //OAUTH STUFF
+
+passport.serializeUser((user, done) => {
+  done(null, user);
+});
+
+passport.deserializeUser((user, done) => {
+  done(null, user);
+});
+
 app.use(
   session({
     secret: process.env.GOOGLE_CLIENT_SECRET,
@@ -83,28 +92,56 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.get('/auth/google',
-  passport.authenticate('google', { scope: ['profile', 'email'] }));
+  passport.authenticate('google', { scope: ['email', 'profile'] }));
 
+  app.get(
+    '/auth/google/callback',
+    passport.authenticate('google', { failureRedirect: '/logout' }),
+    (req, res) => {
+      const newUser = new Users({
+        id: req.user.id,
+        name: req.user.displayName,
+      });
+      // res.cookie('ShowNTellId', req.user.id);
+      Users.findOne({ id: req.user.id }).then((data) => {
+        if (data) {
+          res.redirect('/');
+          userInfo = data;
+        } else {
+          newUser.save().then(() => {
+            userInfo = newUser;
+            res.redirect('/');
+          });
+        }
+      });
+    },
+  );
+
+  // app.get( '/auth/google/callback',
+//   passport.authenticate( 'google', {
+//       successRedirect: '/auth/google/success',
+//       failureRedirect: '/auth/google/failure'
+// }));
 
 // app.get('/auth/google/callback',
 //   passport.authenticate('google', { failureRedirect: '/login' }),
 //   (req, res) => {
 //     console.log('requesttttt from auth callback', req);
-//     const newUser = new Users({
-//       id: req.user.id,
-//       name: req.user.name,
-//     });
-//     Users.findOne({ id: req.user.id }).then((data) => {
-//       if (data) {
-//         userInfo = data;
-//         res.redirect('/');
-//       } else {
-//         newUser.save().then(() => {
-//           userInfo = newUser;
-//           res.redirect('/');
-//         });
-//       }
-//     });
+//     // const newUser = new Users({
+//     //   id: req.user.id,
+//     //   name: req.user.name,
+//     // });
+//     // Users.findOne({ id: req.user.id }).then((data) => {
+//     //   if (data) {
+//     //     userInfo = data;
+//     //     res.redirect('/');
+//     //   } else {
+//     //     newUser.save().then(() => {
+//     //       userInfo = newUser;
+//     //       res.redirect('/');
+//     //     });
+//     //   }
+//     // });
 //   });
 
 

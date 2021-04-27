@@ -32,7 +32,7 @@ const badgeSchema = mongoose.Schema({
 const Badges = mongoose.model('Badge', badgeSchema);
 
 const userSchema = mongoose.Schema({
-  id: Number,
+  id: String,
   name: String,
   cloudinaryId: String,
   interests: {
