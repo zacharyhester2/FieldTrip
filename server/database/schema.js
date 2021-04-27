@@ -1,72 +1,58 @@
-// const mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
-// const userSchema = mongoose.Schema({
-//   id: String,
-//   name: String,
-//   avatar: Object,
-//   cloudinaryId: String,
-//   notifs: Array,
-//   interests: Array,
-//   stamps: Array,
-//   badges: Array,
-//   badgesProgress: {
-//       type: Map, 
-//       of: String
-// },
-// });
+const resourceSchema = mongoose.Schema({
+  id: Number,
+  category: {
+    type: String,
+    required: true,
+  },
+  date: {
+    type: Date,
+    default: Date.now,
+  },
+  title: String,
+  director: String,
+  author: String,
+  narrator: String,
+  image: String,
+  url: String,
+});
 
-// const Users = mongoose.model('Users', userSchema);
+const Resources = mongoose.model('Resources', resourceSchema);
 
-// const docSchema = mongoose.Schema({
-//   id: Number,
-//   type: String,
-//   title: String,
-//   director: String,
-//   image: String,
-//   url: String,
-// });
+const badgeSchema = mongoose.Schema({
+  id: String,
+  name: String,
+  description: String,
+  type: String,
+  url: String,
+  image: String,
+});
 
-// const Doc = mongoose.model('Doc', docSchema);
+const Badges = mongoose.model('Badge', badgeSchema);
 
-// const podSchema = mongoose.Schema({
-//   id: Number,
-//   type: String, 
-//   title: String,
-//   writer: String,
-//   image: String,
-//   url: String,
-// });
-  
-// const Pod = mongoose.model('Pod', podSchema);
+const userSchema = mongoose.Schema({
+  id: Number,
+  name: String,
+  cloudinaryId: String,
+  interests: {
+    type: Array,
+    unique: true,
+  },
+  stamps: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: Resources,
+  },
+  badges: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: Badges,
+  }
+});
 
-// const newsSchema = mongoose.Schema({
-//   id: Number,
-//   type: String, 
-//   title: String,
-//   author: String,
-//   image: String,
-//   url: String,
-// });
-  
-// const News = mongoose.model('News', newsSchema);
+const Users = mongoose.model('User', userSchema);
 
-// const stampSchema = mongoose.Schema({
-//   id: String,
-// });
-
-// const Stamp = mongoose.model('Stamp', stampSchema);
-
-// const badgeSchema = mongoose.Schema({
-//   id: String,
-// });
-
-// const Badge = mongoose.model('Badge', badgeSchema);
-
-// module.exports = {
-//   Users,
-//   Doc,
-//   Pod,
-//   News,
-//   Stamp,
-//   Badge
-// };
+module.exports = {
+  Users,
+  Resources,
+  Badges
+};
