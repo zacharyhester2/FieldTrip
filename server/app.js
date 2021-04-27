@@ -86,26 +86,26 @@ app.get('/auth/google',
   passport.authenticate('google', { scope: ['profile', 'email'] }));
 
 
-app.get('/auth/google/callback',
-  passport.authenticate('google', { failureRedirect: '/' }),
-  (req, res) => {
-    console.log('requesttttt from auth callback', req);
-    // const newUser = new Users({
-    //   id: req.user.id,
-    //   name: req.user.name,
-    // });
-    // Users.findOne({ id: req.user.id }).then((data) => {
-    //   if (data) {
-        // res.redirect('/');
-    //     userInfo = data;
-    //   } else {
-    //     newUser.save().then(() => {
-    //       userInfo = newUser;
-    //       res.redirect('/');
-    //     });
-    //   }
-    // });
-  });
+// app.get('/auth/google/callback',
+//   passport.authenticate('google', { failureRedirect: '/login' }),
+//   (req, res) => {
+//     console.log('requesttttt from auth callback', req);
+//     const newUser = new Users({
+//       id: req.user.id,
+//       name: req.user.name,
+//     });
+//     Users.findOne({ id: req.user.id }).then((data) => {
+//       if (data) {
+//         userInfo = data;
+//         res.redirect('/');
+//       } else {
+//         newUser.save().then(() => {
+//           userInfo = newUser;
+//           res.redirect('/');
+//         });
+//       }
+//     });
+//   });
 
 
 module.exports = {
