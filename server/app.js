@@ -1,13 +1,11 @@
 const path = require('path');
 const express = require('express');
 const passport = require('passport');
-require('./OAuth/passport.js');
 const session = require('express-session');
 const CLIENT_PATH = path.resolve(__dirname, '../client/dist');
 const axios = require('axios');
 require('dotenv').config()
-
-
+require('./OAuth/passport.js');
 
 //DB
 require('../server/database/index.js');
@@ -98,11 +96,12 @@ app.get('/auth/google',
     '/auth/google/callback',
     passport.authenticate('google', { failureRedirect: '/logout' }),
     (req, res) => {
+      console.log(req.user, 'REQ DOT USER')
       const newUser = new Users({
         id: req.user.id,
         name: req.user.displayName,
       });
-      // res.cookie('ShowNTellId', req.user.id);
+      res.cookie('FieldTripId', req.user.id);
       Users.findOne({ id: req.user.id }).then((data) => {
         if (data) {
           res.redirect('/');
@@ -117,32 +116,17 @@ app.get('/auth/google',
     },
   );
 
-  // app.get( '/auth/google/callback',
-//   passport.authenticate( 'google', {
-//       successRedirect: '/auth/google/success',
-//       failureRedirect: '/auth/google/failure'
-// }));
+  app.get('/user', (req, res) => {
+    Users.findOne({ id: req.cookie.FieldTripId }).then((userInfo) => {
+      res.send(userInfo);
+    });
+  });
 
-// app.get('/auth/google/callback',
-//   passport.authenticate('google', { failureRedirect: '/login' }),
-//   (req, res) => {
-//     console.log('requesttttt from auth callback', req);
-//     // const newUser = new Users({
-//     //   id: req.user.id,
-//     //   name: req.user.name,
-//     // });
-//     // Users.findOne({ id: req.user.id }).then((data) => {
-//     //   if (data) {
-//     //     userInfo = data;
-//     //     res.redirect('/');
-//     //   } else {
-//     //     newUser.save().then(() => {
-//     //       userInfo = newUser;
-//     //       res.redirect('/');
-//     //     });
-//     //   }
-//     // });
-//   });
+  // app.get('/users', (req, res) => {
+  //   Users.find()
+  //     .then((data) => res.status(200).json(data))
+  //     .catch();
+  // });
 
 
 module.exports = {
