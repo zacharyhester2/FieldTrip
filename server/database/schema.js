@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-
 const resourceSchema = mongoose.Schema({
   id: Number,
   category: {
@@ -17,9 +16,7 @@ const resourceSchema = mongoose.Schema({
   image: String,
   url: String,
 });
-
 const Resources = mongoose.model('Resources', resourceSchema);
-
 const badgeSchema = mongoose.Schema({
   id: String,
   name: String,
@@ -28,17 +25,12 @@ const badgeSchema = mongoose.Schema({
   url: String,
   image: String,
 });
-
 const Badges = mongoose.model('Badge', badgeSchema);
-
 const userSchema = mongoose.Schema({
   id: String,
   name: String,
   cloudinaryId: String,
-  interests: {
-    type: Array,
-    unique: true,
-  },
+  interests: String,
   stamps: {
     type: mongoose.Schema.Types.ObjectId,
     ref: Resources,
@@ -48,9 +40,7 @@ const userSchema = mongoose.Schema({
     ref: Badges,
   }
 });
-
 const Users = mongoose.model('User', userSchema);
-
 module.exports = {
   Users,
   Resources,
