@@ -1,9 +1,10 @@
 import React from 'react';
+import Passport from './Passport.jsx';
 
-const Profile = () => {
+const Profile = ({user}) => {
   return (
     <>
-      <h1>UserProfile</h1>
+      <h1>Profile</h1>
       <img></img>
       <Passport />
     </>
