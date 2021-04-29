@@ -5,9 +5,11 @@ const Home = ({user, logout}) => {
   return (
     <>
     <h1>Welcome to Field Trip</h1>
-    <WeeklyChallenge />
     {user ?
-    <button onClick={logout}>LOG OUT</button>
+    <div>
+      <WeeklyChallenge />
+      <button onClick={logout}>LOG OUT</button>
+    </div>
     : null
     }
     </>
