@@ -13,7 +13,7 @@ import Profile from './Components/Profile/Profile.jsx'
 import Discovery from './Components/Discovery/Discovery.jsx'
 import Alerts from './Components/Alerts/Alerts.jsx'
 import PhotoUpload from './Components/PhotoUpload/PhotoUpload.jsx'
-// import logo from '.assets/LogoNoBack.png'
+import logo from './assets/LogoNoBack.png'
 
 
 const App = () => {
@@ -46,6 +46,11 @@ const App = () => {
 
     return (
     <div>
+      <header>
+        <div>
+          <img className="logo" src={logo} alt="" width="300px"/>
+        </div>
+      </header>
       {!user
       ?(
         <div>
@@ -63,11 +68,6 @@ const App = () => {
 
         <Router>
         <div>
-            <header>
-              <div>
-                {/* <img className="logo" src={logo} alt=""/> */}
-              </div>
-            </header>
             <BottomNav />
             <Switch>
               <Route exact path="/">

@@ -6,13 +6,13 @@ const GlobalStyles = createGlobalStyle`
   }
 
   body{
-    background-color: rgb(9, 11, 23);
+    background-color: #4d194d;
     color: whitesmoke;
   }
 
   header{
-    background-color: #736BFB;
-    padding: 20px 10px;
+    background-color: rgb(9, 11, 23);
+    padding: 10px 10px;
     font-size: 60px;
     margin: 0;
     overflow: hidden;
