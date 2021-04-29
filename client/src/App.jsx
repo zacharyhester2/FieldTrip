@@ -13,11 +13,13 @@ import Profile from './Components/Profile/Profile.jsx'
 import Discovery from './Components/Discovery/Discovery.jsx'
 import Alerts from './Components/Alerts/Alerts.jsx'
 import PhotoUpload from './Components/PhotoUpload/PhotoUpload.jsx'
+// import logo from '.assets/LogoNoBack.png'
 
 
 const App = () => {
     const [user, setUser] = useState();
     const [isLoggedin, setIsLoggedIn] = useState(false)
+    const [stamps, setStamps] = useState([])
 
   const getUser = () => {
     if (!user) {
@@ -58,15 +60,21 @@ const App = () => {
         </div>
       )
       :(
+
         <Router>
         <div>
+            <header>
+              <div>
+                {/* <img className="logo" src={logo} alt=""/> */}
+              </div>
+            </header>
             <BottomNav />
             <Switch>
               <Route exact path="/">
                   <Home user={user} logout={logout}/>
               </Route>
               <Route path="/profile">
-                  <Profile user={user} logout={logout}/>
+                  <Profile user={user} logout={logout} stamps={stamps}/>
               </Route>
               <Route path="/discovery">
                   <Discovery />

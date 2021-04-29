@@ -139,8 +139,8 @@ app.get('/auth/google',
     res.status(200).json(userInfo);
   });
 
-  app.get('/*', (req, res) => {
-    res.sendFile(path.resolve(CLIENT_PATH), 'index.html')
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(CLIENT_PATH, 'index.html'))
   })
 
 
