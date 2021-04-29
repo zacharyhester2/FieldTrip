@@ -1,10 +1,11 @@
 const path = require('path');
+require('dotenv').config()
 const express = require('express');
 const passport = require('passport');
 const session = require('express-session');
+const cookieParser = require('cookie-parser');
 const CLIENT_PATH = path.resolve(__dirname, '../client/dist');
 const axios = require('axios');
-require('dotenv').config()
 require('./OAuth/passport.js');
 
 //DB
@@ -14,12 +15,16 @@ const { Users, Resources, Badges } = require('../server/database/schema.js');
 
 const app = express();
 app.use(express.json());
-app.use(express.static(CLIENT_PATH));
+app.use('/', express.static(CLIENT_PATH));
+app.use(cookieParser());
+// app.use(express.urlencoded({extended: false}))
 
 //KEYS
 const newsKey = process.env.NEWS_KEY;
 const smithKey = process.env.SMITH_KEY;
 const nasaKey = process.env.NASA_KEY;
+
+let userInfo = null;
 
 // const youtubeApi = process.env.YOUTUBE_API_KEY;
 
@@ -70,14 +75,6 @@ app.get('/newsQ/:search', (req, res) => {
 
 //OAUTH STUFF
 
-passport.serializeUser((user, done) => {
-  done(null, user);
-});
-
-passport.deserializeUser((user, done) => {
-  done(null, user);
-});
-
 app.use(
   session({
     secret: process.env.GOOGLE_CLIENT_SECRET,
@@ -89,6 +86,14 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
+passport.serializeUser((user, done) => {
+  done(null, user.id);
+});
+
+passport.deserializeUser((user, done) => {
+  done(null, user);
+});
+
 app.get('/auth/google',
   passport.authenticate('google', { scope: ['email', 'profile'] }));
 
@@ -96,7 +101,7 @@ app.get('/auth/google',
     '/auth/google/callback',
     passport.authenticate('google', { failureRedirect: '/logout' }),
     (req, res) => {
-      console.log(req.user, 'REQ DOT USER')
+      // console.log(req.user, 'REQ DOT USER')
       const newUser = new Users({
         id: req.user.id,
         name: req.user.displayName,
@@ -104,8 +109,8 @@ app.get('/auth/google',
       res.cookie('FieldTripId', req.user.id);
       Users.findOne({ id: req.user.id }).then((data) => {
         if (data) {
-          res.redirect('/');
           userInfo = data;
+          res.redirect('/');
         } else {
           newUser.save().then(() => {
             userInfo = newUser;
@@ -117,7 +122,7 @@ app.get('/auth/google',
   );
 
   app.get('/user', (req, res) => {
-    Users.findOne({ id: req.cookie.FieldTripId }).then((userInfo) => {
+    Users.findOne({ id: req.cookies.FieldTripId }).then((userInfo) => {
       res.send(userInfo);
     });
   });
@@ -127,6 +132,16 @@ app.get('/auth/google',
   //     .then((data) => res.status(200).json(data))
   //     .catch();
   // });
+
+  app.get('/logout', (req, res) => {
+    userInfo = null;
+    res.clearCookie('FieldTripId');
+    res.status(200).json(userInfo);
+  });
+
+  app.get('/*', (req, res) => {
+    res.sendFile(path.resolve(CLIENT_PATH), 'index.html')
+  })
 
 
 module.exports = {

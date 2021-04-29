@@ -13,6 +13,7 @@ import EmojiPeopleSharpIcon from '@material-ui/icons/EmojiPeopleSharp';
 import SearchSharpIcon from '@material-ui/icons/SearchSharp';
 import NotificationsSharpIcon from '@material-ui/icons/NotificationsSharp';
 import HomeSharpIcon from '@material-ui/icons/HomeSharp';
+import Divider from '@material-ui/core/Divider';
 
 const useStyles = makeStyles({
   root: {
@@ -33,6 +34,8 @@ const BottomNav = () => {
   return (
     <BottomNavigation value={value} onChange={handleChange} className={classes.root}>
 
+      <Divider orientation="vertical" flexItem />
+
       <BottomNavigationAction
         label="Discovery"
         value="discovery"
@@ -40,6 +43,7 @@ const BottomNav = () => {
         component={Link}
         to="/discovery"
       />
+      <Divider orientation="vertical" flexItem />
 
       <BottomNavigationAction
         label="Profile"
@@ -48,14 +52,16 @@ const BottomNav = () => {
         component={Link}
         to="/profile"
       />
+      <Divider orientation="vertical" flexItem />
 
       <BottomNavigationAction
         label="Home"
         value="home"
         icon={<HomeSharpIcon />}
         component={Link}
-        to="/home"
+        to="/"
       />
+      <Divider orientation="vertical" flexItem />
 
       <BottomNavigationAction
         label="Alerts"
@@ -64,6 +70,7 @@ const BottomNav = () => {
         component={Link}
         to="/alerts"
       />
+      <Divider orientation="vertical" flexItem />
 
       <BottomNavigationAction
         label="Camera"
@@ -72,6 +79,7 @@ const BottomNav = () => {
         component={Link}
         to="/PhotoUpload"
       />
+      <Divider orientation="vertical" flexItem />
 
     </BottomNavigation>
   );

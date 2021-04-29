@@ -40,6 +40,7 @@ const userSchema = mongoose.Schema({
     ref: Badges,
   }
 });
+
 const Users = mongoose.model('User', userSchema);
 module.exports = {
   Users,
