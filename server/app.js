@@ -2,11 +2,13 @@ const path = require('path');
 require('dotenv').config()
 const express = require('express');
 const passport = require('passport');
+require('./OAuth/passport.js');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const CLIENT_PATH = path.resolve(__dirname, '../client/dist');
 const axios = require('axios');
 require('./OAuth/passport.js');
+require('dotenv').config()
 
 //DB
 require('../server/database/index.js');
@@ -23,6 +25,8 @@ app.use(cookieParser());
 const newsKey = process.env.NEWS_KEY;
 const smithKey = process.env.SMITH_KEY;
 const nasaKey = process.env.NASA_KEY;
+const ClientId = process.env.ClientId;
+const ClientSecret = process.env.ClientSecret;
 
 let userInfo = null;
 
@@ -101,12 +105,11 @@ app.get('/auth/google',
     '/auth/google/callback',
     passport.authenticate('google', { failureRedirect: '/logout' }),
     (req, res) => {
-      // console.log(req.user, 'REQ DOT USER')
       const newUser = new Users({
         id: req.user.id,
         name: req.user.displayName,
       });
-      res.cookie('FieldTripId', req.user.id);
+      // res.cookie('ShowNTellId', req.user.id);
       Users.findOne({ id: req.user.id }).then((data) => {
         if (data) {
           userInfo = data;
@@ -121,17 +124,37 @@ app.get('/auth/google',
     },
   );
 
-  app.get('/user', (req, res) => {
-    Users.findOne({ id: req.cookies.FieldTripId }).then((userInfo) => {
-      res.send(userInfo);
-    });
-  });
+  // app.get( '/auth/google/callback',
+//   passport.authenticate( 'google', {
+//       successRedirect: '/auth/google/success',
+//       failureRedirect: '/auth/google/failure'
+// }));
 
-  // app.get('/users', (req, res) => {
-  //   Users.find()
-  //     .then((data) => res.status(200).json(data))
-  //     .catch();
-  // });
+// app.get('/auth/google/callback',
+//   passport.authenticate('google', { failureRedirect: '/login' }),
+//   (req, res) => {
+//     console.log('requesttttt from auth callback', req);
+//     // const newUser = new Users({
+//     //   id: req.user.id,
+//     //   name: req.user.name,
+//     // });
+//     // Users.findOne({ id: req.user.id }).then((data) => {
+//     //   if (data) {
+//     //     userInfo = data;
+//     //     res.redirect('/');
+//     //   } else {
+//     //     newUser.save().then(() => {
+//     //       userInfo = newUser;
+//     //       res.redirect('/');
+//     //     });
+//     //   }
+//     // });
+//   });
+
+//DISCOVERY PAGE
+
+//SPOTIFY
+
 
   app.get('/logout', (req, res) => {
     userInfo = null;

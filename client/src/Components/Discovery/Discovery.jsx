@@ -1,13 +1,14 @@
 import React from 'react';
+import Podcast from './Podcast/Podcast.jsx';
 
-const Discovery = ({user}) => {
-  return (
-    <>
-      <h1>DISCOVERY</h1>
-    </>
-  );
-};
+const Discovery = () => {
 
 
+    return (
+        <div>
+          <Podcast />
+        </div>
+      );
+}
 
 export default Discovery;
