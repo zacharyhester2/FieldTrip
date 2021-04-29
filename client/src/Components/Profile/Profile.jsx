@@ -1,12 +1,16 @@
 import React from 'react';
 import Passport from './Passport.jsx';
 
-const Profile = ({user}) => {
+const Profile = ({user, stamps}) => {
+  console.log('USER FROM PROFILE', user)
   return (
     <>
       <h1>Profile</h1>
-      <img></img>
-      <Passport />
+      <h3>{user.name}</h3>
+      <div>
+
+      </div>
+      <Passport stamps={stamps}/>
     </>
   );
 };

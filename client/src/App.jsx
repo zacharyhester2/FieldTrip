@@ -13,66 +13,82 @@ import Profile from './Components/Profile/Profile.jsx'
 import Discovery from './Components/Discovery/Discovery.jsx'
 import Alerts from './Components/Alerts/Alerts.jsx'
 import PhotoUpload from './Components/PhotoUpload/PhotoUpload.jsx'
+import logo from './assets/LogoNoBack.png'
 
 
 const App = () => {
     const [user, setUser] = useState();
     const [isLoggedin, setIsLoggedIn] = useState(false)
+    const [stamps, setStamps] = useState([])
 
   const getUser = () => {
     if (!user) {
       axios
         .get('/user')
-        .then(({ data }) => setUser(data))
+        .then(({ data }) => {
+          console.log('data from GET USER', data)
+          setUser(data)
+        })
         // .then(() => setIsLoggedIn(true))
         .catch();
-    // } else if (isLoggedIn) {
-    //   changeView('home');
-    //   setIsLoggedIn(false);
     }
   };
 
+  const logout = () => {
+    axios.get('/logout').then(() => {
+      setUser(null);
+    });
+  };
+
+  useEffect(() => {
+    getUser()
+  }, [])
 
     return (
     <div>
-   <Router>
+      <header>
+        <div>
+          <img className="logo" src={logo} alt="" width="300px"/>
+        </div>
+      </header>
+      {!user
+      ?(
+        <div>
+          <Home />
+          <a
+            className="login-button"
+            href="/auth/google"
+
+          >
+          LOGIN WITH GOOGLE
+          </a>
+        </div>
+      )
+      :(
+
+        <Router>
         <div>
             <BottomNav />
-            <hr />
             <Switch>
-            <Route exact path="/home">
-                <Home user={user}/>
-            </Route>
-            <Route path="/profile">
-                <Profile user={user}/>
-            </Route>
-            <Route path="/discovery">
-                <Discovery user={user}/>
-            </Route>
-            <Route path="/alerts">
-                <Alerts />
-            </Route>
-            <Route path="/PhotoUpload">
-                <PhotoUpload />
-            </Route>
+              <Route exact path="/">
+                  <Home user={user} logout={logout}/>
+              </Route>
+              <Route path="/profile">
+                  <Profile user={user} logout={logout} stamps={stamps}/>
+              </Route>
+              <Route path="/discovery">
+                  <Discovery />
+              </Route>
+              <Route path="/alerts">
+                  <Alerts />
+              </Route>
+              <Route path="/PhotoUpload">
+                  <PhotoUpload />
+              </Route>
             </Switch>
         </div>
-        </Router>
-
-
-        {user
-          ?
-        (<div></div>)
-          : (
-            <a
-              className="login-button"
-              href="/auth/google"
-
-            >
-            LOGIN WITH GOOGLE
-            </a>
-          )}
-          {/* {getUser()} */}
+      </Router>
+       )}
     </div>
     )
 }
