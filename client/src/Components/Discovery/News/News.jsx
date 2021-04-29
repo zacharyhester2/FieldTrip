@@ -1,22 +1,40 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { Carousel } from 'react-bootstrap/';
+import Article from './Article.jsx';
+import axios from 'axios';
 
 const News = () => {
-    const [getNasaPotD, setNasaPotD] = useState('');
+    const [news, setNews] = useState([]);
+
+    const search = 'tulip';
     
+    const getNews = (search) => {
+        axios.get(`/newsQ/:${search}`)
+        .then(({data}) => {
+            setNews(data);
+        }).catch()
+    }
 
-    const getNasaPotD = () => {
-        console.log('serching Nasa');
-        axios.get(`/nasaPic`).then(({data}) => {
-          console.log('data-------', data);
-          setNasaPotD(url);
-          setView('search');
-        }).catch();
-      };
-
-
+    useEffect(() => {
+        getNews(search);
+    }, [])
 
     return (
         <div>
+            <h1>NEWS</h1>
+                {console.log(news, 'NEWS')}
+            <Carousel>
+            {news.map((article, i) => (
+            <Carousel.Item key={i}>
+                <img className="news-img" src={article.urlToImage}/>
+                <Carousel.Caption>
+                    <h3>{article.title}</h3>
+                    <p>{article.description}</p>
+                </Carousel.Caption>
+                {/* <Article article={article}/> */}
+            </Carousel.Item>
+            ))}
+            </Carousel>
         </div>
       );
 }

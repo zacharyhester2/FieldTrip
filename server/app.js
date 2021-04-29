@@ -32,6 +32,13 @@ let userInfo = null;
 
 // const youtubeApi = process.env.YOUTUBE_API_KEY;
 
+//AXIOS ALL SIMULTANEOUS SEARCH
+
+// const smith = `https://api.si.edu/openaccess/api/v1.0/search?q=${smithQ}&api_key=${smithKey}`;
+
+
+
+
 // NASA PotD - return title, url, explanation (SOMETIMES VIDEO)
 const nasaPotD = `https://api.nasa.gov/planetary/apod?api_key=${nasaKey}`;
 
@@ -45,6 +52,8 @@ app.get('/nasaPic', (req, res) => {
       res.status(500).send(err);
     });
 });
+
+//NASA QUERY PIC
 
 //SMITHSONIAN SEARCH - *very little documentation on API*
 
@@ -62,15 +71,15 @@ app.get('/smithQ/:search', (req, res) => {
     });
 });
 
-const newsQ = 'the lost cosmonauts';
+// const newsQ = 'the lost cosmonauts';
 const sortBy = 'popularity' //maybe give users the options: relevancy, popularity, publishedAt
-const news = `https://newsapi.org/v2/everything?q=${newsQ}&apiKey=${newsKey}&sortBy=${sortBy}`;
+// const news = `https://newsapi.org/v2/everything?q=${newsQ}&apiKey=${newsKey}&sortBy=${sortBy}`;
 
 app.get('/newsQ/:search', (req, res) => {
 
-    axios.get(news)
-    .then(({data}) =>{
-      res.status(200).send(data);
+    axios.get(`https://newsapi.org/v2/everything?q=${req.params.search}&apiKey=${newsKey}&sortBy=${sortBy}`)
+    .then(({data}) => {
+      res.status(200).send(data.articles.slice(0,5));
     })
     .catch((err) => {
       res.status(500).send(err);
@@ -109,7 +118,7 @@ app.get('/auth/google',
         id: req.user.id,
         name: req.user.displayName,
       });
-      // res.cookie('ShowNTellId', req.user.id);
+      
       Users.findOne({ id: req.user.id }).then((data) => {
         if (data) {
           userInfo = data;

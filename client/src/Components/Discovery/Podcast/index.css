@@ -17,9 +17,19 @@
     padding-left:0px !important;
   }
   
-  img {
+  .podcast-img {
     width:140px;
     height:140px;
+  }
+
+  .news-img {
+    max-width:50%;
+    height: auto;
+    position: relative;
+    border: 3px solid #8a8a8a;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
   }
   
   .btn-success {

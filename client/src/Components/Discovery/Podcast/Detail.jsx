@@ -7,7 +7,8 @@ const Detail = ({album, artists, name}) => {
             <div className="row col-sm-12 px-0">
                 <img 
                     src={album.images[0].url}
-                    alt={name}>                    
+                    alt={name}  
+                    className="podcast-img">                 
                 </img>
             </div>
             <div className="row col-sm-12 px-0">

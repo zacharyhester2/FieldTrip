@@ -111,7 +111,8 @@ const Podcast = () => {
 
   return (
     <div className="container">
-      <form onSubmit={buttonClicked}>        
+      <h1>Podcast</h1>     
+      <form onSubmit={buttonClicked}>   
           <Dropdown label="Genre :" options={genres.listOfGenresFromAPI} selectedValue={genres.selectedGenre} changed={genreChanged} />
           <Dropdown label="Playlist :" options={playlist.listOfPlaylistFromAPI} selectedValue={playlist.selectedPlaylist} changed={playlistChanged} />
           <div className="col-sm-6 row form-group px-0">
