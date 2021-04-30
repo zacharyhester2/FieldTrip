@@ -26,7 +26,7 @@ const App = () => {
       axios
         .get('/user')
         .then(({ data }) => {
-          console.log('data from GET USER', data)
+          // console.log('data from GET USER', data)
           setUser(data)
         })
         // .then(() => setIsLoggedIn(true))

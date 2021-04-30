@@ -2,7 +2,6 @@ import React from 'react';
 import Passport from './Passport.jsx';
 
 const Profile = ({user, stamps}) => {
-  console.log('USER FROM PROFILE', user)
   return (
     <>
       <h1>Profile</h1>
