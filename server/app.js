@@ -2,11 +2,13 @@ const path = require('path');
 require('dotenv').config()
 const express = require('express');
 const passport = require('passport');
+require('./OAuth/passport.js');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const CLIENT_PATH = path.resolve(__dirname, '../client/dist');
 const axios = require('axios');
 require('./OAuth/passport.js');
+require('dotenv').config()
 
 //DB
 require('../server/database/index.js');
@@ -23,10 +25,28 @@ app.use(cookieParser());
 const newsKey = process.env.NEWS_KEY;
 const smithKey = process.env.SMITH_KEY;
 const nasaKey = process.env.NASA_KEY;
+const ClientId = process.env.ClientId;
+const ClientSecret = process.env.ClientSecret;
+const youTubeKey = process.env.YOUTUBE_KEY;
 
 let userInfo = null;
 
 // const youtubeApi = process.env.YOUTUBE_API_KEY;
+
+//AXIOS ALL SIMULTANEOUS SEARCH
+
+// const smith = `https://api.si.edu/openaccess/api/v1.0/search?q=${smithQ}&api_key=${smithKey}`;
+
+//YOUTUBE
+
+app.get('/youTube/:query', (req, res) => {
+  const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${req.params.query}documentary&channelType=any&key=${youTubeKey}`;
+  return axios(url)
+    .then(({ data }) => data.items.slice(0, 5))
+    .then((data) => res.status(200).send(data))
+    .catch();
+});
+
 
 // NASA PotD - return title, url, explanation (SOMETIMES VIDEO)
 const nasaPotD = `https://api.nasa.gov/planetary/apod?api_key=${nasaKey}`;
@@ -41,6 +61,8 @@ app.get('/nasaPic', (req, res) => {
       res.status(500).send(err);
     });
 });
+
+//NASA QUERY PIC
 
 //SMITHSONIAN SEARCH - *very little documentation on API*
 
@@ -58,15 +80,15 @@ app.get('/smithQ/:search', (req, res) => {
     });
 });
 
-const newsQ = 'the lost cosmonauts';
+// const newsQ = 'the lost cosmonauts';
 const sortBy = 'popularity' //maybe give users the options: relevancy, popularity, publishedAt
-const news = `https://newsapi.org/v2/everything?q=${newsQ}&apiKey=${newsKey}&sortBy=${sortBy}`;
+// const news = `https://newsapi.org/v2/everything?q=${newsQ}&apiKey=${newsKey}&sortBy=${sortBy}`;
 
 app.get('/newsQ/:search', (req, res) => {
 
-    axios.get(news)
-    .then(({data}) =>{
-      res.status(200).send(data);
+    axios.get(`https://newsapi.org/v2/everything?q=${req.params.search}&apiKey=${newsKey}&sortBy=${sortBy}`)
+    .then(({data}) => {
+      res.status(200).send(data.articles.slice(0,5));
     })
     .catch((err) => {
       res.status(500).send(err);
@@ -101,12 +123,11 @@ app.get('/auth/google',
     '/auth/google/callback',
     passport.authenticate('google', { failureRedirect: '/logout' }),
     (req, res) => {
-      // console.log(req.user, 'REQ DOT USER')
       const newUser = new Users({
         id: req.user.id,
         name: req.user.displayName,
       });
-      res.cookie('FieldTripId', req.user.id);
+      
       Users.findOne({ id: req.user.id }).then((data) => {
         if (data) {
           userInfo = data;
@@ -121,17 +142,8 @@ app.get('/auth/google',
     },
   );
 
-  app.get('/user', (req, res) => {
-    Users.findOne({ id: req.cookies.FieldTripId }).then((userInfo) => {
-      res.send(userInfo);
-    });
-  });
+//SPOTIFY
 
-  // app.get('/users', (req, res) => {
-  //   Users.find()
-  //     .then((data) => res.status(200).json(data))
-  //     .catch();
-  // });
 
   app.get('/logout', (req, res) => {
     userInfo = null;

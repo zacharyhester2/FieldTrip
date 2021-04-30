@@ -26,7 +26,7 @@ const App = () => {
       axios
         .get('/user')
         .then(({ data }) => {
-          console.log('data from GET USER', data)
+          // console.log('data from GET USER', data)
           setUser(data)
         })
         // .then(() => setIsLoggedIn(true))
@@ -48,7 +48,9 @@ const App = () => {
     <div>
       <header>
         <div>
-          <img className="logo" src={logo} alt="" width="300px"/>
+          <a href="/" >
+            <img className="logo" src={logo} alt="" width="300px"/>
+          </a>
         </div>
       </header>
       {!user
