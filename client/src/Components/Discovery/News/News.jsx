@@ -1,6 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Carousel } from 'react-bootstrap/';
 import axios from 'axios';
+import styled from 'styled-components';
+
+const Caption = styled(Carousel.Caption)`
+        background: rgba(25, 25, 25, 0.6) !important;
+        width: fit-content;
+        margin: 0 auto;
+        padding: 0 1rem;
+`
 
 const News = () => {
     const [news, setNews] = useState([]);
@@ -26,10 +34,10 @@ const News = () => {
             {news.map((article, i) => (
             <Carousel.Item key={i}>
                 <img className="news-img" src={article.urlToImage}/>
-                <Carousel.Caption>
+                <Caption>
                     <h3>{article.title}</h3>
                     <p>{article.description}</p>
-                </Carousel.Caption>
+                </Caption>
                 {/* <Article article={article}/> */}
             </Carousel.Item>
             ))}
