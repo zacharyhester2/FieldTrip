@@ -22,6 +22,16 @@
     height:140px;
   }
 
+  .docs-img {
+    max-width:50%;
+    height: auto;
+    position: relative;
+    border: 3px solid #8a8a8a;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
   .news-img {
     max-width:50%;
     height: auto;

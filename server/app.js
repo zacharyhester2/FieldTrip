@@ -27,6 +27,7 @@ const smithKey = process.env.SMITH_KEY;
 const nasaKey = process.env.NASA_KEY;
 const ClientId = process.env.ClientId;
 const ClientSecret = process.env.ClientSecret;
+const youTubeKey = process.env.YOUTUBE_KEY;
 
 let userInfo = null;
 
@@ -36,7 +37,15 @@ let userInfo = null;
 
 // const smith = `https://api.si.edu/openaccess/api/v1.0/search?q=${smithQ}&api_key=${smithKey}`;
 
+//YOUTUBE
 
+app.get('/youTube/:query', (req, res) => {
+  const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${req.params.query}documentary&channelType=any&key=${youTubeKey}`;
+  return axios(url)
+    .then(({ data }) => data.items.slice(0, 5))
+    .then((data) => res.status(200).send(data))
+    .catch();
+});
 
 
 // NASA PotD - return title, url, explanation (SOMETIMES VIDEO)
@@ -132,35 +141,6 @@ app.get('/auth/google',
       });
     },
   );
-
-  // app.get( '/auth/google/callback',
-//   passport.authenticate( 'google', {
-//       successRedirect: '/auth/google/success',
-//       failureRedirect: '/auth/google/failure'
-// }));
-
-// app.get('/auth/google/callback',
-//   passport.authenticate('google', { failureRedirect: '/login' }),
-//   (req, res) => {
-//     console.log('requesttttt from auth callback', req);
-//     // const newUser = new Users({
-//     //   id: req.user.id,
-//     //   name: req.user.name,
-//     // });
-//     // Users.findOne({ id: req.user.id }).then((data) => {
-//     //   if (data) {
-//     //     userInfo = data;
-//     //     res.redirect('/');
-//     //   } else {
-//     //     newUser.save().then(() => {
-//     //       userInfo = newUser;
-//     //       res.redirect('/');
-//     //     });
-//     //   }
-//     // });
-//   });
-
-//DISCOVERY PAGE
 
 //SPOTIFY
 

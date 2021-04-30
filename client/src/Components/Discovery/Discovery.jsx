@@ -1,6 +1,7 @@
 import React from 'react';
 import Podcast from './Podcast/Podcast.jsx';
 import News from './News/News.jsx';
+import Documentary from './Documentary/Documentary.jsx';
 
 const Discovery = () => {
 
@@ -12,6 +13,7 @@ const Discovery = () => {
     return (
         <div>
           <News />
+          <Documentary />
           <Podcast />
         </div>
       );

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Carousel } from 'react-bootstrap/';
-import Article from './Article.jsx';
 import axios from 'axios';
 
 const News = () => {
