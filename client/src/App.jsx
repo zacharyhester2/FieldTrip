@@ -48,7 +48,6 @@ const useStyles = makeStyles((theme) => ({
 const App = () => {
   const classes = useStyles();
     const [user, setUser] = useState();
-    const [isLoggedin, setIsLoggedIn] = useState(false)
     const [stamps, setStamps] = useState([])
     const [discView, setDiscView] = useState('')
     const [theme, setTheme] = useState('headerDefault');

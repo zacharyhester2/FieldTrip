@@ -46,7 +46,6 @@ const Documentary = ({ addResource, discView }) => {
                     <div id="content">
                         <h3>{doc.snippet.title}</h3>
                         <p>{doc.snippet.description}</p>
-                        {/* <Button variant="contained" onClick={() => { addResource(doc.snippet); }}>Resource Me!</Button> */}
                         <p>Watch Documentary
                             <a
                                 href={`https://www.youtube.com/embed/${doc.id.videoId}`}
