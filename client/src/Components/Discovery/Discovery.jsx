@@ -13,8 +13,8 @@ const Discovery = ({ addResource, discView, setDiscView }) => {
 
     return (
         <div>
-          <News addResource={addResource}/>
-          <Documentary addResource={addResource}/>
+          <News addResource={addResource} discView={discView}/>
+          <Documentary addResource={addResource} discView={discView}/>
           {/* <Podcast /> */}
         </div>
       );
