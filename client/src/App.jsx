@@ -17,12 +17,43 @@ import PhotoUpload from './Components/PhotoUpload/PhotoUpload.jsx'
 import AppBarHeader from './Components/Home/AppBarHeader.jsx';
 import { Button } from '@material-ui/core'
 
+import galaxy from './themes/space2.jpg';
+import earth from './themes/earth.jpg';
+import dinos from './themes/dinos.jpg';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme) => ({
+  spaceTheme: {
+    backgroundImage: `url(${galaxy})`,
+    // width: 'auto',
+    // height: '100%',
+    // backgroundColor: '#000000'
+    backgroundPosition: 'center',
+    backGroundRepeat: 'no-repeat',
+    backgroundSize: 'cover'
+  },
+  earthTheme: {
+    backgroundImage: `url(${earth})`,
+    width: '100%'
+  },
+  historyTheme: {
+    backgroundImage: `url(${dinos})`,
+    // width: '100%',
+    // height: 'auto'
+  },
+}))
+
+
 
 const App = () => {
+  const classes = useStyles();
     const [user, setUser] = useState();
     const [isLoggedin, setIsLoggedIn] = useState(false)
     const [stamps, setStamps] = useState([])
-    const [view, setView] = useState('plants')
+    const [discView, setDiscView] = useState('')
+    const [theme, setTheme] = useState('headerDefault');
+
+    const currClass = classes[`${theme}`];
 
   const getUser = () => {
     if (!user) {
@@ -35,10 +66,12 @@ const App = () => {
     }
   };
 
+
+
   const addResource = (resource) => {
     //post request to user table
     axios.post('/resource', {
-      category: view,
+      category: discView,
       date: Date.now,
       title: resource.title,
       author: resource.author,
@@ -75,7 +108,7 @@ const App = () => {
   }, [])
 
     return (
-    <div>
+    <div className={currClass}>
       {/* <header>
         <div>
           <a href="/" >
@@ -83,10 +116,10 @@ const App = () => {
           </a>
         </div>
       </header> */}
-      <AppBarHeader user={user} logout={logout}/>
+      <AppBarHeader user={user} logout={logout} discView={discView} setDiscView={setDiscView} theme={theme} setTheme={setTheme}/>
       {!user
       ?(
-        <div>
+        <div >
           <Home />
           <Button variant="contained">
           <a
@@ -111,7 +144,7 @@ const App = () => {
                   <Profile user={user} logout={logout} stamps={stamps} getStamps={getStamps}/>
               </Route>
               <Route path="/discovery">
-                  <Discovery addResource={addResource}/>
+                  <Discovery addResource={addResource} discView={discView} setDiscView={setDiscView}/>
               </Route>
               <Route path="/alerts">
                   <Alerts />

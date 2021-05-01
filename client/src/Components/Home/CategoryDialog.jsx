@@ -33,14 +33,13 @@ const useStyles = makeStyles({
 
 const CategoryDialogBuilder = (props) => {
   const classes = useStyles();
-  const { onClose, selectedValue, open, selectedTheme } = props;
+  const { onClose, selectedValue, open, selectedTheme, discView } = props;
 
   const handleClose = () => {
-    onClose(selectedValue, selectedTheme);
+    onClose(selectedValue, selectedTheme, discView);
   };
 
   const handleListItemClick = (value, theme) => {
-    console.log(theme)
     onClose(value, theme);
   };
 
@@ -68,40 +67,46 @@ CategoryDialogBuilder.propTypes = {
   open: PropTypes.bool.isRequired,
   selectedValue: PropTypes.string.isRequired,
   selectedTheme: PropTypes.string.isRequired,
+  discView: PropTypes.string.isRequired,
 };
 
-const CategoryDialog = ({ theme, setTheme }) => {
+const CategoryDialog = ({ theme, setTheme, discView, setDiscView }) => {
   const [open, setOpen] = useState(false);
-  const [selectedValue, setSelectedValue] = useState(categories[0].name);
-  const [selectedTheme, setSelectedTheme] = useState(categories[3].theme);
+  const [selectedValue, setSelectedValue] = useState('science');
+  const [selectedTheme, setSelectedTheme] = useState('headerDefault');
 
   useEffect(() => {
     setTheme(selectedTheme);
+    setDiscView(selectedTheme);
   }, []);
 
   useEffect(() => {
     setTheme(selectedTheme);
   }, [selectedValue]);
 
+  useEffect(() => {
+    setDiscView(selectedValue);
+  }, [selectedTheme]);
+
   const handleClickOpen = () => {
     setOpen(true);
   };
 
   const handleClose = (value, theme) => {
-    console.log('VALUE_SECOND', value)
+    // console.log('VALUE_SECOND', value)
     setOpen(false);
     setSelectedValue(value);
-    setSelectedTheme(theme)
+    setSelectedTheme(theme);
   };
 
   return (
     <>
-      {/* <Typography variant="subtitle1">Selected: {selectedValue}</Typography> */}
+      {/* <Typography variant="subtitle1">Selected: {discView}</Typography> */}
       <br />
       <Button variant="text" color="secondary" onClick={handleClickOpen} style={{ color: 'whitesmoke' }}>
         Categories
       </Button>
-      <CategoryDialogBuilder selectedValue={selectedValue} open={open} onClose={handleClose} theme={selectedTheme} />
+      <CategoryDialogBuilder selectedValue={selectedValue} open={open} onClose={handleClose} theme={selectedTheme} discView={discView} />
     </>
   );
 }
