@@ -26,21 +26,21 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles((theme) => ({
   spaceTheme: {
     backgroundImage: `url(${galaxy})`,
-    // width: 'auto',
-    // height: '100%',
-    // backgroundColor: '#000000'
     backgroundPosition: 'center',
     backGroundRepeat: 'no-repeat',
     backgroundSize: 'cover'
   },
   earthTheme: {
     backgroundImage: `url(${earth})`,
-    width: '100%'
+    backgroundPosition: 'center',
+    backGroundRepeat: 'no-repeat',
+    backgroundSize: 'cover'
   },
   historyTheme: {
     backgroundImage: `url(${dinos})`,
-    // width: '100%',
-    // height: 'auto'
+    backgroundPosition: 'center',
+    backGroundRepeat: 'no-repeat',
+    backgroundSize: 'cover'
   },
 }))
 
