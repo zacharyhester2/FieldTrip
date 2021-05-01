@@ -3,7 +3,8 @@ import Podcast from './Podcast/Podcast.jsx';
 import News from './News/News.jsx';
 import Documentary from './Documentary/Documentary.jsx';
 
-const Discovery = () => {
+
+const Discovery = ({addResource}) => {
 
 
   //call the axios.all endpoint
@@ -12,9 +13,9 @@ const Discovery = () => {
 
     return (
         <div>
-          <News />
+          <News addResource={addResource}/>
           <Documentary />
-          <Podcast />
+          {/* <Podcast /> */}
         </div>
       );
 }

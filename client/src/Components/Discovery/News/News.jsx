@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Carousel } from 'react-bootstrap/';
 import axios from 'axios';
 import styled from 'styled-components';
+import { Button } from '@material-ui/core'
 
 const Caption = styled(Carousel.Caption)`
         background: rgba(25, 25, 25, 0.6) !important;
@@ -10,17 +11,18 @@ const Caption = styled(Carousel.Caption)`
         padding: 0 1rem;
 `
 
-const News = () => {
+const News = ({addResource}) => {
     const [news, setNews] = useState([]);
 
-    const search = 'tulip';
-    
+    const search = 'cactus';
+
     const getNews = (search) => {
         axios.get(`/newsQ/:${search}`)
         .then(({data}) => {
             setNews(data);
         }).catch()
     }
+
 
     useEffect(() => {
         getNews(search);
@@ -37,6 +39,7 @@ const News = () => {
                 <Caption>
                     <h3>{article.title}</h3>
                     <p>{article.description}</p>
+                    <Button variant="contained" onClick={() => { addResource(article); }}>Resource Me!</Button>
                 </Caption>
                 {/* <Article article={article}/> */}
             </Carousel.Item>

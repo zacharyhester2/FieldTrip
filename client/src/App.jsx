@@ -15,22 +15,51 @@ import Alerts from './Components/Alerts/Alerts.jsx'
 import PhotoUpload from './Components/PhotoUpload/PhotoUpload.jsx'
 // import logo from './assets/LogoNoBack.png'
 import AppBarHeader from './Components/Home/AppBarHeader.jsx';
+import { Button } from '@material-ui/core'
 
 
 const App = () => {
     const [user, setUser] = useState();
     const [isLoggedin, setIsLoggedIn] = useState(false)
     const [stamps, setStamps] = useState([])
+    const [view, setView] = useState('plants')
 
   const getUser = () => {
     if (!user) {
       axios
         .get('/user')
         .then(({ data }) => {
-          // console.log('data from GET USER', data)
           setUser(data)
         })
-        // .then(() => setIsLoggedIn(true))
+        .catch();
+    }
+  };
+
+  const addResource = (resource) => {
+    //post request to user table
+    axios.post('/resource', {
+      category: view,
+      date: Date.now,
+      title: resource.title,
+      author: resource.author,
+      image: resource.urlToImage,
+      url: resource.url,
+      userId: user.id
+    })
+    .then(() => {
+      getStamps()
+    })
+    .catch()
+  };
+
+   //in progress
+   const getStamps = () => {
+    if (user) {
+      axios.get(`/user/${user.id}`)
+        .then(({ data }) => {
+          // console.log('FROM STAMPS', data)
+          setStamps(data)
+        })
         .catch();
     }
   };
@@ -54,18 +83,19 @@ const App = () => {
           </a>
         </div>
       </header> */}
-      <AppBarHeader user={user} />
+      <AppBarHeader user={user} logout={logout}/>
       {!user
       ?(
         <div>
           <Home />
+          <Button variant="contained">
           <a
             className="login-button"
             href="/auth/google"
-
           >
           LOGIN WITH GOOGLE
           </a>
+          </Button>
         </div>
       )
       :(
@@ -78,10 +108,10 @@ const App = () => {
                   <Home user={user} logout={logout}/>
               </Route>
               <Route path="/profile">
-                  <Profile user={user} logout={logout} stamps={stamps}/>
+                  <Profile user={user} logout={logout} stamps={stamps} getStamps={getStamps}/>
               </Route>
               <Route path="/discovery">
-                  <Discovery />
+                  <Discovery addResource={addResource}/>
               </Route>
               <Route path="/alerts">
                   <Alerts />

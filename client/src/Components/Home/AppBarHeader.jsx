@@ -24,7 +24,6 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
   bar: {
-    // background: '#090b17',
     background: 'transparent',
   },
   spaceTheme: {
@@ -42,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const AppBarHeader = ({ user }) => {
+const AppBarHeader = ({ user, logout }) => {
   const classes = useStyles();
   const [theme, setTheme] = useState('headerDefault');
 
@@ -61,8 +60,8 @@ const AppBarHeader = ({ user }) => {
             <>
               <CategoryDialog theme={theme} setTheme={setTheme} />
             </>
-            <Button variant='text' color='inherit'>
-              {user ? 'Logout' : 'Login'}
+            <Button variant='text' color='inherit' onClick={logout}>
+              {user ? 'Logout' : null}
             </Button>
           </Toolbar>
         </AppBar>
