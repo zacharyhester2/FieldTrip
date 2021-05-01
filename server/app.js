@@ -118,7 +118,6 @@ app.get('/auth/google',
     '/auth/google/callback',
     passport.authenticate('google', { failureRedirect: '/logout' }),
     (req, res) => {
-      // console.log(req.user, 'REQ DOT USER')
       const newUser = new Users({
         id: req.user.id,
         name: req.user.displayName,
@@ -147,7 +146,7 @@ app.get('/auth/google',
   //STAMPS
   app.get('/user/:id', (req, res) => {
     Users.findOne({ id: req.params.id }).then((userInfo) => {
-      res.send(userInfo);
+      res.send(userInfo.stamps);
     });
   });
 
@@ -172,6 +171,7 @@ app.get('/auth/google',
             user.stamps = [...user.stamps, resource.image];
 
             Users.updateOne({ id : req.cookies.FieldTripId }, {stamps: user.stamps})
+            .then(() => res.sendStatus(200))
             .catch()
           })
         })

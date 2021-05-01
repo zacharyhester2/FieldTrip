@@ -1,11 +1,10 @@
 import React from 'react';
 import Passport from './Passport.jsx';
 
-const Profile = ({user, stamps}) => {
-
-  console.log('user from PROFILE', user)
+const Profile = ({user, getStamps, stamps}) => {
   return (
     <>
+    {getStamps()}
       <h1>Profile</h1>
       <h3>{user.name}</h3>
       <div>
