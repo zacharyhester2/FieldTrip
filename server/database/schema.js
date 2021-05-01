@@ -31,19 +31,30 @@ const userSchema = mongoose.Schema({
   name: String,
   cloudinaryId: String,
   interests: String,
-  stamps: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: Resources,
-  },
+  stamps: [{type: String}],
   badges: {
     type: mongoose.Schema.Types.ObjectId,
     ref: Badges,
   }
 });
 
+const saveStamp = () => {
+  return Resources.find({ id: Resources.id })
+    .then((data) => {
+      if (!data.length) {
+        const newStamp= new Users.stamp({
+          stamps: Resources.image,
+
+        });
+        return newStamp.save();
+      }
+    });
+}
+
 const Users = mongoose.model('User', userSchema);
 module.exports = {
   Users,
   Resources,
-  Badges
-};
+  Badges,
+  saveStamp
+}

@@ -20,18 +20,50 @@ const App = () => {
     const [user, setUser] = useState();
     const [isLoggedin, setIsLoggedIn] = useState(false)
     const [stamps, setStamps] = useState([])
+    const [view, setView] = useState('plants')
 
   const getUser = () => {
     if (!user) {
       axios
         .get('/user')
         .then(({ data }) => {
-          // console.log('data from GET USER', data)
+          console.log('data from GET USER', data)
           setUser(data)
         })
         // .then(() => setIsLoggedIn(true))
         .catch();
     }
+  };
+
+ //in progress
+  const getStamps = () => {
+    if (user) {
+      axios
+        .get(`/user/:${user.id}`)
+        .then(({ data }) => {
+          console.log('FROM STAMPS', data)
+          //currently no stamps in DB
+          setStamps(data)
+        })
+        .catch();
+    }
+  };
+
+  //in progress
+  const addResource = (resource) => {
+    //post request to user table
+    console.log(resource);
+    axios.post('/resource', {
+      category: view,
+      date: Date.now,
+      title: resource.title,
+      author: resource.author,
+      image: resource.urlToImage,
+      url: resource.url,
+      userId: user.id
+    })
+    .then(() => {console.log('posted resource to db!')})
+    .catch()
   };
 
   const logout = () => {
@@ -42,6 +74,7 @@ const App = () => {
 
   useEffect(() => {
     getUser()
+    getStamps()
   }, [])
 
     return (
@@ -77,7 +110,7 @@ const App = () => {
                   <Profile user={user} logout={logout} stamps={stamps}/>
               </Route>
               <Route path="/discovery">
-                  <Discovery />
+                  <Discovery addResource={addResource}/>
               </Route>
               <Route path="/alerts">
                   <Alerts />

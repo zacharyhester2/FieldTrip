@@ -6,6 +6,7 @@ require('./OAuth/passport.js');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const CLIENT_PATH = path.resolve(__dirname, '../client/dist');
+const mongoose = require('mongoose');
 const axios = require('axios');
 require('./OAuth/passport.js');
 require('dotenv').config()
@@ -96,8 +97,6 @@ app.get('/newsQ/:search', (req, res) => {
 });
 
 //OAUTH STUFF
-
-//OAUTH STUFF
 app.use(
   session({
     secret: process.env.GOOGLE_CLIENT_SECRET,
@@ -138,14 +137,48 @@ app.get('/auth/google',
       });
     },
   );
-  
+
   app.get('/user', (req, res) => {
     Users.findOne({ id: req.cookies.FieldTripId }).then((userInfo) => {
       res.send(userInfo);
     });
   });
 
-  
+  //STAMPS
+  app.get('/user/:id', (req, res) => {
+    Users.findOne({ id: req.params.id }).then((userInfo) => {
+      res.send(userInfo);
+    });
+  });
+
+  //post request -add resource to resource schema
+  app.post('/resource', (req, res) => {
+    const {category, date, title, author, image, url, userId} = req.body;
+
+    Users.findOne({ id : req.cookies.FieldTripId })
+    .then((user) => {
+      userInfo = user;
+      Resources.create({
+        category: category,
+        date: date,
+        title: title,
+        author: author,
+        image: image,
+        url: url
+      })
+      .then((resource)=>{
+          Users.findOne({ id : req.cookies.FieldTripId })
+          .then((user) => {
+            user.stamps = [...user.stamps, resource.image];
+
+            Users.updateOne({ id : req.cookies.FieldTripId }, {stamps: user.stamps})
+            .catch()
+          })
+        })
+  })
+  })
+
+
 //SPOTIFY
 
 
