@@ -2,7 +2,6 @@ import React from 'react';
 import Podcast from './Podcast/Podcast.jsx';
 import News from './News/News.jsx';
 import Documentary from './Documentary/Documentary.jsx';
-import CategorySelector from '../Navigation/CategorySelector.jsx';
 
 const Discovery = () => {
 
@@ -16,7 +15,6 @@ const Discovery = () => {
           <News />
           <Documentary />
           <Podcast />
-          <CategorySelector />
         </div>
       );
 }
