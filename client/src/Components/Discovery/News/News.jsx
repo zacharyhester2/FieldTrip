@@ -8,7 +8,7 @@ const Caption = styled(Carousel.Caption)`
         background: rgba(25, 25, 25, 0.6) !important;
         width: fit-content;
         margin: 0 auto;
-        padding: 0 1rem;
+        padding: 1rem 1rem;
 `
 
 const News = ({addResource}) => {
@@ -31,7 +31,7 @@ const News = ({addResource}) => {
     return (
         <div>
             <h1>NEWS</h1>
-                {console.log(news, 'NEWS')}
+                {console.log(news, 'NEWS in news.js')}
             <Carousel>
             {news.map((article, i) => (
             <Carousel.Item key={i}>
@@ -39,9 +39,14 @@ const News = ({addResource}) => {
                 <Caption>
                     <h3>{article.title}</h3>
                     <p>{article.description}</p>
-                    <Button variant="contained" onClick={() => { addResource(article); }}>Resource Me!</Button>
+                    <p>Read Full Article
+                            <a
+                                href={article.url}
+                                target="_blank"
+                                onClick={() => { addResource(article, 'article'); }}
+                            > Here</a>
+                    </p>
                 </Caption>
-                {/* <Article article={article}/> */}
             </Carousel.Item>
             ))}
             </Carousel>

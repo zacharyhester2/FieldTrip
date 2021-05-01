@@ -8,6 +8,7 @@ const Caption = styled(Carousel.Caption)`
     background: rgba(25, 25, 25, 0.6) !important;
     width: fit-content;
     margin: 0 auto;
+    margin-bottom: 50px;
     padding: 0 1rem;
     display: flex !important;
 `
@@ -35,7 +36,7 @@ const Documentary = ({addResource}) => {
     return (
         <div>
             <h1>Docs</h1>
-                {/* {console.log(docs, 'docs')} */}
+                {console.log(docs, 'docs')}
             <Carousel>
             {docs.map((doc, i) => (
             <Carousel.Item key={i}>
@@ -46,7 +47,13 @@ const Documentary = ({addResource}) => {
                     <div id="content">
                         <h3>{doc.snippet.title}</h3>
                         <p>{doc.snippet.description}</p>
-                        <Button variant="contained" onClick={() => { addResource(doc.snippet); }}>Resource Me!</Button>
+                        <p>Watch Documentary
+                            <a
+                                href={`https://www.youtube.com/embed/${doc.id.videoId}`}
+                                target="_blank"
+                                onClick={() => { addResource(doc, 'youTube'); }}
+                            > Here</a>
+                        </p>
                     </div>
                 </Caption>
             </Carousel.Item>

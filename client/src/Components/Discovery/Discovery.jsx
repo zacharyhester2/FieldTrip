@@ -14,7 +14,7 @@ const Discovery = ({addResource}) => {
     return (
         <div>
           <News addResource={addResource}/>
-          <Documentary />
+          <Documentary addResource={addResource}/>
           {/* <Podcast /> */}
         </div>
       );
