@@ -16,7 +16,9 @@ const resourceSchema = mongoose.Schema({
   image: String,
   url: String,
 });
+
 const Resources = mongoose.model('Resources', resourceSchema);
+
 const badgeSchema = mongoose.Schema({
   id: String,
   name: String,
@@ -25,13 +27,15 @@ const badgeSchema = mongoose.Schema({
   url: String,
   image: String,
 });
+
 const Badges = mongoose.model('Badge', badgeSchema);
+
 const userSchema = mongoose.Schema({
   id: String,
   name: String,
   cloudinaryId: String,
   interests: String,
-  stamps: [{type: String}],
+  stamps: Array,
   badges: {
     type: mongoose.Schema.Types.ObjectId,
     ref: Badges,
@@ -52,6 +56,7 @@ const saveStamp = () => {
 }
 
 const Users = mongoose.model('User', userSchema);
+
 module.exports = {
   Users,
   Resources,

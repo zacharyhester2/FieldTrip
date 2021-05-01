@@ -23,7 +23,7 @@ const Documentary = ({addResource}) => {
     const search = 'microcosmos';
 
     const getDocs = (search) => {
-        axios.get(`/youTube/:${search}`)
+        axios.get(`/youTube/${search}`)
         .then(({data}) => {
             setDocs(data);
         }).catch()
