@@ -13,7 +13,8 @@ import Profile from './Components/Profile/Profile.jsx'
 import Discovery from './Components/Discovery/Discovery.jsx'
 import Alerts from './Components/Alerts/Alerts.jsx'
 import PhotoUpload from './Components/PhotoUpload/PhotoUpload.jsx'
-import logo from './assets/LogoNoBack.png'
+// import logo from './assets/LogoNoBack.png'
+import AppBarHeader from './Components/Home/AppBarHeader.jsx';
 
 
 const App = () => {
@@ -74,11 +75,14 @@ const App = () => {
 
     return (
     <div>
-      <header>
+      {/* <header>
         <div>
-          <img className="logo" src={logo} alt="" width="300px"/>
+          <a href="/" >
+            <img className="logo" src={logo} alt="" width="300px"/>
+          </a>
         </div>
-      </header>
+      </header> */}
+      <AppBarHeader user={user} />
       {!user
       ?(
         <div>
