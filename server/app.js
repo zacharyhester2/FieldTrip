@@ -97,6 +97,7 @@ app.get('/newsQ/:search', (req, res) => {
 
 //OAUTH STUFF
 
+//OAUTH STUFF
 app.use(
   session({
     secret: process.env.GOOGLE_CLIENT_SECRET,
@@ -104,30 +105,26 @@ app.use(
     resave: true,
   }),
 );
-
 app.use(passport.initialize());
 app.use(passport.session());
-
 passport.serializeUser((user, done) => {
   done(null, user.id);
 });
-
 passport.deserializeUser((user, done) => {
   done(null, user);
 });
-
 app.get('/auth/google',
   passport.authenticate('google', { scope: ['email', 'profile'] }));
-
   app.get(
     '/auth/google/callback',
     passport.authenticate('google', { failureRedirect: '/logout' }),
     (req, res) => {
+      // console.log(req.user, 'REQ DOT USER')
       const newUser = new Users({
         id: req.user.id,
         name: req.user.displayName,
       });
-      
+      res.cookie('FieldTripId', req.user.id);
       Users.findOne({ id: req.user.id }).then((data) => {
         if (data) {
           userInfo = data;
@@ -141,7 +138,14 @@ app.get('/auth/google',
       });
     },
   );
+  
+  app.get('/user', (req, res) => {
+    Users.findOne({ id: req.cookies.FieldTripId }).then((userInfo) => {
+      res.send(userInfo);
+    });
+  });
 
+  
 //SPOTIFY
 
 
