@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const AppBarHeader = ({ user }) => {
+const AppBarHeader = ({ user, logout }) => {
   const classes = useStyles();
 
   return (
@@ -38,8 +38,8 @@ const AppBarHeader = ({ user }) => {
           <>
             <CategoryDialog/>
           </>
-          <Button variant='text' color='inherit'>
-            {user ? 'Logout' : 'Login'}
+          <Button variant='text' color='inherit' onClick={logout}>
+            {user ? 'Logout' : null}
           </Button>
         </Toolbar>
       </AppBar>

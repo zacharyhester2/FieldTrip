@@ -15,6 +15,7 @@ import Alerts from './Components/Alerts/Alerts.jsx'
 import PhotoUpload from './Components/PhotoUpload/PhotoUpload.jsx'
 // import logo from './assets/LogoNoBack.png'
 import AppBarHeader from './Components/Home/AppBarHeader.jsx';
+import { Button } from '@material-ui/core'
 
 
 const App = () => {
@@ -82,18 +83,19 @@ const App = () => {
           </a>
         </div>
       </header> */}
-      <AppBarHeader user={user} />
+      <AppBarHeader user={user} logout={logout}/>
       {!user
       ?(
         <div>
           <Home />
+          <Button variant="contained">
           <a
             className="login-button"
             href="/auth/google"
-
           >
           LOGIN WITH GOOGLE
           </a>
+          </Button>
         </div>
       )
       :(

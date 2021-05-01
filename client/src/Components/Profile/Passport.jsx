@@ -11,7 +11,7 @@ margin: 50px;
 padding: 50px;
   display: flex;
   flex-flow: row wrap;
-  width: 100%;
+  width: 90%;
   justify-content: center;
 h3{
   color: black;
