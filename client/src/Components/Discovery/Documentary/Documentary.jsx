@@ -17,10 +17,10 @@ const Img =  styled.div`
     border-radius: 0.25rem !important;
 `
 
-const Documentary = ({addResource}) => {
+const Documentary = ({addResource, discView}) => {
     const [docs, setDocs] = useState([]);
 
-    const search = 'microcosmos';
+    const search = `${discView}`;
 
     const getDocs = (search) => {
         axios.get(`/youTube/:${search}`)
@@ -31,7 +31,7 @@ const Documentary = ({addResource}) => {
 
     useEffect(() => {
         getDocs(search);
-    }, [])
+    }, [discView])
 
     return (
         <div>
