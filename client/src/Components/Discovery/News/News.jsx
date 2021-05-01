@@ -11,10 +11,11 @@ const Caption = styled(Carousel.Caption)`
         padding: 1rem 1rem;
 `
 
-const News = ({addResource}) => {
+const News = ({ addResource, discView }) => {
     const [news, setNews] = useState([]);
 
-    const search = 'cactus';
+    const search = `${discView}`;
+    console.log('SEARCH QUERY', discView);
 
     const getNews = (search) => {
         axios.get(`/newsQ/:${search}`)
@@ -26,7 +27,7 @@ const News = ({addResource}) => {
 
     useEffect(() => {
         getNews(search);
-    }, [])
+    }, [discView])
 
     return (
         <div>

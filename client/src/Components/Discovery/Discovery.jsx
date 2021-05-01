@@ -4,8 +4,8 @@ import News from './News/News.jsx';
 import Documentary from './Documentary/Documentary.jsx';
 
 
-const Discovery = ({addResource}) => {
-
+const Discovery = ({ addResource, discView, setDiscView }) => {
+  // console.log('FROM DISCOVERY COMPONENT', discView);
 
   //call the axios.all endpoint
   //set user's query, feed to back

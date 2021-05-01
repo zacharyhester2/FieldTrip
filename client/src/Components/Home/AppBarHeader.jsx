@@ -4,14 +4,13 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import CategoryDialog from '../Navigation/CategoryDialog.jsx';
+import CategoryDialog from '../Home/CategoryDialog.jsx';
 import logo from '../../assets/LogoNoBack.png';
 
 // import galaxy from '../../themes/galaxy.png';
 import galaxy from '../../themes/galaxy.jpg';
 import earth from '../../themes/earth.png';
 import dinos from '../../themes/dinos.jpg';
-
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -26,30 +25,28 @@ const useStyles = makeStyles((theme) => ({
   bar: {
     background: 'transparent',
   },
-  spaceTheme: {
-    backgroundImage: `url(${galaxy})`,
-  },
-  earthTheme: {
-    backgroundImage: `url(${earth})`,
-    width: '100%'
-  },
-  historyTheme: {
-    backgroundImage: `url(${dinos})`,
-  },
+  // spaceTheme: {
+  //   backgroundImage: `url(${galaxy})`,
+  // },
+  // earthTheme: {
+  //   backgroundImage: `url(${earth})`,
+  //   width: '100%'
+  // },
+  // historyTheme: {
+  //   backgroundImage: `url(${dinos})`,
+  // },
   headerDefault: {
     background: '#090b17',
   }
 }));
 
-const AppBarHeader = ({ user, logout }) => {
+const AppBarHeader = ({ user, logout, discView, setDiscView, theme, setTheme }) => {
   const classes = useStyles();
-  const [theme, setTheme] = useState('headerDefault');
 
-  const currClass = classes[`${theme}`];
 
   return (
     <div className={classes.root}>
-      <header className={currClass} >
+      <header className="headerDefault" >
         <AppBar position="static" className={classes.bar}>
           <Toolbar>
             <a href='/'>
@@ -58,7 +55,7 @@ const AppBarHeader = ({ user, logout }) => {
             <Typography variant="h6" className={classes.title}>
             </Typography>
             <>
-              <CategoryDialog theme={theme} setTheme={setTheme} />
+              <CategoryDialog theme={theme} setTheme={setTheme} discView={discView} setDiscView={setDiscView} theme={theme} setTheme={setTheme} />
             </>
             <Button variant='text' color='inherit' onClick={logout}>
               {user ? 'Logout' : null}
