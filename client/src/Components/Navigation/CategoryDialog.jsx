@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
@@ -14,31 +14,34 @@ import Typography from '@material-ui/core/Typography';
 import AccountBalanceSharpIcon from '@material-ui/icons/AccountBalanceSharp';
 import EcoSharpIcon from '@material-ui/icons/EcoSharp';
 import FlareSharpIcon from '@material-ui/icons/FlareSharp';
+import AllInclusiveSharpIcon from '@material-ui/icons/AllInclusiveSharp';
 
 
 const categories = [
-  { icon: <FlareSharpIcon />, name: 'Outer Space' },
-  { icon: <EcoSharpIcon />, name: 'Planet Earth' },
-  { icon: <AccountBalanceSharpIcon />, name: 'Natural History' },
+  { icon: <FlareSharpIcon />, name: 'Outer Space', theme: 'spaceTheme' },
+  { icon: <EcoSharpIcon />, name: 'Planet Earth', theme: 'earthTheme' },
+  { icon: <AccountBalanceSharpIcon />, name: 'Natural History', theme: 'historyTheme' },
+  { icon: <AllInclusiveSharpIcon />, name: 'All of the Above', theme: 'headerDefault' }
 ];
 
 const useStyles = makeStyles({
   avatar: {
-    backgroundColor: '#736bfb',
+    backgroundColor: 'rgba(114, 107, 251, 0.851)',
     color: 'whitesmoke',
   },
 });
 
 const CategoryDialogBuilder = (props) => {
   const classes = useStyles();
-  const { onClose, selectedValue, open } = props;
+  const { onClose, selectedValue, open, selectedTheme } = props;
 
   const handleClose = () => {
-    onClose(selectedValue);
+    onClose(selectedValue, selectedTheme);
   };
 
-  const handleListItemClick = (value) => {
-    onClose(value);
+  const handleListItemClick = (value, theme) => {
+    console.log(theme)
+    onClose(value, theme);
   };
 
   return (
@@ -46,7 +49,7 @@ const CategoryDialogBuilder = (props) => {
       <DialogTitle id="simple-dialog-title">Choose a category!</DialogTitle>
       <List>
         {categories.map((category) => (
-          <ListItem button onClick={() => handleListItemClick(category.name)} key={category.name}>
+          <ListItem button onClick={() => handleListItemClick(category.name, category.theme)} key={category.name}>
             <ListItemAvatar>
               <Avatar className={classes.avatar}>
                 {category.icon}
@@ -64,19 +67,31 @@ CategoryDialogBuilder.propTypes = {
   onClose: PropTypes.func.isRequired,
   open: PropTypes.bool.isRequired,
   selectedValue: PropTypes.string.isRequired,
+  selectedTheme: PropTypes.string.isRequired,
 };
 
-const CategoryDialog = () => {
-  const [open, setOpen] = React.useState(false);
-  const [selectedValue, setSelectedValue] = React.useState(categories[0].name);
+const CategoryDialog = ({ theme, setTheme }) => {
+  const [open, setOpen] = useState(false);
+  const [selectedValue, setSelectedValue] = useState(categories[0].name);
+  const [selectedTheme, setSelectedTheme] = useState(categories[3].theme);
+
+  useEffect(() => {
+    setTheme(selectedTheme);
+  }, []);
+
+  useEffect(() => {
+    setTheme(selectedTheme);
+  }, [selectedValue]);
 
   const handleClickOpen = () => {
     setOpen(true);
   };
 
-  const handleClose = (value) => {
+  const handleClose = (value, theme) => {
+    console.log('VALUE_SECOND', value)
     setOpen(false);
     setSelectedValue(value);
+    setSelectedTheme(theme)
   };
 
   return (
@@ -86,7 +101,7 @@ const CategoryDialog = () => {
       <Button variant="text" color="secondary" onClick={handleClickOpen} style={{ color: 'whitesmoke' }}>
         Categories
       </Button>
-      <CategoryDialogBuilder selectedValue={selectedValue} open={open} onClose={handleClose} />
+      <CategoryDialogBuilder selectedValue={selectedValue} open={open} onClose={handleClose} theme={selectedTheme} />
     </>
   );
 }

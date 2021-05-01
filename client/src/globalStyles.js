@@ -1,5 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 
+
 const GlobalStyles = createGlobalStyle`
   *{
     /* margin: 0; */
@@ -25,7 +26,5 @@ const GlobalStyles = createGlobalStyle`
     left: 50%;
     transform: translate(-50%, -50%);
   }
-
-
 `;
 export default GlobalStyles;
