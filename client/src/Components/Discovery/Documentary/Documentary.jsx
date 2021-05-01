@@ -16,10 +16,10 @@ const Img =  styled.div`
     border-radius: 0.25rem !important;
 `
 
-const Documentary = ({addResource}) => {
+const Documentary = ({ addResource, discView }) => {
     const [docs, setDocs] = useState([]);
 
-    const search = 'microcosmos';
+    const search = `${discView}`;
 
     const getDocs = (search) => {
         axios.get(`/youTube/:${search}`)
@@ -30,7 +30,7 @@ const Documentary = ({addResource}) => {
 
     useEffect(() => {
         getDocs(search);
-    }, [])
+    }, [discView])
 
     return (
         <div>
@@ -46,7 +46,14 @@ const Documentary = ({addResource}) => {
                     <div id="content">
                         <h3>{doc.snippet.title}</h3>
                         <p>{doc.snippet.description}</p>
-                        <Button variant="contained" onClick={() => { addResource(doc.snippet); }}>Resource Me!</Button>
+                        {/* <Button variant="contained" onClick={() => { addResource(doc.snippet); }}>Resource Me!</Button> */}
+                        <p>Watch Documentary
+                            <a
+                                href={`https://www.youtube.com/embed/${doc.id.videoId}`}
+                                target="_blank"
+                                onClick={() => { addResource(doc, 'youTube'); }}
+                            > Here</a>
+                        </p>
                     </div>
                 </Caption>
             </Carousel.Item>

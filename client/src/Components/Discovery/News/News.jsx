@@ -40,7 +40,14 @@ const News = ({ addResource, discView }) => {
                 <Caption>
                     <h3>{article.title}</h3>
                     <p>{article.description}</p>
-                    <Button variant="contained" onClick={() => { addResource(article); }}>Resource Me!</Button>
+                    {/* <Button variant="contained" onClick={() => { addResource(article); }}>Resource Me!</Button> */}
+                    <p>Read Full Article
+                        <a
+                                href={article.url}
+                                target="_blank"
+                                onClick={() => { addResource(article, 'article'); }}
+                            > Here</a>
+                    </p>
                 </Caption>
                 {/* <Article article={article}/> */}
             </Carousel.Item>
