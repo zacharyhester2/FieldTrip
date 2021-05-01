@@ -49,7 +49,6 @@ const useStyles = makeStyles((theme) => ({
 const App = () => {
   const classes = useStyles();
     const [user, setUser] = useState();
-    const [isLoggedin, setIsLoggedIn] = useState(false)
     const [stamps, setStamps] = useState([])
     const [discView, setDiscView] = useState('')
     const [theme, setTheme] = useState('headerDefault');
@@ -67,12 +66,31 @@ const App = () => {
     }
   };
 
+  // NO LOOP
+  // const addResource = (resource) => {
+  //   //post request to user table
+  //   axios.post('/resource', {
+  //     category: discView,
+  //     date: Date.now,
+  //     title: resource.title,
+  //     author: resource.author,
+  //     image: resource.urlToImage,
+  //     url: resource.url,
+  //     userId: user.id
+  //   })
+  //   .then(() => {
+  //     getStamps()
+  //   })
+  //   .catch()
+  // };
+
+  //FIX THIS BEFORE IT LOOPS
   const addResource = (resource, resType) => {
-    let params= {}
+    let pars = {};
     //if resource is artiles:
     if(resType === 'article'){
-      params= {
-        category: view,
+      pars= {
+        category: discView,
         date: Date.now,
         title: resource.title,
         author: resource.author,
@@ -81,8 +99,8 @@ const App = () => {
         userId: user.id
       }
     } else if(resType === 'youTube'){
-      params= {
-        category: view,
+      pars= {
+        category: discView,
         date: Date.now,
         title: resource.snippet.title,
         author: null,
@@ -92,9 +110,10 @@ const App = () => {
       }
     }
     //post request to user table
-    axios.post('/resource', params)
+    axios.post('/resource', pars)
     .then(() => {
-      getStamps()
+      // getStamps()
+      console.log('add resources worked!')
     })
     .catch()
   };

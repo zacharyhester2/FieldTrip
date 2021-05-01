@@ -9,12 +9,14 @@ const Img = styled.div`
     padding: 2px;
     margin: 10px;
     height: 150px;
-    width: auto;
+    width: 150px;
+    object-fit: cover;
     /* filter: grayscale(100%) */
 
   }
   img:hover {
   transform: scaleX(-1);
+
 }
 `
 
