@@ -21,7 +21,7 @@ const categories = [
   { icon: <FlareSharpIcon />, name: 'Outer Space', theme: 'spaceTheme' },
   { icon: <EcoSharpIcon />, name: 'Planet Earth', theme: 'earthTheme' },
   { icon: <AccountBalanceSharpIcon />, name: 'Natural History', theme: 'historyTheme' },
-  { icon: <AllInclusiveSharpIcon />, name: 'All of the Above', theme: 'headerDefault' }
+  { icon: <AllInclusiveSharpIcon />, name: 'General Science', theme: 'headerDefault' }
 ];
 
 const useStyles = makeStyles({
@@ -74,11 +74,6 @@ const CategoryDialog = ({ theme, setTheme, discView, setDiscView }) => {
   const [open, setOpen] = useState(false);
   const [selectedValue, setSelectedValue] = useState('science');
   const [selectedTheme, setSelectedTheme] = useState('headerDefault');
-
-  useEffect(() => {
-    setTheme(selectedTheme);
-    setDiscView(selectedTheme);
-  }, []);
 
   useEffect(() => {
     setTheme(selectedTheme);
