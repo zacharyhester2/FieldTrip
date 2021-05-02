@@ -56,6 +56,7 @@ const App = () => {
 
     const currClass = classes[`${theme}`];
 
+    
   const getUser = () => {
     if (!user) {
       axios

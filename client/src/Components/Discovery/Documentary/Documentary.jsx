@@ -1,19 +1,41 @@
 import React, { useState, useEffect } from 'react';
-import { Carousel } from 'react-bootstrap/';
+import { Carousel, Container, Row, Col, Jumbotron } from 'react-bootstrap/';
 import axios from 'axios';
 import styled from 'styled-components';
 
-const DocumentaryStyles = styled(Carousel.Caption)`
-    #content {
-        background: rgba(25, 25, 25, 0.2) !important;
-    }
+const Img = styled.div`
+  img{
+    border-radius: 60px;
+    border: 3px;
+    border-color: whitesmoke;
+    padding: 0 1rem;
+    height: auto;
+    width: auto;
+    margin: 10px;
+    /* filter: grayscale(100%) */
+
+  }
+  img:hover {
+  transform: scaleX(-1);
+}
+`
+
+
+const Caption = styled(Carousel.Caption)`
+    background: rgba(25, 25, 25, 0.6) !important;
+    height: auto;
+    width: auto;
+    margin: 10 px;
+    border: 3px;
+    border-radius: 60 px;
+    border-color: whitesmoke;
+    padding: 0 1rem;
 `
 
 const Documentary = () => {
     const [docs, setDocs] = useState([]);
 
-
-    const search = 'microcosmos';
+    const search = 'Cosmos';
     
     const getDocs = (search) => {
         axios.get(`/youTube/${search}`)
@@ -28,20 +50,19 @@ const Documentary = () => {
 
     return (
         <div>
-            <h1>Docs</h1>
-                {console.log(docs, 'docs')}
-            <Carousel>
-            {docs.map((doc, i) => (
-            <Carousel.Item key={i}>
-                <img className="docs-img" src={doc.snippet.thumbnails.high.url}/>
-                <Carousel.Caption>
-                    <div id="content">
-                        <h3>{doc.snippet.title}</h3>
-                        <p>{doc.snippet.description}</p>
-                    </div>
-                </Carousel.Caption>
-            </Carousel.Item>
-            ))}
+            <Carousel fade>
+                {docs.map((doc, i) => (
+                    <Carousel.Item className="mb-5 m5-5"
+                    key={i}>
+                        <Img>
+                            <img className="docs-img mx-auto"
+                            src={doc.snippet.thumbnails.high.url}/>
+                        </Img>
+                        <Caption>
+                                <h2>{doc.snippet.title}</h2>
+                        </Caption>
+                    </Carousel.Item>
+                    ))}
             </Carousel>
         </div>
       );

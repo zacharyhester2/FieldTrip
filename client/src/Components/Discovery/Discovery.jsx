@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import { Carousel, Container, Row, Col, Jumbotron } from 'react-bootstrap/';
 import Podcast from './Podcast/Podcast.jsx';
 import News from './News/News.jsx';
 import Documentary from './Documentary/Documentary.jsx';
@@ -26,9 +27,21 @@ const Discovery = ({addResource}) => {
 
     return (
         <div>
-          <News addResource={addResource} discView={discView}/>
-          <Documentary addResource={addResource} discView={discView}/>
-          {/* <Podcast /> */}
+          
+          <Container fluid>
+              <Row display="flex">      
+                  <News addResource={addResource} discView={discView}
+                  className="d-flex justify-content-center text-center"/>
+              </Row>
+              <Row>
+                <Col>
+                  <Documentary addResource={addResource} discView={discView}/>
+                </Col>
+                <Col>
+                 
+                </Col>
+              </Row>
+          </Container>
         </div>
       );
 }
