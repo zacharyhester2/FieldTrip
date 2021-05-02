@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import stampImg from '../../assets/stampImg.jpg'
 
 const Img = styled.div`
   img{
@@ -25,7 +26,12 @@ const Stamp = ({stamp}) => {
   return (
     // <div>
       <Img>
+      {stamp?
         <img src={stamp}/>
+        :
+        <img src={stampImg}/>
+
+      }
       </Img>
     // </div>
   )

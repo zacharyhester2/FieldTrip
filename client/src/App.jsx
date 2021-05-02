@@ -52,6 +52,7 @@ const App = () => {
     const [stamps, setStamps] = useState([])
     const [discView, setDiscView] = useState('')
     const [theme, setTheme] = useState('headerDefault');
+    const [alerts, setAlerts] = useState('[]')
 
     const currClass = classes[`${theme}`];
 
@@ -67,64 +68,75 @@ const App = () => {
   };
 
   // NO LOOP
-  // const addResource = (resource) => {
-  //   //post request to user table
-  //   axios.post('/resource', {
-  //     category: discView,
-  //     date: Date.now,
-  //     title: resource.title,
-  //     author: resource.author,
-  //     image: resource.urlToImage,
-  //     url: resource.url,
-  //     userId: user.id
-  //   })
-  //   .then(() => {
-  //     getStamps()
-  //   })
-  //   .catch()
-  // };
-
-  //FIX THIS BEFORE IT LOOPS
-  const addResource = (resource, resType) => {
-    let pars = {};
-    //if resource is artiles:
-    if(resType === 'article'){
-      pars= {
-        category: discView,
-        date: Date.now,
-        title: resource.title,
-        author: resource.author,
-        image: resource.urlToImage,
-        url: resource.url,
-        userId: user.id
-      }
-    } else if(resType === 'youTube'){
-      pars= {
-        category: discView,
-        date: Date.now,
-        title: resource.snippet.title,
-        author: null,
-        image: resource.snippet.thumbnails.high.url,
-        url: `https://www.youtube.com/embed/${resource.id.videoId}`,
-        userId: user.id
-      }
-    }
+  const addResource = (resource) => {
     //post request to user table
-    axios.post('/resource', pars)
+    axios.post('/resource', {
+      category: discView,
+      date: Date.now,
+      title: resource.title,
+      author: resource.author,
+      image: resource.urlToImage,
+      url: resource.url,
+      userId: user.id
+    })
     .then(() => {
-      // getStamps()
-      console.log('add resources worked!')
+      getStamps()
     })
     .catch()
   };
+
+  // //FIX THIS BEFORE IT LOOPS
+  // const addResource = (resource, resType) => {
+  //   let pars = {};
+  //   //if resource is artiles:
+  //   if(resType === 'article'){
+  //     pars= {
+  //       category: discView,
+  //       date: Date.now,
+  //       title: resource.title,
+  //       author: resource.author,
+  //       image: resource.urlToImage,
+  //       url: resource.url,
+  //       userId: user.id
+  //     }
+  //   } else if(resType === 'youTube'){
+  //     pars= {
+  //       category: discView,
+  //       date: Date.now,
+  //       title: resource.snippet.title,
+  //       author: null,
+  //       image: resource.snippet.thumbnails.high.url,
+  //       url: `https://www.youtube.com/embed/${resource.id.videoId}`,
+  //       userId: user.id
+  //     }
+  //   }
+  //   //post request to user table
+  //   axios.post('/resource', pars)
+  //   .then(() => {
+  //     // getStamps()
+  //     console.log('add resources worked!')
+  //   })
+  //   .catch()
+  // };
 
 
    const getStamps = () => {
     if (user) {
       axios.get(`/user/${user.id}`)
         .then(({ data }) => {
-          // console.log('FROM STAMPS', data)
-          setStamps(data)
+          console.log('FROM STAMPS', data)
+          setStamps(data);
+          setAlerts(data);
+        })
+        .catch();
+    }
+  };
+   const getAlerts = () => {
+    if (user) {
+      axios.get(`/user/${user.id}`)
+        .then(({ data }) => {
+          console.log('FROM Alerts', data)
+          setAlerts(data);
         })
         .catch();
     }
@@ -137,7 +149,7 @@ const App = () => {
   };
 
   useEffect(() => {
-    getUser()
+    getUser();
   }, [])
 
     return (
@@ -180,7 +192,7 @@ const App = () => {
                   <Discovery addResource={addResource} discView={discView} setDiscView={setDiscView}/>
               </Route>
               <Route path="/alerts">
-                  <Alerts />
+                  <Alerts alerts={alerts} getAlerts={getAlerts}/>
               </Route>
               <Route path="/PhotoUpload">
                   <PhotoUpload />
