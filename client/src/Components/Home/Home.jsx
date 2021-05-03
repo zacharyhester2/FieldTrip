@@ -8,7 +8,6 @@ const Home = ({user, logout}) => {
       {user ?
       <div>
         <WeeklyChallenge />
-        {/* <button onClick={logout}>LOG OUT</button> */}
       </div>
       : null
       }
