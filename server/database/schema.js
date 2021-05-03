@@ -39,7 +39,8 @@ const userSchema = mongoose.Schema({
   badges: {
     type: mongoose.Schema.Types.ObjectId,
     ref: Badges,
-  }
+  },
+  challenges: Array
 });
 
 const saveStamp = () => {

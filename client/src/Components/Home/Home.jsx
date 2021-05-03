@@ -1,17 +1,23 @@
 import React, { useState } from 'react';
 import WeeklyChallenge from '../WeeklyChallenge/WeeklyChallenge.jsx'
+import styled from 'styled-components';
 
-const Home = ({user, logout}) => {
+const HomeStyles = styled.div`
+  padding-bottom: 5rem;
+`;
+
+const Home = ({user, logout, getStamps}) => {
   return (
-    <div>
+    <HomeStyles>
+
       <h2>Field Trip</h2>
       {user ?
       <div>
-        <WeeklyChallenge />
+        <WeeklyChallenge getStamps={getStamps} user={user}/>
       </div>
       : null
       }
-    </div>
+    </HomeStyles>
   );
 };
 

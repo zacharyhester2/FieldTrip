@@ -20,13 +20,10 @@ const Img = styled.div`
     filter: drop-shadow(0 0 0.5rem rgba(0, 0, 0, 0.6));
   }
 `
-
 const Profile = ({user, getStamps, stamps}) => {
-
   useEffect(() => {
     getStamps();
   }, []);
-
   return (
     <ProfileStyles>
       <div className="profileInfo">
@@ -40,7 +37,4 @@ const Profile = ({user, getStamps, stamps}) => {
     </ProfileStyles>
   );
 };
-
-
-
 export default Profile;

@@ -55,27 +55,7 @@ const Documentary = ({addResource, discView}) => {
 
     return (
         <div>
-            {/* <Carousel>
-            {docs.map((doc, i) => (
-            <Carousel.Item key={i}>
-                <Img>
-                    <img className="docs-img" src={doc.snippet.thumbnails.high.url}/>
-                </Img>
-                <Caption>
-                    <div id="content">
-                        <h3>{doc.snippet.title}</h3>
-                        <p>{doc.snippet.description}</p>
-                        <p>Watch YouTube Documentary
-                            <a
-                                href={`https://www.youtube.com/embed/${doc.id.videoId}`}
-                                target="_blank"
-                                onClick={() => { addResource(doc, 'youTube'); }}
-                            > Here</a>
-                        </p>
-                    </div>
-                </Caption>
-            </Carousel.Item>
-            ))} */}
+
             <Carousel fade>
                 {docs.map((doc, i) => (
                     <Carousel.Item className="mb-5 m5-5"
@@ -86,19 +66,19 @@ const Documentary = ({addResource, discView}) => {
                             </Img>
                             <Caption>
                                     <h2>{doc.snippet.title}</h2>
-                            <p>Watch YouTube Documentary
-                                <a
-                                    href={`https://www.youtube.com/embed/${doc.id.videoId}`}
-                                    target="_blank"
-                                    onClick={() => { addResource(doc, 'youTube'); }}
-                                > Here</a>
-                            </p>
+                                    <p>Watch Documentary
+                                        <a
+                                            href={`https://www.youtube.com/embed/${doc.id.videoId}`}
+                                            target="_blank"
+                                            onClick={() => { addResource(doc, 'youTube'); }}
+                                        > Here</a>
+                                    </p>
                             </Caption>
                     </Carousel.Item>
                     ))}
             </Carousel>
         </div>
-      );
+    );
 }
 
 export default Documentary;

@@ -14,6 +14,7 @@ const Discovery = ({ addResource, discView }) => {
 
   const query = '';
 
+
   return (
     <Container>
       <StyledTitle>Articles</StyledTitle>

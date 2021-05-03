@@ -66,41 +66,13 @@ app.get('/nasaPic', (req, res) => {
 //NASA QUERY PIC
 
 //SMITHSONIAN SEARCH - *very little documentation on API*
-//SMITH PLANT
-const plantSmithQ = 'Plants';  //hard search data, will change once front end
-const plantSmithUrl = `https://api.si.edu/openaccess/api/v1.0/search?q=${plantSmithQ}&api_key=${smithKey}`;
 
-app.get('/plantSmith', (req, res) => {
+const smithQ = 'iris';  //hard search data, will change once front end
+const smith = `https://api.si.edu/openaccess/api/v1.0/search?q=${smithQ}&api_key=${smithKey}`;
 
-    axios.get(plantSmithUrl)
-    .then(({data}) =>{
-      res.status(200).send({data});
-    })
-    .catch((err) => {
-      res.status(500).send(err);
-    });
-});
-//SMITH SPACE
-const spaceSmithQ = 'Space'; 
-const smithSpaceUrl = `https://api.si.edu/openaccess/api/v1.0/search?q=${spaceSmithQ}&api_key=${smithKey}`;
+app.get('/smithQ/:search', (req, res) => {
 
-app.get('/spaceSmith', (req, res) => {
-
-    axios.get(smithSpaceUrl)
-    .then(({data}) =>{
-      res.status(200).send({data});
-    })
-    .catch((err) => {
-      res.status(500).send(err);
-    });
-});
-//SMITH NAT HISTORY
-const natHistorySmithQ = 'Natural History'; 
-const natHistorySmithUrl = `https://api.si.edu/openaccess/api/v1.0/search?q=${natHistorySmithQ}&api_key=${smithKey}`;
-
-app.get('/natHistorySmith', (req, res) => {
-
-    axios.get(natHistorySmithUrl)
+    axios.get(smith)
     .then(({data}) =>{
       res.status(200).send({data});
     })
@@ -110,7 +82,7 @@ app.get('/natHistorySmith', (req, res) => {
 });
 
 // const newsQ = 'the lost cosmonauts';
-const sortBy = 'relevance' //maybe give users the options: relevancy, popularity, publishedAt
+const sortBy = 'popularity' //maybe give users the options: relevancy, popularity, publishedAt
 // const news = `https://newsapi.org/v2/everything?q=${newsQ}&apiKey=${newsKey}&sortBy=${sortBy}`;
 
 app.get('/newsQ/:search', (req, res) => {
@@ -205,6 +177,19 @@ app.get('/auth/google',
         })
   })
   })
+
+
+  // DAILY CHALLENGE
+app.post('/challenge', (req, res) => {
+  const { trophy } = req.body;
+  Users.findOne({ id: req.cookies.FieldTripId })
+    .then((user) => {
+      user.stamps = [...user.stamps, trophy];
+      Users.updateOne({ id : req.cookies.FieldTripId }, {stamps: user.stamps})
+      .then(() => res.sendStatus(200))
+      .catch()
+    })
+});
 
 
 //SPOTIFY

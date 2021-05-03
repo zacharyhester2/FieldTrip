@@ -27,21 +27,21 @@ const useStyles = makeStyles((theme) => ({
   spaceTheme: {
     backgroundImage: `url(${galaxy})`,
     backgroundPosition: 'center',
-    backGroundRepeat: 'no-repeat',
+    backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
     paddingBottom: '5rem',
   },
   earthTheme: {
     backgroundImage: `url(${earth})`,
     backgroundPosition: 'center',
-    backGroundRepeat: 'no-repeat',
+    backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
     paddingBottom: '5rem',
   },
   historyTheme: {
     backgroundImage: `url(${dinos})`,
     backgroundPosition: 'center',
-    backGroundRepeat: 'no-repeat',
+    backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
     paddingBottom: '5rem',
   },
@@ -58,7 +58,6 @@ const App = () => {
     const [alerts, setAlerts] = useState([])
 
     const currClass = classes[`${theme}`];
-
 
   const getUser = () => {
     if (!user) {
@@ -191,7 +190,7 @@ const App = () => {
             <BottomNav />
             <Switch>
               <Route exact path="/">
-                  <Home user={user} logout={logout}/>
+                  <Home user={user} logout={logout} getStamps={getStamps}/>
               </Route>
               <Route path="/profile">
                   <Profile user={user} logout={logout} stamps={stamps} getStamps={getStamps}/>

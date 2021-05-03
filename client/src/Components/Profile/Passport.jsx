@@ -1,7 +1,6 @@
 import React from 'react';
 import Stamp from './Stamp.jsx'
 import styled from 'styled-components';
-
 const Container = styled.div`
 background-color: lavender;
 border-radius: 10px !important;
@@ -22,9 +21,7 @@ h3{
   margin-top: 0.25rem;
 }
 `
-
 const Passport = ({stamps}) => {
-
   return (
       <Container className="stamp-container">
         <h3>Passport</h3>
@@ -32,7 +29,4 @@ const Passport = ({stamps}) => {
       </Container>
   );
 };
-
-
-
 export default Passport;
