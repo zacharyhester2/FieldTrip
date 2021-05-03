@@ -16,6 +16,7 @@ const Img = styled.div`
   }
   img:hover {
   transform: scaleX(-1);
+
 }
 `
 const Stamp = ({stamp}) => {
