@@ -27,19 +27,19 @@ const useStyles = makeStyles((theme) => ({
   spaceTheme: {
     backgroundImage: `url(${galaxy})`,
     backgroundPosition: 'center',
-    backGroundRepeat: 'no-repeat',
+    backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover'
   },
   earthTheme: {
     backgroundImage: `url(${earth})`,
     backgroundPosition: 'center',
-    backGroundRepeat: 'no-repeat',
+    backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover'
   },
   historyTheme: {
     backgroundImage: `url(${dinos})`,
     backgroundPosition: 'center',
-    backGroundRepeat: 'no-repeat',
+    backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover'
   },
 }))
@@ -56,6 +56,7 @@ const App = () => {
 
     const currClass = classes[`${theme}`];
 
+    
   const getUser = () => {
     if (!user) {
       axios

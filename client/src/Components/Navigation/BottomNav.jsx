@@ -73,13 +73,13 @@ const BottomNav = () => {
       />
       <Divider orientation="vertical" flexItem />
 
-      <BottomNavigationAction
+      {/* <BottomNavigationAction
         label="Camera"
         value="photoUpload"
         icon={<CameraAltSharpIcon />}
         component={Link}
         to="/PhotoUpload"
-      />
+      /> */}
       <Divider orientation="vertical" flexItem />
 
     </BottomNavigation>
