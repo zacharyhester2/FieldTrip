@@ -22,24 +22,28 @@ import earth from './themes/earth.jpg';
 import dinos from './themes/dinos.jpg';
 import { makeStyles } from '@material-ui/core/styles';
 
+
 const useStyles = makeStyles((theme) => ({
   spaceTheme: {
     backgroundImage: `url(${galaxy})`,
     backgroundPosition: 'center',
-    backGroundRepeat: 'no-repeat',
-    backgroundSize: 'cover'
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'cover',
+    paddingBottom: '5rem',
   },
   earthTheme: {
     backgroundImage: `url(${earth})`,
     backgroundPosition: 'center',
-    backGroundRepeat: 'no-repeat',
-    backgroundSize: 'cover'
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'cover',
+    paddingBottom: '5rem',
   },
   historyTheme: {
     backgroundImage: `url(${dinos})`,
     backgroundPosition: 'center',
-    backGroundRepeat: 'no-repeat',
-    backgroundSize: 'cover'
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'cover',
+    paddingBottom: '5rem',
   },
 }))
 
@@ -65,26 +69,39 @@ const App = () => {
     }
   };
 
-
-
-  const addResource = (resource) => {
+  const addResource = (resource, resType) => {
+    let params= {}
+    //if resource is artiles:
+    if(resType === 'article'){
+      params= {
+        category: view,
+        date: Date.now,
+        title: resource.title,
+        author: resource.author,
+        image: resource.urlToImage,
+        url: resource.url,
+        userId: user.id
+      }
+    } else if(resType === 'youTube'){
+      params= {
+        category: view,
+        date: Date.now,
+        title: resource.snippet.title,
+        author: null,
+        image: resource.snippet.thumbnails.high.url,
+        url: `https://www.youtube.com/embed/${resource.id.videoId}`,
+        userId: user.id
+      }
+    }
     //post request to user table
-    axios.post('/resource', {
-      category: discView,
-      date: Date.now,
-      title: resource.title,
-      author: resource.author,
-      image: resource.urlToImage,
-      url: resource.url,
-      userId: user.id
-    })
+    axios.post('/resource', params)
     .then(() => {
       getStamps()
     })
     .catch()
   };
 
-   //in progress
+
    const getStamps = () => {
     if (user) {
       axios.get(`/user/${user.id}`)

@@ -7,9 +7,7 @@ const GlobalStyles = createGlobalStyle`
   }
 
   body{
-    /* background-color: #4d194d; */
-    background-color: #736bfb;
-    /* background-color: rgba(114, 107, 251, 0.451); */
+    background-color: rgb(9, 11, 23);
     color: whitesmoke;
   }
 

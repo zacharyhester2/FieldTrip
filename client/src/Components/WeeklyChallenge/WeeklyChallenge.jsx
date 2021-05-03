@@ -5,8 +5,6 @@ import axios from 'axios';
 
 import IconButtons from '../Navigation/IconButtons.jsx';
 
-import trophy from '../../assets/trophy.png';
-
 const Container = styled.div`
 background-color: lavender;
 border-radius: 10px !important;
