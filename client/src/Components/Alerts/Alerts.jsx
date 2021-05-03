@@ -1,6 +1,7 @@
-import React, {useEffect} from 'react';
+import React, {useState, useEffect, Fragment} from 'react';
 import styled from 'styled-components';
 import AlertItem from './AlertItem.jsx'
+import axios from 'axios';
 
 const Container = styled.div`
     width: fit-content;
@@ -9,22 +10,35 @@ const Container = styled.div`
     display: block !important;
 `
 
-const Alerts = ({alerts, getAlerts}) => {
-  console.log('alerts in Alerts.jsx', alerts);
+const Alerts = ({user}) => {
+  const [alerts, setAlerts] = useState([])
+
+     const getAlerts = () => {
+    //  debugger;
+    if (user) {
+      axios.get(`/user/${user.id}`)
+        .then(({ data }) => {
+          console.log('FROM Alerts', data)
+          setAlerts(data);
+        })
+        .catch();
+    }
+  };
 
   useEffect(() => {
+    // debugger;
     getAlerts();
   }, []);
 
   return (
-    <>
+    <Fragment>
       <h1>Alerts</h1>
       <Container className="alert-container">
         {alerts.map((alert, i) =>
           <AlertItem alert={alert} key={i}/>
         )}
       </Container>
-    </>
+    </Fragment>
   );
 };
 

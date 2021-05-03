@@ -28,19 +28,22 @@ const useStyles = makeStyles((theme) => ({
     backgroundImage: `url(${galaxy})`,
     backgroundPosition: 'center',
     backGroundRepeat: 'no-repeat',
-    backgroundSize: 'cover'
+    backgroundSize: 'cover',
+    paddingBottom: '5rem',
   },
   earthTheme: {
     backgroundImage: `url(${earth})`,
     backgroundPosition: 'center',
     backGroundRepeat: 'no-repeat',
-    backgroundSize: 'cover'
+    backgroundSize: 'cover',
+    paddingBottom: '5rem',
   },
   historyTheme: {
     backgroundImage: `url(${dinos})`,
     backgroundPosition: 'center',
     backGroundRepeat: 'no-repeat',
-    backgroundSize: 'cover'
+    backgroundSize: 'cover',
+    paddingBottom: '5rem',
   },
 }))
 
@@ -52,7 +55,7 @@ const App = () => {
     const [stamps, setStamps] = useState([])
     const [discView, setDiscView] = useState('')
     const [theme, setTheme] = useState('headerDefault');
-    const [alerts, setAlerts] = useState('[]')
+    const [alerts, setAlerts] = useState([])
 
     const currClass = classes[`${theme}`];
 
@@ -88,7 +91,7 @@ const App = () => {
   // //FIX THIS BEFORE IT LOOPS
   // const addResource = (resource, resType) => {
   //   let pars = {};
-  //   //if resource is artiles:
+  //   //if resource is article:
   //   if(resType === 'article'){
   //     pars= {
   //       category: discView,
@@ -121,6 +124,7 @@ const App = () => {
 
 
    const getStamps = () => {
+    //  debugger;
     if (user) {
       axios.get(`/user/${user.id}`)
         .then(({ data }) => {
@@ -131,16 +135,18 @@ const App = () => {
         .catch();
     }
   };
-   const getAlerts = () => {
-    if (user) {
-      axios.get(`/user/${user.id}`)
-        .then(({ data }) => {
-          console.log('FROM Alerts', data)
-          setAlerts(data);
-        })
-        .catch();
-    }
-  };
+
+  //  const getAlerts = () => {
+  //   //  debugger;
+  //   if (user) {
+  //     axios.get(`/user/${user.id}`)
+  //       .then(({ data }) => {
+  //         console.log('FROM Alerts', data)
+  //         setAlerts(data);
+  //       })
+  //       .catch();
+  //   }
+  // };
 
   const logout = () => {
     axios.get('/logout').then(() => {
@@ -150,6 +156,7 @@ const App = () => {
 
   useEffect(() => {
     getUser();
+    // getAlerts();
   }, [])
 
     return (
@@ -179,7 +186,7 @@ const App = () => {
       :(
 
         <Router>
-        <div>
+
             <BottomNav />
             <Switch>
               <Route exact path="/">
@@ -192,13 +199,13 @@ const App = () => {
                   <Discovery addResource={addResource} discView={discView} setDiscView={setDiscView}/>
               </Route>
               <Route path="/alerts">
-                  <Alerts alerts={alerts} getAlerts={getAlerts}/>
+                  <Alerts user={user} alerts={alerts} />
               </Route>
               <Route path="/PhotoUpload">
                   <PhotoUpload />
               </Route>
             </Switch>
-        </div>
+
       </Router>
        )}
     </div>

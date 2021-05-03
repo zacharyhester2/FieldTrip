@@ -7,27 +7,29 @@ background-color: lavender;
 border-radius: 10px !important;
 border: 3px !important;
 border-color: whitesmoke !important;
-margin: 50px;
-padding: 50px;
+margin: 3rem auto;
+margin-bottom: 5rem;
+padding: 20px;
   display: flex;
   flex-flow: row wrap;
-  width: 90%;
+  width: 80%;
   justify-content: center;
 h3{
   color: black;
   text-align: center;
+  width: 100%;
+  margin-bottom: 1rem;
+  margin-top: 0.25rem;
 }
 `
 
 const Passport = ({stamps}) => {
 
   return (
-    <>
       <Container className="stamp-container">
         <h3>Passport</h3>
         {stamps.map((stamp, i) => <Stamp stamp={stamp} key={i}/>)}
       </Container>
-    </>
   );
 };
 
