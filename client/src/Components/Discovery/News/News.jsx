@@ -23,8 +23,8 @@ const News = ({ addResource, discView }) => {
     const [news, setNews] = useState([]);
 
 
-    
-    const search = 'milky way';
+
+    const search = `${discView}`;
 
     const getNews = (search) => {
         axios.get(`/newsQ/:${search}`)
@@ -40,39 +40,35 @@ const News = ({ addResource, discView }) => {
 
 
     return (
-        
-            
-                    <Row md={4}
-                    style={{justifyContent: "space-between", maxWidth: "1400px"}}
+        <Row md={4}
+        style={{justifyContent: "space-between", maxWidth: "1400px"}}
+        >
+            {news.map((article, i) => (
+                <StyledCard className="mb-4 mt-4 mr-3 ml-3"
+                text="muted"
+                bg="light"
+                >
+                <Image src={article.urlToImage}
+                    key={i}
+                    className="news-img-top
+                    img-responsive
+                    img-fluid"
                     >
-                        {news.map((article, i) => (
-                            <StyledCard className="mb-4 mt-4 mr-3 ml-3" 
-                            text="muted" 
-                            bg="light" 
-                            >
-                            <Image src={article.urlToImage} 
-                                key={i}
-                                className="news-img-top
-                                img-responsive 
-                                img-fluid"
-                                >
-                                {console.log(article)}
-                            </Image>
-                                <Card.Body>
-                                    <Card.Title>{article.title}</Card.Title>
-                                    <Card.Text>{article.description}</Card.Text>
-                                    <p>Read Full Article
-                            <a
-                                href={article.url}
-                                target="_blank"
-                                onClick={() => { addResource(article, 'article'); }}
-                            > Here</a></p>
-                                </Card.Body>
-                            </StyledCard>
-                            ))}   
-                    </Row>
-            
-        
+                    {console.log(article)}
+                </Image>
+                    <Card.Body>
+                        <Card.Title>{article.title}</Card.Title>
+                        <Card.Text>{article.description}</Card.Text>
+                        <p>Read Full Article
+                <a
+                    href={article.url}
+                    target="_blank"
+                    onClick={() => { addResource(article, 'article'); }}
+                > Here</a></p>
+                    </Card.Body>
+                </StyledCard>
+                ))}
+        </Row>
       );
 }
 

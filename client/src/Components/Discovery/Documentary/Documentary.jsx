@@ -8,7 +8,7 @@ const Img = styled.div`
     width: 100%;
     display: flex;
     justify-content: center;
-    
+
   img{
     border-radius: 45px;
     border: 3px;
@@ -37,11 +37,13 @@ const Caption= styled(Jumbotron)`
     padding: 0 1rem;
 `
 
-const Documentary = () => {
+
+const Documentary = ({ addResource, discView }) => {
     const [docs, setDocs] = useState([]);
 
-    const search = 'Cosmos';
-    
+    const search = `${discView}`;
+
+
     const getDocs = (search) => {
         axios.get(`/youTube/${search}`)
         .then(({data}) => {
@@ -51,10 +53,11 @@ const Documentary = () => {
 
     useEffect(() => {
         getDocs(search);
-    }, [])
+    }, [discView])
 
     return (
         <div>
+
             <Carousel fade>
                 {docs.map((doc, i) => (
                     <Carousel.Item className="mb-5 m5-5"
@@ -65,12 +68,19 @@ const Documentary = () => {
                             </Img>
                             <Caption>
                                     <h2>{doc.snippet.title}</h2>
+                                    <p>Watch Documentary
+                                        <a
+                                            href={`https://www.youtube.com/embed/${doc.id.videoId}`}
+                                            target="_blank"
+                                            onClick={() => { addResource(doc, 'youTube'); }}
+                                        > Here</a>
+                                    </p>
                             </Caption>
                     </Carousel.Item>
                     ))}
             </Carousel>
         </div>
-      );
+    );
 }
 
 export default Documentary;

@@ -28,19 +28,22 @@ const useStyles = makeStyles((theme) => ({
     backgroundImage: `url(${galaxy})`,
     backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat',
-    backgroundSize: 'cover'
+    backgroundSize: 'cover',
+    paddingBottom: '5rem',
   },
   earthTheme: {
     backgroundImage: `url(${earth})`,
     backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat',
-    backgroundSize: 'cover'
+    backgroundSize: 'cover',
+    paddingBottom: '5rem',
   },
   historyTheme: {
     backgroundImage: `url(${dinos})`,
     backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat',
-    backgroundSize: 'cover'
+    backgroundSize: 'cover',
+    paddingBottom: '5rem',
   },
 }))
 
@@ -49,14 +52,12 @@ const useStyles = makeStyles((theme) => ({
 const App = () => {
   const classes = useStyles();
     const [user, setUser] = useState();
-    const [isLoggedin, setIsLoggedIn] = useState(false)
     const [stamps, setStamps] = useState([])
     const [discView, setDiscView] = useState('')
     const [theme, setTheme] = useState('headerDefault');
 
     const currClass = classes[`${theme}`];
 
-    
   const getUser = () => {
     if (!user) {
       axios
@@ -105,7 +106,8 @@ const App = () => {
     if (user) {
       axios.get(`/user/${user.id}`)
         .then(({ data }) => {
-          // console.log('FROM STAMPS', data)
+
+          console.log('FROM STAMPS', data)
           setStamps(data)
         })
         .catch();
@@ -153,7 +155,7 @@ const App = () => {
             <BottomNav />
             <Switch>
               <Route exact path="/">
-                  <Home user={user} logout={logout}/>
+                  <Home user={user} logout={logout} getStamps={getStamps}/>
               </Route>
               <Route path="/profile">
                   <Profile user={user} logout={logout} stamps={stamps} getStamps={getStamps}/>
