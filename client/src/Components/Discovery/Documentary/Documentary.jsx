@@ -10,7 +10,7 @@ const Img = styled.div`
     width: 100%;
     display: flex;
     justify-content: center;
-
+    
   img{
     border-radius: 45px;
     border: 3px;
@@ -20,7 +20,6 @@ const Img = styled.div`
     width: auto;
     margin: 0 auto;
     /* filter: grayscale(100%) */
-
   }
   img:hover {
   transform: scaleX(-1);
@@ -101,7 +100,7 @@ const Documentary = ({ addResource, discView, search }) => {
                     ))}
             </Carousel>
         </div>
-    );
+      );
 }
 
 export default Documentary;
