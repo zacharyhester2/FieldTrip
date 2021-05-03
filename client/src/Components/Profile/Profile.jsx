@@ -2,6 +2,7 @@ import React, {useEffect} from 'react';
 import Passport from './Passport.jsx';
 import profilePic from '../../assets/cape.jpg'
 import styled from 'styled-components';
+
 const ProfileStyles = styled.div`
   .profileInfo{
     margin: 0 auto;
@@ -11,7 +12,6 @@ const ProfileStyles = styled.div`
     text-align: center;
   }
 `;
-
 const Img = styled.div`
   img{
     border-radius: 50%;

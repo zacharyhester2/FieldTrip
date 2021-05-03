@@ -37,12 +37,10 @@ const Caption= styled(Jumbotron)`
     padding: 0 1rem;
 `
 
-
-const Documentary = ({ addResource, discView }) => {
+const Documentary = ({addResource, discView}) => {
     const [docs, setDocs] = useState([]);
 
     const search = `${discView}`;
-
 
     const getDocs = (search) => {
         axios.get(`/youTube/${search}`)
