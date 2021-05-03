@@ -4,12 +4,20 @@ import axios from 'axios';
 import styled from 'styled-components';
 import { Button } from '@material-ui/core'
 
-// const Caption = styled(Carousel.Caption)`
-//         background: rgba(25, 25, 25, 0.6) !important;
-//         width: fit-content;
-//         margin: 0 auto;
-//         padding: 1rem 1rem;
-// `
+const StyledCard = styled(Card)`
+    transform-origin: top center;
+    transition: transform 300ms;
+    position: relative;
+    z-index: 0;
+    border: none;
+    outline: none;
+    margin-bottom: 5rem;
+    :hover {
+        transform: scale(1.3);
+        z-index: 1;
+        box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.9);
+    }
+`
 
 const News = ({ addResource, discView }) => {
     const [news, setNews] = useState([]);
@@ -30,32 +38,17 @@ const News = ({ addResource, discView }) => {
         getNews(search);
     }, [discView])
 
-    
-    {/* {news.map((article, i) => (
-            <Img key={i}>
-                <Col>
-                <Image src={article.urlToImage} 
-                key={i}
-                className="news-img 
-                img-responsive 
-                img-fluid rounded-pill
-                mb-3"/>
-                </Col>
-            </Img>
-    ))} */}
 
     return (
         
-            <div>
-                    <Row md={6} 
-                    className="mb-3"
-                    overflow="auto">
+            
+                    <Row md={4}
+                    style={{justifyContent: "space-between", maxWidth: "1400px"}}
+                    >
                         {news.map((article, i) => (
-                            <Card className="mb-5 mt-5 mr-4 ml-4" 
-                            border="dark" 
+                            <StyledCard className="mb-4 mt-4 mr-3 ml-3" 
                             text="muted" 
                             bg="light" 
-                            width="18rem"
                             >
                             <Image src={article.urlToImage} 
                                 key={i}
@@ -75,10 +68,9 @@ const News = ({ addResource, discView }) => {
                                 onClick={() => { addResource(article, 'article'); }}
                             > Here</a></p>
                                 </Card.Body>
-                            </Card>
+                            </StyledCard>
                             ))}   
                     </Row>
-                </div> 
             
         
       );

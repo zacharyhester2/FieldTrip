@@ -1,49 +1,27 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { Carousel, Container, Row, Col, Jumbotron } from 'react-bootstrap/';
 import Podcast from './Podcast/Podcast.jsx';
 import News from './News/News.jsx';
 import Documentary from './Documentary/Documentary.jsx';
+import styled from 'styled-components';
 
+const StyledTitle = styled.h3`
+font-family: 'Raleway', sans-serif;
+`
 
-const Discovery = ({addResource}) => {
+const Discovery = ({ addResource, discView }) => {
 
-  // const [nasaPotD, setNasaPotD] = useState('')
-
-  //call the axios.all endpoint
-  //set user's query, feed to back
-
-//   const getNasaPotD = (search) => {
-//     axios.get(`/nasaPic/`)
-//     .then(({data: url}) => {
-//         setNasaPotD(url);
-//     }).catch()
-// }
-
-// useEffect(() => {
-//   getNasaPotD(search);
-// }, [])
 
   const query = '';
 
-    return (
-        <div>
-          
-          <Container fluid>
-              <Row display="flex">      
-                  <News addResource={addResource} discView={discView}
-                  className="d-flex justify-content-center text-center"/>
-              </Row>
-              <Row>
-                <Col>
-                  <Documentary addResource={addResource} discView={discView}/>
-                </Col>
-                <Col>
-                 
-                </Col>
-              </Row>
-          </Container>
-        </div>
-      );
+  return (
+    <Container>
+      <StyledTitle>Articles</StyledTitle>
+      <News addResource={addResource} discView={discView} />
+      <StyledTitle>Documentaries</StyledTitle>
+      <Documentary addResource={addResource} discView={discView}/>
+    </Container>
+  );
 }
 
 export default Discovery;

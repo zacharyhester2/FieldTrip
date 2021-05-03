@@ -1,17 +1,22 @@
 import React, { useState, useEffect } from 'react';
-import { Carousel, Container, Row, Col, Jumbotron } from 'react-bootstrap/';
+import { Carousel, Row, Col, Jumbotron } from 'react-bootstrap/';
 import axios from 'axios';
 import styled from 'styled-components';
 
 const Img = styled.div`
+
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    
   img{
-    border-radius: 60px;
+    border-radius: 45px;
     border: 3px;
     border-color: whitesmoke;
     padding: 0 1rem;
     height: auto;
     width: auto;
-    margin: 10px;
+    margin: 0 auto;
     /* filter: grayscale(100%) */
 
   }
@@ -21,11 +26,11 @@ const Img = styled.div`
 `
 
 
-const Caption = styled(Carousel.Caption)`
+const Caption= styled(Jumbotron)`
     background: rgba(25, 25, 25, 0.6) !important;
     height: auto;
     width: auto;
-    margin: 10 px;
+    margin: auto;
     border: 3px;
     border-radius: 60 px;
     border-color: whitesmoke;
@@ -54,13 +59,13 @@ const Documentary = () => {
                 {docs.map((doc, i) => (
                     <Carousel.Item className="mb-5 m5-5"
                     key={i}>
-                        <Img>
-                            <img className="docs-img mx-auto"
-                            src={doc.snippet.thumbnails.high.url}/>
-                        </Img>
-                        <Caption>
-                                <h2>{doc.snippet.title}</h2>
-                        </Caption>
+                            <Img>
+                                <img className="mx-auto"
+                                src={doc.snippet.thumbnails.high.url}/>
+                            </Img>
+                            <Caption>
+                                    <h2>{doc.snippet.title}</h2>
+                            </Caption>
                     </Carousel.Item>
                     ))}
             </Carousel>

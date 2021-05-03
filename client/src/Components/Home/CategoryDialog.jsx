@@ -26,7 +26,7 @@ const categories = [
 
 const useStyles = makeStyles({
   avatar: {
-    backgroundColor: 'rgba(114, 107, 251, 0.851)',
+    backgroundColor:' rgba(0, 0, 0, 0.851)',
     color: 'whitesmoke',
   },
 });
