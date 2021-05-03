@@ -89,7 +89,7 @@ app.get('/newsQ/:search', (req, res) => {
 
     axios.get(`https://newsapi.org/v2/everything?q=${req.params.search}&apiKey=${newsKey}&sortBy=${sortBy}`)
     .then(({data}) => {
-      res.status(200).send(data.articles.slice(0,5));
+      res.status(200).send(data.articles.slice(0,6));
     })
     .catch((err) => {
       res.status(500).send(err);
@@ -177,6 +177,19 @@ app.get('/auth/google',
         })
   })
   })
+
+
+  // DAILY CHALLENGE
+app.post('/challenge', (req, res) => {
+  const { trophy } = req.body;
+  Users.findOne({ id: req.cookies.FieldTripId })
+    .then((user) => {
+      user.stamps = [...user.stamps, trophy];
+      Users.updateOne({ id : req.cookies.FieldTripId }, {stamps: user.stamps})
+      .then(() => res.sendStatus(200))
+      .catch()
+    })
+});
 
 
 //SPOTIFY
