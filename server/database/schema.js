@@ -31,11 +31,12 @@ const userSchema = mongoose.Schema({
   name: String,
   cloudinaryId: String,
   interests: String,
-  stamps: [{type: String}],
+  stamps: Array,
   badges: {
     type: mongoose.Schema.Types.ObjectId,
     ref: Badges,
-  }
+  },
+  challenges: Array
 });
 
 const saveStamp = () => {

@@ -179,6 +179,19 @@ app.get('/auth/google',
   })
 
 
+  // DAILY CHALLENGE
+app.post('/challenge', (req, res) => {
+  const { trophy } = req.body;
+  Users.findOne({ id: req.cookies.FieldTripId })
+    .then((user) => {
+      user.stamps = [...user.stamps, trophy];
+      Users.updateOne({ id : req.cookies.FieldTripId }, {stamps: user.stamps})
+      .then(() => res.sendStatus(200))
+      .catch()
+    })
+});
+
+
 //SPOTIFY
 
 
