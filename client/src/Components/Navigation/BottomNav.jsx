@@ -5,7 +5,7 @@ import {
   Route,
   Link
 } from "react-router-dom";
-import { makeStyles } from '@material-ui/core/styles';
+import { createMuiTheme, makeStyles, ThemeProvider } from '@material-ui/core/styles';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import CameraAltSharpIcon from '@material-ui/icons/CameraAltSharp';
@@ -15,13 +15,35 @@ import NotificationsSharpIcon from '@material-ui/icons/NotificationsSharp';
 import HomeSharpIcon from '@material-ui/icons/HomeSharp';
 import Divider from '@material-ui/core/Divider';
 
+
+
+const bottomNavTheme = createMuiTheme({
+    palette: {
+        primary: {
+            // main: '#ffffff'
+            main: 'rgb(9, 11, 23, 0.8)'
+        },
+        text: {
+            // secondary: 'rgb(9,11,23)'
+            secondary: '#ffffff'
+        }
+    }
+})
+
 const useStyles = makeStyles({
   root: {
     position: 'fixed',
     bottom: '0',
     width: '100%',
     'z-index': '100',
+    // backgroundColor: 'rgb(9,11,23)',
+    backgroundColor: 'rgb(115,107,251, 0.65)',
   },
+  vertDiv: {
+    // backgroundColor: 'rgba(115,107,251,0.65)'
+    backgroundColor: 'rgb(9, 11, 23)',
+    // backgroundColor: '#ffffff',
+  }
 });
 
 const BottomNav = () => {
@@ -33,9 +55,10 @@ const BottomNav = () => {
   };
 
   return (
+    <ThemeProvider theme={bottomNavTheme}>
     <BottomNavigation value={value} onChange={handleChange} className={classes.root}>
 
-      <Divider orientation="vertical" flexItem />
+      <Divider className={classes.vertDiv} orientation="vertical" flexItem />
 
       <BottomNavigationAction
         label="Discovery"
@@ -44,7 +67,7 @@ const BottomNav = () => {
         component={Link}
         to="/discovery"
       />
-      <Divider orientation="vertical" flexItem />
+      <Divider className={classes.vertDiv} orientation="vertical" flexItem />
 
       <BottomNavigationAction
         label="Profile"
@@ -53,7 +76,7 @@ const BottomNav = () => {
         component={Link}
         to="/profile"
       />
-      <Divider orientation="vertical" flexItem />
+      <Divider className={classes.vertDiv} orientation="vertical" flexItem />
 
       <BottomNavigationAction
         label="Home"
@@ -62,7 +85,7 @@ const BottomNav = () => {
         component={Link}
         to="/"
       />
-      <Divider orientation="vertical" flexItem />
+      <Divider className={classes.vertDiv} orientation="vertical" flexItem />
 
       <BottomNavigationAction
         label="Alerts"
@@ -71,7 +94,7 @@ const BottomNav = () => {
         component={Link}
         to="/alerts"
       />
-      <Divider orientation="vertical" flexItem />
+      <Divider className={classes.vertDiv} orientation="vertical" flexItem />
 
       {/* <BottomNavigationAction
         label="Camera"
@@ -80,9 +103,10 @@ const BottomNav = () => {
         component={Link}
         to="/PhotoUpload"
       /> */}
-      <Divider orientation="vertical" flexItem />
+      {/* <Divider className={classes.vertDiv} orientation="vertical" flexItem /> */}
 
     </BottomNavigation>
+    </ThemeProvider>
   );
 }
 

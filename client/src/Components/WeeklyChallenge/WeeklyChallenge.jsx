@@ -34,9 +34,9 @@ h2{
 `
 
 const challenges = [
-  { 0: 'zero' },
-  { 1: 'Read at least 5 news articles, and view your 5 new stamps in your passport!' },
-  { 2: 'two' },
+  { 0: 'Collect a stamp from each category.' },
+  { 1: 'Read at least 5 news articles, and view your 5 new stamps in your passport.' },
+  { 2: 'Watch at least 1 documentary in the category of your choice.' },
   { 3: 'three' },
   { 4: 'four' },
   { 5: 'five' },

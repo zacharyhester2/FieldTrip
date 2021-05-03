@@ -26,8 +26,6 @@ const IconButtons = ({ clicked, handleClick }) => {
   const showCorrectIcon = () => {
     return (
       !clicked
-      // ? <><RadioButtonUncheckedSharpIcon fontSize="large"/></>
-      //  : <><CheckCircleSharpIcon fontSize="large"/> Completed! </>
       ? <RadioButtonUncheckedSharpIcon fontSize="large"/>
       : <CheckCircleSharpIcon fontSize="large"/>
     );

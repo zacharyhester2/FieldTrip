@@ -10,6 +10,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Dialog from '@material-ui/core/Dialog';
 import Typography from '@material-ui/core/Typography';
+import Divider from '@material-ui/core/Divider';
 
 import AccountBalanceSharpIcon from '@material-ui/icons/AccountBalanceSharp';
 import EcoSharpIcon from '@material-ui/icons/EcoSharp';
@@ -28,6 +29,9 @@ const useStyles = makeStyles({
   avatar: {
     backgroundColor:' rgba(0, 0, 0, 0.851)',
     color: 'whitesmoke',
+  },
+  dialog: {
+    backgroundColor: 'rgba(115,107,251,0.15)'
   },
 });
 
@@ -48,14 +52,17 @@ const CategoryDialogBuilder = (props) => {
       <DialogTitle id="simple-dialog-title">Choose a category!</DialogTitle>
       <List>
         {categories.map((category) => (
-          <ListItem button onClick={() => handleListItemClick(category.name, category.theme)} key={category.name}>
-            <ListItemAvatar>
-              <Avatar className={classes.avatar}>
-                {category.icon}
-              </Avatar>
-            </ListItemAvatar>
-            <ListItemText primary={category.name} />
-          </ListItem>
+          <>
+            <ListItem button onClick={() => handleListItemClick(category.name, category.theme)} key={category.name}>
+              <ListItemAvatar>
+                <Avatar className={classes.avatar}>
+                  {category.icon}
+                </Avatar>
+              </ListItemAvatar>
+              <ListItemText primary={category.name} />
+            </ListItem>
+            <Divider variant="inset" component="li" />
+          </>
         ))}
       </List>
     </Dialog>

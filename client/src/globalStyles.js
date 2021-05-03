@@ -17,7 +17,16 @@ const GlobalStyles = createGlobalStyle`
     font-size: 60px;
     margin: 0;
     overflow: hidden;
+    /* box-shadow: 0px 0px 7px 0px rgb(255,255,255); */
+    box-shadow: 0px 0px 7px 0px #736bfb;
+    /* box-shadow: 0px 30px 22px -2px #736bfb; */
+    /* box-shadow: 0px 30px 22px -15px rgba(148,148,148,0.42); */
+    /* box-shadow: 0px 43px 11px -26px rgba(115,107,251,0.44); */
+    opacity: 87%;
+  }
 
+  .logo{
+    opacity: 100% !important;
   }
 
   .component{
