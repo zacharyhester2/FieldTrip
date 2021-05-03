@@ -19,7 +19,7 @@ const Discovery = ({ addResource, discView }) => {
       <StyledTitle>Articles</StyledTitle>
       <News addResource={addResource} discView={discView} />
       <StyledTitle>Documentaries</StyledTitle>
-      <Documentary addResource={addResource} discView={discView}/>
+      {/* <Documentary addResource={addResource} discView={discView}/> */}
     </Container>
   );
 }
