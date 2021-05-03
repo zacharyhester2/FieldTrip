@@ -55,8 +55,6 @@ const Documentary = ({addResource, discView}) => {
 
     return (
         <div>
-            <h1>Docs</h1>
-                {console.log(docs, 'docs')}
             {/* <Carousel>
             {docs.map((doc, i) => (
             <Carousel.Item key={i}>
