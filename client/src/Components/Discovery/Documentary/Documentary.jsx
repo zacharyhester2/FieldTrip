@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Carousel, Row, Col, Jumbotron } from 'react-bootstrap/';
 import axios from 'axios';
 import styled from 'styled-components';
-import CircularProgress from '@material-ui/core/CircularProgress';
 
 import YoutubeEmbed from './YoutubeEmbed.jsx';
 
@@ -43,8 +42,6 @@ const Caption= styled(Jumbotron)`
 
 const Documentary = ({ addResource, discView, search }) => {
     const [docs, setDocs] = useState([]);
-    const [isLoading, setIsLoading] = useState(false);
-    const [error, setError] = useState('');
 
     const query = `${search}`;
 
@@ -79,7 +76,7 @@ const Documentary = ({ addResource, discView, search }) => {
                                 <img className="mx-auto"
                                 src={doc.snippet.thumbnails.high.url}/>
                             </Img> */}
-                            <YoutubeEmbed embedId={doc.id.videoId}/>
+                            <YoutubeEmbed embedId={doc.id.videoId} kind='video'/>
                             <Caption>
                                     <h2>{doc.snippet.title}</h2>
                                     <p>Click
