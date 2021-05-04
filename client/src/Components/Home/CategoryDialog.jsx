@@ -19,10 +19,10 @@ import AllInclusiveSharpIcon from '@material-ui/icons/AllInclusiveSharp';
 
 
 const categories = [
-  { icon: <FlareSharpIcon />, name: 'Outer Space', theme: 'spaceTheme' },
-  { icon: <EcoSharpIcon />, name: 'Planet Earth', theme: 'earthTheme' },
-  { icon: <AccountBalanceSharpIcon />, name: 'Natural History', theme: 'historyTheme' },
-  { icon: <AllInclusiveSharpIcon />, name: 'General Science', theme: 'headerDefault' }
+  { icon: <FlareSharpIcon />, name: 'Outer Space', theme: 'spaceTheme', searchTerm: 'space+universe+cosmos+nasa' },
+  { icon: <EcoSharpIcon />, name: 'Planet Earth', theme: 'earthTheme', searchTerm: 'earth+plants+natural+oceans' },
+  { icon: <AccountBalanceSharpIcon />, name: 'Natural History', theme: 'historyTheme', searchTerm: 'prehistory+prehistoric' },
+  { icon: <AllInclusiveSharpIcon />, name: 'General Science', theme: 'headerDefault', searchTerm: 'science+scientific+general' }
 ];
 
 const useStyles = makeStyles({
@@ -37,14 +37,14 @@ const useStyles = makeStyles({
 
 const CategoryDialogBuilder = (props) => {
   const classes = useStyles();
-  const { onClose, selectedValue, open, selectedTheme, discView } = props;
+  const { onClose, selectedValue, open, selectedTheme, discView, search } = props;
 
   const handleClose = () => {
-    onClose(selectedValue, selectedTheme, discView);
+    onClose(selectedValue, selectedTheme, discView, search);
   };
 
-  const handleListItemClick = (value, theme) => {
-    onClose(value, theme);
+  const handleListItemClick = (value, theme, searchTerm) => {
+    onClose(value, theme, searchTerm);
   };
 
   return (
@@ -53,7 +53,7 @@ const CategoryDialogBuilder = (props) => {
       <List>
         {categories.map((category) => (
           <>
-            <ListItem button onClick={() => handleListItemClick(category.name, category.theme)} key={category.name}>
+            <ListItem button onClick={() => handleListItemClick(category.name, category.theme, category.searchTerm)} key={category.name}>
               <ListItemAvatar>
                 <Avatar className={classes.avatar}>
                   {category.icon}
@@ -77,10 +77,11 @@ CategoryDialogBuilder.propTypes = {
   discView: PropTypes.string.isRequired,
 };
 
-const CategoryDialog = ({ theme, setTheme, discView, setDiscView }) => {
+const CategoryDialog = ({ theme, setTheme, discView, setDiscView, search, setSearch }) => {
   const [open, setOpen] = useState(false);
   const [selectedValue, setSelectedValue] = useState('science');
   const [selectedTheme, setSelectedTheme] = useState('headerDefault');
+  const [selectedSearch, setSelectedSearch] = useState(categories[3].searchTerm);
 
   useEffect(() => {
     setTheme(selectedTheme);
@@ -90,15 +91,20 @@ const CategoryDialog = ({ theme, setTheme, discView, setDiscView }) => {
     setDiscView(selectedValue);
   }, [selectedTheme]);
 
+  useEffect(() => {
+    setSearch(selectedSearch)
+  }, [selectedTheme]);
+
   const handleClickOpen = () => {
     setOpen(true);
   };
 
-  const handleClose = (value, theme) => {
+  const handleClose = (value, theme, searchTerm) => {
     // console.log('VALUE_SECOND', value)
     setOpen(false);
     setSelectedValue(value);
     setSelectedTheme(theme);
+    setSelectedSearch(searchTerm);
   };
 
   return (
@@ -108,7 +114,7 @@ const CategoryDialog = ({ theme, setTheme, discView, setDiscView }) => {
       <Button variant="text" color="secondary" onClick={handleClickOpen} style={{ color: 'whitesmoke' }}>
         Categories
       </Button>
-      <CategoryDialogBuilder selectedValue={selectedValue} open={open} onClose={handleClose} theme={selectedTheme} discView={discView} />
+      <CategoryDialogBuilder selectedValue={selectedValue} open={open} onClose={handleClose} theme={selectedTheme} discView={discView} search={search} />
     </>
   );
 }

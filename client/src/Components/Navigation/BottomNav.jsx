@@ -20,12 +20,13 @@ import Divider from '@material-ui/core/Divider';
 const bottomNavTheme = createMuiTheme({
     palette: {
         primary: {
-            // main: '#ffffff'
-            main: 'rgb(9, 11, 23, 0.8)'
+            main: '#ffffff'
+            // main: 'rgb(9,11,23)'
         },
         text: {
             // secondary: 'rgb(9,11,23)'
-            secondary: '#ffffff'
+            // secondary: '#ffffff'
+            secondary: 'rgba(115,107,251,0.65)'
         }
     }
 })
@@ -36,12 +37,12 @@ const useStyles = makeStyles({
     bottom: '0',
     width: '100%',
     'z-index': '100',
-    // backgroundColor: 'rgb(9,11,23)',
-    backgroundColor: 'rgb(115,107,251, 0.65)',
+    backgroundColor: 'rgb(9,11,23)',
+    // backgroundColor: 'rgb(115,107,251, 0.65)',
   },
   vertDiv: {
-    // backgroundColor: 'rgba(115,107,251,0.65)'
-    backgroundColor: 'rgb(9, 11, 23)',
+    backgroundColor: 'rgba(115,107,251,0.65)'
+    // backgroundColor: 'rgb(9, 11, 23)',
     // backgroundColor: '#ffffff',
   }
 });

@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const AppBarHeader = ({ user, logout, discView, setDiscView, theme, setTheme }) => {
+const AppBarHeader = ({ user, logout, discView, setDiscView, theme, setTheme, search, setSearch }) => {
   const classes = useStyles();
 
 
@@ -44,7 +44,7 @@ const AppBarHeader = ({ user, logout, discView, setDiscView, theme, setTheme }) 
             <Typography variant="h6" className={classes.title}>
             </Typography>
             <>
-              <CategoryDialog theme={theme} setTheme={setTheme} discView={discView} setDiscView={setDiscView} theme={theme} setTheme={setTheme} />
+              <CategoryDialog theme={theme} setTheme={setTheme} discView={discView} setDiscView={setDiscView} theme={theme} setTheme={setTheme} search={search} setSearch={setSearch} />
             </>
             <Button variant='text' color='inherit' onClick={logout}>
               {user ? 'Logout' : null}

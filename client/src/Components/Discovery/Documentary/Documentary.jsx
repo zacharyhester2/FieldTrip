@@ -38,21 +38,21 @@ const Caption= styled(Jumbotron)`
 `
 
 
-const Documentary = ({ addResource, discView }) => {
+const Documentary = ({ addResource, discView, search }) => {
     const [docs, setDocs] = useState([]);
 
-    const search = `${discView}`;
+    const query = `${search}`;
 
 
-    const getDocs = (search) => {
-        axios.get(`/youTube/${search}`)
+    const getDocs = (query) => {
+        axios.get(`/youTube/${query}`)
         .then(({data}) => {
             setDocs(data);
         }).catch()
     }
 
     useEffect(() => {
-        getDocs(search);
+        getDocs(query);
     }, [discView])
 
     return (

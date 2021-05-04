@@ -9,7 +9,7 @@ const StyledTitle = styled.h3`
 font-family: 'Raleway', sans-serif;
 `
 
-const Discovery = ({ addResource, discView }) => {
+const Discovery = ({ addResource, discView, search }) => {
 
 
   const query = '';
@@ -18,9 +18,9 @@ const Discovery = ({ addResource, discView }) => {
   return (
     <Container>
       <StyledTitle>Articles</StyledTitle>
-      {/* <News addResource={addResource} discView={discView} /> */}
+      <News addResource={addResource} discView={discView} search={search} />
       <StyledTitle>Documentaries</StyledTitle>
-      {/* <Documentary addResource={addResource} discView={discView}/> */}
+      <Documentary addResource={addResource} discView={discView} search={search} />
     </Container>
   );
 }
