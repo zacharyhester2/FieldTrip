@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import { Carousel, Container, Row, Col, Jumbotron } from 'react-bootstrap/';
-import Podcast from './Podcast/Podcast.jsx';
 import News from './News/News.jsx';
 import Documentary from './Documentary/Documentary.jsx';
 import styled from 'styled-components';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import LandingDisc from './Documentary/LandingDisc.jsx'
 
-const StyledTitle = styled.h3`
-font-family: 'Raleway', sans-serif;
-`
+
 
 const Discovery = ({ addResource, discView, search }) => {
 
@@ -17,10 +16,9 @@ const Discovery = ({ addResource, discView, search }) => {
 
   return (
     <Container>
-      <StyledTitle>Articles</StyledTitle>
-      <News addResource={addResource} discView={discView} search={search} />
-      <StyledTitle>Documentaries</StyledTitle>
-      <Documentary addResource={addResource} discView={discView} search={search} />
+      <LandingDisc discView={discView}/>
+      <News addResource={addResource} discView={discView}/>
+      {/* <Documentary addResource={addResource} discView={discView}/> */}
     </Container>
   );
 }
