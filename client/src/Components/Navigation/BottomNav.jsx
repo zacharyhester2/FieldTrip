@@ -20,13 +20,13 @@ import Divider from '@material-ui/core/Divider';
 const bottomNavTheme = createMuiTheme({
     palette: {
         primary: {
-            main: '#ffffff'
+            main: '#f8f8ff'
             // main: 'rgb(9,11,23)'
         },
         text: {
             // secondary: 'rgb(9,11,23)'
-            // secondary: '#ffffff'
-            secondary: 'rgba(115,107,251,0.65)'
+            // secondary: '#f8f8ff'
+            secondary: 'rgba(115,107,251,1)'
         }
     }
 })
@@ -38,12 +38,13 @@ const useStyles = makeStyles({
     width: '100%',
     'z-index': '100',
     backgroundColor: 'rgb(9,11,23)',
+    opacity: '92%',
     // backgroundColor: 'rgb(115,107,251, 0.65)',
   },
   vertDiv: {
     backgroundColor: 'rgba(115,107,251,0.65)'
     // backgroundColor: 'rgb(9, 11, 23)',
-    // backgroundColor: '#ffffff',
+    // backgroundColor: '#f8f8ff',
   }
 });
 
@@ -60,47 +61,52 @@ const BottomNav = () => {
     <BottomNavigation value={value} onChange={handleChange} className={classes.root}>
 
       <Divider className={classes.vertDiv} orientation="vertical" flexItem />
+      <Divider className={classes.vertDiv} orientation="vertical" flexItem />
 
       <BottomNavigationAction
         label="Discovery"
         value="discovery"
-        icon={<SearchSharpIcon />}
+        icon={<SearchSharpIcon fontSize="large" />}
         component={Link}
         to="/discovery"
       />
+      <Divider className={classes.vertDiv} orientation="vertical" flexItem />
       <Divider className={classes.vertDiv} orientation="vertical" flexItem />
 
       <BottomNavigationAction
         label="Profile"
         value="profile"
-        icon={<EmojiPeopleSharpIcon />}
+        icon={<EmojiPeopleSharpIcon fontSize="large" />}
         component={Link}
         to="/profile"
       />
+      <Divider className={classes.vertDiv} orientation="vertical" flexItem />
       <Divider className={classes.vertDiv} orientation="vertical" flexItem />
 
       <BottomNavigationAction
         label="Home"
         value="home"
-        icon={<HomeSharpIcon />}
+        icon={<HomeSharpIcon fontSize="large" />}
         component={Link}
         to="/"
       />
+      <Divider className={classes.vertDiv} orientation="vertical" flexItem />
       <Divider className={classes.vertDiv} orientation="vertical" flexItem />
 
       <BottomNavigationAction
         label="Alerts"
         value="alerts"
-        icon={<NotificationsSharpIcon />}
+        icon={<NotificationsSharpIcon fontSize="large" />}
         component={Link}
         to="/alerts"
       />
+      <Divider className={classes.vertDiv} orientation="vertical" flexItem />
       <Divider className={classes.vertDiv} orientation="vertical" flexItem />
 
       {/* <BottomNavigationAction
         label="Camera"
         value="photoUpload"
-        icon={<CameraAltSharpIcon />}
+        icon={<CameraAltSharpIcon fontSize="large" />}
         component={Link}
         to="/PhotoUpload"
       /> */}

@@ -19,10 +19,10 @@ import AllInclusiveSharpIcon from '@material-ui/icons/AllInclusiveSharp';
 
 
 const categories = [
-  { icon: <FlareSharpIcon />, name: 'Outer Space', theme: 'spaceTheme', searchTerm: 'space+universe+cosmos+nasa' },
-  { icon: <EcoSharpIcon />, name: 'Planet Earth', theme: 'earthTheme', searchTerm: 'earth+plants+natural+oceans' },
-  { icon: <AccountBalanceSharpIcon />, name: 'Natural History', theme: 'historyTheme', searchTerm: 'prehistory+prehistoric' },
-  { icon: <AllInclusiveSharpIcon />, name: 'General Science', theme: 'headerDefault', searchTerm: 'science+scientific+general' }
+  { icon: <FlareSharpIcon />, name: 'Outer Space', theme: 'spaceTheme', searchTerm: 'space|universe|cosmos|nasa' },
+  { icon: <EcoSharpIcon />, name: 'Planet Earth', theme: 'earthTheme', searchTerm: 'earth|plants|natural|oceans' },
+  { icon: <AccountBalanceSharpIcon />, name: 'Natural History', theme: 'historyTheme', searchTerm: 'prehistory|prehistoric' },
+  { icon: <AllInclusiveSharpIcon />, name: 'General Science', theme: 'headerDefault', searchTerm: 'science|scientific|general' }
 ];
 
 const useStyles = makeStyles({
