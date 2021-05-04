@@ -18,7 +18,16 @@ const GlobalStyles = createGlobalStyle`
     font-size: 60px;
     margin: 0;
     overflow: hidden;
+    /* box-shadow: 0px 0px 7px 0px rgb(255,255,255); */
+    box-shadow: 0px 0px 7px 0px #736bfb;
+    /* box-shadow: 0px 30px 22px -2px #736bfb; */
+    /* box-shadow: 0px 30px 22px -15px rgba(148,148,148,0.42); */
+    /* box-shadow: 0px 43px 11px -26px rgba(115,107,251,0.44); */
+    opacity: 87%;
+  }
 
+  .logo{
+    opacity: 100% !important;
   }
 
   .component{
@@ -27,5 +36,31 @@ const GlobalStyles = createGlobalStyle`
     left: 50%;
     transform: translate(-50%, -50%);
   }
+  .video-responsive{
+    overflow: hidden;
+    padding-bottom: 56.25%;
+    position: relative;
+    height: 0;
+  }
+  .video-responsive iframe {
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+  }
+  .youtube{
+    padding-bottom: 250px;
+  }
+  .top-container{
+
+  }
+  .mid-container{
+
+  }
+  .bottom-container{
+
+  }
+
 `;
 export default GlobalStyles;
