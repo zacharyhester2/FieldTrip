@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Carousel, Row, Col, Jumbotron } from 'react-bootstrap/';
 import axios from 'axios';
 import styled from 'styled-components';
+import CircularProgress from '@material-ui/core/CircularProgress';
+
+import YoutubeEmbed from './YoutubeEmbed.jsx';
 
 const Img = styled.div`
 
@@ -40,33 +43,55 @@ const Caption= styled(Jumbotron)`
 
 const Documentary = ({ addResource, discView, search }) => {
     const [docs, setDocs] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState('');
 
     const query = `${search}`;
 
 
-    const getDocs = (query) => {
-        axios.get(`/youTube/${query}`)
+    const getDocs = async (query) => {
+        setIsLoading(true);
+        await axios.get(`/youTube/${query}`)
         .then(({data}) => {
             setDocs(data);
+            setIsLoading(false);
         }).catch()
     }
 
+    // const getDocs = (query) => {
+    //     axios.get(`/youTube/${query}`)
+    //     .then(({data}) => {
+    //         setDocs(data);
+    //     }).catch()
+    // }
     useEffect(() => {
         getDocs(query);
     }, [discView])
 
     return (
-        <div>
+        <div className="youtube">
 
             <Carousel fade>
                 {docs.map((doc, i) => (
                     <Carousel.Item className="mb-5 m5-5"
                     key={i}>
-                            <Img>
+                            {/* <Img>
                                 <img className="mx-auto"
                                 src={doc.snippet.thumbnails.high.url}/>
-                            </Img>
+                            </Img> */}
+                            <YoutubeEmbed embedId={doc.id.videoId}/>
                             <Caption>
+                                    <h2>{doc.snippet.title}</h2>
+                                    <p>Click
+                                        <a
+                                            href={`https://www.youtube.com/embed/${doc.id.videoId}`}
+                                            target="_blank"
+                                            onClick={() => { addResource(doc, 'youTube'); }}
+                                        > Her</a>
+                                        e to watch on YouTube.
+                                    </p>
+                            </Caption>
+                            {/* <Caption>
                                     <h2>{doc.snippet.title}</h2>
                                     <p>Watch Documentary
                                         <a
@@ -75,7 +100,7 @@ const Documentary = ({ addResource, discView, search }) => {
                                             onClick={() => { addResource(doc, 'youTube'); }}
                                         > Here</a>
                                     </p>
-                            </Caption>
+                            </Caption> */}
                     </Carousel.Item>
                     ))}
             </Carousel>

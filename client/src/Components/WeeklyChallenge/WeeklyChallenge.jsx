@@ -20,7 +20,7 @@ position: absolute;
 top: 40%;
 left: 48%;
 transform: translate(-50%, -50%);
-opacity: 65%;
+opacity: 85%;
 h2{
   color: #1d1d1d;
   text-align: center;
@@ -40,10 +40,10 @@ h2{
 
 const challenges = [
   { 0: 'Collect a stamp from each category.' },
-  { 1: 'Read at least 5 news articles, and view your 5 new stamps in your passport.' },
-  { 2: 'Watch at least 1 documentary in the category of your choice.' },
-  { 3: 'Earn at least 3 \'Earth\' stamps.' },
-  { 4: 'Earn at least 3 \'Space\' stamps.' },
+  { 1: 'Earn at least 3 \'Earth\' stamps.' },
+  { 2: 'Read at least 5 news articles, and view your 5 new stamps in your passport.' },
+  { 3: 'Earn at least 3 \'Space\' stamps.' },
+  { 4: 'Watch at least 1 documentary in the category of your choice.' },
   { 5: 'Earn at least 3 \'Natural History\' stamps.' },
   { 6: 'six' },
 ];

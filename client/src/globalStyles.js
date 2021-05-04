@@ -35,5 +35,31 @@ const GlobalStyles = createGlobalStyle`
     left: 50%;
     transform: translate(-50%, -50%);
   }
+  .video-responsive{
+    overflow: hidden;
+    padding-bottom: 56.25%;
+    position: relative;
+    height: 0;
+  }
+  .video-responsive iframe {
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+  }
+  .youtube{
+    padding-bottom: 250px;
+  }
+  .top-container{
+
+  }
+  .mid-container{
+
+  }
+  .bottom-container{
+
+  }
+
 `;
 export default GlobalStyles;
