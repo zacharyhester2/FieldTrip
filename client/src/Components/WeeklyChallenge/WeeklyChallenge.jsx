@@ -62,11 +62,12 @@ const WeeklyChallenge = ({ getStamps, user }) => {
 
     const handleClick = () => {
       setClicked(!clicked);
-      // console.log(trophy);
+      let today = new Date().toISOString().slice(0, 10)
+
       axios.post('/challenge', {
         title: 'trophy',
         category: 'daily challenge',
-        date: Date.now,
+        date: today,
 
       })
         .then(() => {
