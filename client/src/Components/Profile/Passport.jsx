@@ -25,7 +25,7 @@ const Passport = ({stamps}) => {
   return (
       <Container className="stamp-container">
         <h3>Passport</h3>
-        {stamps.map((stamp, i) => <Stamp stamp={stamp} key={i}/>)}
+        {stamps.reverse().map((stamp, i) => <Stamp stamp={stamp} key={i}/>)}
       </Container>
   );
 };

@@ -14,7 +14,6 @@ const Alerts = ({user}) => {
   const [alerts, setAlerts] = useState([])
 
      const getAlerts = () => {
-    //  debugger;
     if (user) {
       axios.get(`/user/${user.id}`)
         .then(({ data }) => {
@@ -34,14 +33,12 @@ const Alerts = ({user}) => {
     <Fragment>
       <h1>Alerts</h1>
       <Container className="alert-container">
-        {alerts.map((alert, i) =>
+        {alerts.reverse().map((alert, i) =>
           <AlertItem alert={alert} key={i}/>
         )}
       </Container>
     </Fragment>
   );
 };
-
-
 
 export default Alerts;

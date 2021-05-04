@@ -54,7 +54,6 @@ const News = ({ addResource, discView, search }) => {
                     img-responsive
                     img-fluid"
                     >
-                    {console.log(article)}
                 </Image>
                     <Card.Body>
                         <Card.Title>{article.title}</Card.Title>
@@ -72,18 +71,4 @@ const News = ({ addResource, discView, search }) => {
       );
 }
 
-        // <Carousel fade>
-        //     {news.map((article, i) => (
-        //         <Carousel.Item key={i}>
-        //             <h1>Articles</h1>
-        //                 <Img>
-        //                     <img className="news-img mx-auto" src={article.urlToImage}/>
-        //                 </Img>
-        //                 <Caption>
-        //                     <h1>{article.title}</h1>
-        //                     <p>{article.description}</p>
-        //                 </Caption>
-        //         </Carousel.Item>
-        //         ))}
-        // </Carousel>
 export default News;
