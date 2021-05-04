@@ -63,5 +63,14 @@ const GlobalStyles = createGlobalStyle`
 
   }
 
+  .news-cards{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    background-color: rgb(9, 11, 23);
+  }
+
 `;
 export default GlobalStyles;

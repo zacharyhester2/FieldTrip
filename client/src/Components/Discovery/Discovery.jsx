@@ -6,7 +6,9 @@ import styled from 'styled-components';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import LandingDisc from './Documentary/LandingDisc.jsx'
 
-
+const StyledTitle = styled.h3`
+font-family: 'Raleway', sans-serif;
+`
 
 const Discovery = ({ addResource, discView, search }) => {
 
@@ -15,11 +17,17 @@ const Discovery = ({ addResource, discView, search }) => {
 
 
   return (
-    <Container>
-      <LandingDisc discView={discView}/>
-      <News addResource={addResource} discView={discView}/>
-      {/* <Documentary addResource={addResource} discView={discView}/> */}
+    <>
+    <LandingDisc discView={discView}/>
+    <Container className='news-cards'>
+      <StyledTitle>Articles</StyledTitle>
+      <News addResource={addResource} discView={discView} search={search} />
     </Container>
+    <Container>
+      <StyledTitle>Documentaries</StyledTitle>
+    </Container>
+      {/* <Documentary addResource={addResource} discView={discView} search={search} /> */}
+    </>
   );
 }
 
