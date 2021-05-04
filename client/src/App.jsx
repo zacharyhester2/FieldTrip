@@ -17,15 +17,36 @@ import PhotoUpload from './Components/PhotoUpload/PhotoUpload.jsx'
 import AppBarHeader from './Components/Home/AppBarHeader.jsx';
 import { Button } from '@material-ui/core'
 
-import galaxy from './themes/space2.jpg';
+import space1 from './themes/space1.jpg';
+import space2 from './themes/space2.jpg';
+import space5 from './themes/space5.jpg';
 import earth from './themes/earth.jpg';
 import dinos from './themes/dinos.jpg';
 import { makeStyles } from '@material-ui/core/styles';
 
 
+// const themeShuffle = array => {
+//     const newThemeArray = array.slice();
+//     for (let i = newThemeArray.length - 1; i > 0; i--) {
+//         const random = Math.floor(Math.random() * (i + 1));
+//         [newThemeArray[i], newThemeArray[random]] = [newThemeArray[random], newThemeArray[i]];
+//     }
+//     return newThemeArray;
+// };
+
+const spaceThemes = [space1, space2, space5];
+
+const randomizeTheme = (arr) => {
+  const randomIndex = Math.floor((Math.random() * arr.length));
+  return arr[randomIndex];
+};
+
+let randomSpaceTheme = randomizeTheme(spaceThemes);
+
+
 const useStyles = makeStyles((theme) => ({
   spaceTheme: {
-    backgroundImage: `url(${galaxy})`,
+    backgroundImage: `url(${randomSpaceTheme})`,
     backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
@@ -55,6 +76,7 @@ const App = () => {
     const [stamps, setStamps] = useState([])
     const [discView, setDiscView] = useState('')
     const [theme, setTheme] = useState('headerDefault');
+    const [search, setSearch] = useState('');
     const [alerts, setAlerts] = useState([])
 
     const currClass = classes[`${theme}`];
@@ -163,12 +185,12 @@ const App = () => {
 
     return (
     <div className={currClass}>
-      <AppBarHeader user={user} logout={logout} discView={discView} setDiscView={setDiscView} theme={theme} setTheme={setTheme}/>
+      <AppBarHeader user={user} logout={logout} discView={discView} setDiscView={setDiscView} theme={theme} setTheme={setTheme} search={search} setSearch={setSearch} />
       {!user
       ?(
         <div >
           <Home />
-          <Button variant="contained">
+          <Button variant="contained" style={{ marginLeft: "25px" }}>
           <a
             className="login-button"
             href="/auth/google"
@@ -191,7 +213,7 @@ const App = () => {
                   <Profile user={user} logout={logout} stamps={stamps} getStamps={getStamps}/>
               </Route>
               <Route path="/discovery">
-                  <Discovery addResource={addResource} discView={discView} setDiscView={setDiscView}/>
+                  <Discovery addResource={addResource} discView={discView} setDiscView={setDiscView} search={search} setSearch={setSearch}/>
               </Route>
               <Route path="/alerts">
                   <Alerts user={user} alerts={alerts} />

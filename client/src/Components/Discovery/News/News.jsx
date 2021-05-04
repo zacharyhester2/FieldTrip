@@ -19,15 +19,15 @@ const StyledCard = styled(Card)`
     }
 `
 
-const News = ({ addResource, discView }) => {
+const News = ({ addResource, discView, search }) => {
     const [news, setNews] = useState([]);
 
 
 
-    const search = `${discView}`;
+    const query = `${search}`;
 
-    const getNews = (search) => {
-        axios.get(`/newsQ/:${search}`)
+    const getNews = (query) => {
+        axios.get(`/newsQ/:${query}`)
         .then(({data}) => {
             setNews(data);
         }).catch()
@@ -35,7 +35,7 @@ const News = ({ addResource, discView }) => {
 
 
     useEffect(() => {
-        getNews(search);
+        getNews(query);
     }, [discView])
 
 

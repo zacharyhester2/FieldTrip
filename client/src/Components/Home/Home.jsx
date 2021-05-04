@@ -9,9 +9,8 @@ const HomeStyles = styled.div`
 const Home = ({user, logout, getStamps}) => {
   return (
     <HomeStyles>
-
-      <h2>Field Trip</h2>
-      {user ?
+      {
+      user ?
       <div>
         <WeeklyChallenge getStamps={getStamps} user={user}/>
       </div>
