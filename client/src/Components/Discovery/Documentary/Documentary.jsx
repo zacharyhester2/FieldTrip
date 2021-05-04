@@ -47,11 +47,10 @@ const Documentary = ({ addResource, discView, search }) => {
 
 
     const getDocs = async (query) => {
-        setIsLoading(true);
+
         await axios.get(`/youTube/${query}`)
         .then(({data}) => {
             setDocs(data);
-            setIsLoading(false);
         }).catch()
     }
 
