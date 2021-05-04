@@ -62,8 +62,13 @@ const WeeklyChallenge = ({ getStamps, user }) => {
 
     const handleClick = () => {
       setClicked(!clicked);
-      console.log(trophy);
-      axios.post('/challenge', {trophy: 'trophy'})
+      // console.log(trophy);
+      axios.post('/challenge', {
+        title: 'trophy',
+        category: 'daily challenge',
+        date: Date.now,
+
+      })
         .then(() => {
           console.log('trophy worked');
           getStamps()

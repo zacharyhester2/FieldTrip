@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import styled from 'styled-components';
 
-const Img = styled.div`
+const AlertContainer = styled.div`
     background: rgba(25, 25, 25, 0.6) !important;
     border-radius: 10px;
     margin: 10px;
@@ -25,10 +25,10 @@ const AlertItem = ({alert}) => {
   return (
     <div>
       {/* <p key={i}>{`You ${alert.action} a ${alert.resource}!`}</p> */}
-      <Img>
+      <AlertContainer>
       <p>You earned a stamp in your passport!</p>
-        <img src={alert}/>
-      </Img>
+        <img src={alert.image}/>
+      </AlertContainer>
     </div>
   );
 };

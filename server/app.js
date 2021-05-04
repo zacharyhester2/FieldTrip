@@ -152,7 +152,8 @@ app.get('/auth/google',
 
   //post request -add resource to resource schema
   app.post('/resource', (req, res) => {
-    const {category, date, title, author, image, url, userId} = req.body;
+    const {category, date, title, author, image, url, type } = req.body;
+    // console.log('RESOURCE from req body', category, date, title, author, image, url)
 
     Users.findOne({ id : req.cookies.FieldTripId })
     .then((user) => {
@@ -163,12 +164,14 @@ app.get('/auth/google',
         title: title,
         author: author,
         image: image,
-        url: url
+        url: url,
+        type: type
       })
       .then((resource)=>{
+        // console.log('RESOURCE FROM /resource', resource)
           Users.findOne({ id : req.cookies.FieldTripId })
           .then((user) => {
-            user.stamps = [...user.stamps, resource.image];
+            user.stamps = [...user.stamps, resource];
 
             Users.updateOne({ id : req.cookies.FieldTripId }, {stamps: user.stamps})
             .then(() => res.sendStatus(200))
@@ -179,14 +182,15 @@ app.get('/auth/google',
   })
 
 
-  // DAILY CHALLENGE
+  // DAILY CHALLENGE- adds challenges to stamps
 app.post('/challenge', (req, res) => {
-  const { trophy } = req.body;
+  const { title, category, date } = req.body;
   Users.findOne({ id: req.cookies.FieldTripId })
     .then((user) => {
-      user.stamps = [...user.stamps, trophy];
-      Users.updateOne({ id : req.cookies.FieldTripId }, {stamps: user.stamps})
-      .then(() => res.sendStatus(200))
+      user.stamps = [...user.stamps, {title: title, category: category, date: date}];
+      user.challenges = [...user.challenges, {title: title, category: category, date: date}];
+      Users.updateOne({ id : req.cookies.FieldTripId }, {stamps: user.stamps, challenges: user.challenges})
+      .then((data) => res.sendStatus(200))
       .catch()
     })
 });

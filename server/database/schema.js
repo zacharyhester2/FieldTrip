@@ -15,6 +15,7 @@ const resourceSchema = mongoose.Schema({
   narrator: String,
   image: String,
   url: String,
+  type: String
 });
 
 const Resources = mongoose.model('Resources', resourceSchema);

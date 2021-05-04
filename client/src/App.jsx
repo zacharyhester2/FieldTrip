@@ -70,57 +70,59 @@ const App = () => {
     }
   };
 
-  // NO LOOP
-  const addResource = (resource) => {
-    //post request to user table
-    axios.post('/resource', {
-      category: discView,
-      date: Date.now,
-      title: resource.title,
-      author: resource.author,
-      image: resource.urlToImage,
-      url: resource.url,
-      userId: user.id
-    })
-    .then(() => {
-      getStamps()
-    })
-    .catch()
-  };
-
-  // //FIX THIS BEFORE IT LOOPS
-  // const addResource = (resource, resType) => {
-  //   let pars = {};
-  //   //if resource is article:
-  //   if(resType === 'article'){
-  //     pars= {
-  //       category: discView,
-  //       date: Date.now,
-  //       title: resource.title,
-  //       author: resource.author,
-  //       image: resource.urlToImage,
-  //       url: resource.url,
-  //       userId: user.id
-  //     }
-  //   } else if(resType === 'youTube'){
-  //     pars= {
-  //       category: discView,
-  //       date: Date.now,
-  //       title: resource.snippet.title,
-  //       author: null,
-  //       image: resource.snippet.thumbnails.high.url,
-  //       url: `https://www.youtube.com/embed/${resource.id.videoId}`,
-  //       userId: user.id
-  //     }
-  //   }
+  // // NO LOOP
+  // const addResource = (resource) => {
   //   //post request to user table
-  //   axios.post('/resource', pars)
+  //   axios.post('/resource', {
+  //     category: discView,
+  //     date: Date.now,
+  //     title: resource.title,
+  //     author: resource.author,
+  //     image: resource.urlToImage,
+  //     url: resource.url,
+  //     userId: user.id
+  //   })
   //   .then(() => {
-  //     // getStamps()
-  //     console.log('add resources worked!')
+  //     getStamps()
   //   })
   //   .catch()
   // };
+
+  //FIX THIS BEFORE IT LOOPS
+  const addResource = (resource, resType) => {
+    let pars = {};
+    //if resource is article:
+    if(resType === 'article'){
+      pars= {
+        category: discView,
+        date: Date.now,
+        title: resource.title,
+        author: resource.author,
+        image: resource.urlToImage,
+        url: resource.url,
+        userId: user.id,
+        type: resType
+      }
+    } else if(resType === 'documentary'){
+      pars= {
+        category: discView,
+        date: Date.now,
+        title: resource.snippet.title,
+        // author: null,
+        image: resource.snippet.thumbnails.high.url,
+        url: `https://www.youtube.com/embed/${resource.id.videoId}`,
+        userId: user.id,
+        type: resType
+      }
+    }
+    //post request to user table
+    axios.post('/resource', pars)
+    .then(() => {
+      getStamps()
+      console.log('add resources worked!', stamps)
+    })
+    .catch()
+  };
 
 
    const getStamps = () => {
@@ -161,13 +163,6 @@ const App = () => {
 
     return (
     <div className={currClass}>
-      {/* <header>
-        <div>
-          <a href="/" >
-            <img className="logo" src={logo} alt="" width="300px"/>
-          </a>
-        </div>
-      </header> */}
       <AppBarHeader user={user} logout={logout} discView={discView} setDiscView={setDiscView} theme={theme} setTheme={setTheme}/>
       {!user
       ?(
