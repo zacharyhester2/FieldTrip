@@ -5,6 +5,7 @@ const GlobalStyles = createGlobalStyle`
   *{
     /* margin: 0; */
     box-sizing: border-box;
+    font-family: 'Raleway', sans-serif;
   }
 
   body{
@@ -60,6 +61,15 @@ const GlobalStyles = createGlobalStyle`
   }
   .bottom-container{
 
+  }
+
+  .news-cards{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    background-color: rgb(9, 11, 23);
   }
 
 `;
