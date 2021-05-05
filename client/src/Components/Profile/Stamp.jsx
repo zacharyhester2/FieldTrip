@@ -65,7 +65,7 @@ const Img = styled.div`
   }
 `
 const Stamp = ({stamp}) => {
-  console.log(stamp);
+  // console.log(stamp);
   return (
       <Img>
       {stamp.category !== "daily challenge" ?

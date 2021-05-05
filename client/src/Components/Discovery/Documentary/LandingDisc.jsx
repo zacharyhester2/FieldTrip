@@ -17,10 +17,6 @@ const LandingStyled = styled.div`
 const LandingDisc = () => {
 
 
-
-
-
-
   return (
 
     <LandingStyled>
