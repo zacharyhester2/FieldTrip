@@ -18,15 +18,15 @@ const Discovery = ({ addResource, discView, search }) => {
 
   return (
     <>
-    <LandingDisc discView={discView}/>
-    <Container className='news-cards'>
-      <StyledTitle>Articles</StyledTitle>
-      <News addResource={addResource} discView={discView} search={search} />
-    </Container>
-    <Container>
-      <StyledTitle>Documentaries</StyledTitle>
-    </Container>
-      <Documentary addResource={addResource} discView={discView} search={search} />
+      <LandingDisc discView={discView}/>
+        <Container className='news-cards'>
+          <StyledTitle>Articles</StyledTitle>
+          <News addResource={addResource} discView={discView} search={search} />
+        </Container>
+      <Container>
+          <StyledTitle>Documentaries</StyledTitle>
+          <Documentary addResource={addResource} discView={discView} search={search} />
+      </Container>
     </>
   );
 }

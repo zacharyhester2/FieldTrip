@@ -82,6 +82,15 @@ const GlobalStyles = createGlobalStyle`
     /* background-color: #736bfb; */
   }
 
+  .home-landing-page{
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    background-color: rgb(9, 11, 23);
+  }
+
   .news-cards{
     height: 100%;
     width: 100%;
