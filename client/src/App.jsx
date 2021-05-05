@@ -180,7 +180,7 @@ const App = () => {
 
   useEffect(() => {
     getUser();
-    // getAlerts();
+    getStamps();
   }, [])
 
     return (
@@ -207,7 +207,7 @@ const App = () => {
             <BottomNav />
             <Switch>
               <Route exact path="/">
-                  <Home user={user} logout={logout} getStamps={getStamps}/>
+                  <Home user={user} logout={logout} getStamps={getStamps} stamps={stamps}/>
               </Route>
               <Route path="/profile">
                   <Profile user={user} logout={logout} stamps={stamps} getStamps={getStamps}/>

@@ -179,14 +179,14 @@ app.get('/auth/google',
           output.push(stamp[j]);
         }
       output = output.filter(item => item !== null);
-      console.log('output', output)
+      // console.log('output', output)
       return output;
   };
 
   //post request -add resource to resource schema
   app.post('/resource', (req, res) => {
     const {category, date, title, author, image, url, type } = req.body;
-    console.log('req body', req.body)
+    // console.log('req body', req.body)
 
     Users.findOne({ id : req.cookies.FieldTripId })
     .then((user) => {
