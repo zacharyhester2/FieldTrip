@@ -52,6 +52,13 @@ const GlobalStyles = createGlobalStyle`
   }
   .youtube{
     padding-bottom: 250px;
+    max-width: 65%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    /* left: 50%; */
   }
   .top-container{
 
