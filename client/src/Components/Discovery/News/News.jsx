@@ -3,6 +3,8 @@ import { Card, Container, Row, Col, CardDeck, Jumbotron, Image } from 'react-boo
 import axios from 'axios';
 import styled from 'styled-components';
 import { Button } from '@material-ui/core'
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 
 const StyledCard = styled(Card)`
@@ -12,7 +14,11 @@ const StyledCard = styled(Card)`
     z-index: 0;
     border-radius: 45px;
     outline: none;
+<<<<<<< HEAD
     margin-bottom: 5rem;
+=======
+    margin-bottom: 30rem;
+>>>>>>> 5dfb95664f04b2b48b5b48bb5c5fd2d72194329b
     object-fit: cover;
     :hover {
         transform: scale(1.1);
@@ -26,9 +32,17 @@ const StyledCard = styled(Card)`
     border-radius: 45px;
 }
 `
-
-const News = ({ addResource, discView, search }) => {
+// const ContainerStyled = styled.div`
+//     background-color: rgb(9, 11, 23);
+//     height: 100%;
+//     width: 100%;
+//     display: flex;
+//     justify-content: center;
+//     text-align: center;
+// `
+const News = ({ addResource, discView }) => {
     const [news, setNews] = useState([]);
+
     const query = `${search}`;
     const getNews = (query) => {
         axios.get(`/newsQ/:${query}`)

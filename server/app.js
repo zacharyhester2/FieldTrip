@@ -96,6 +96,13 @@ app.get('/newsQ/:search', (req, res) => {
     });
 });
 
+//CHALLENGES
+app.get('/challenge', (req, res) => {
+  Users.findOne({ id: req.params.id }).then((userInfo) => {
+    res.send(userInfo.challenges);
+  });
+})
+
 //OAUTH STUFF
 app.use(
   session({

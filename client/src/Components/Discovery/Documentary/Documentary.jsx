@@ -2,15 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { Carousel, Row, Col, Jumbotron } from 'react-bootstrap/';
 import axios from 'axios';
 import styled from 'styled-components';
-
 import YoutubeEmbed from './YoutubeEmbed.jsx';
 
 const Img = styled.div`
-
+    height: 100vh;
     width: 100%;
     display: flex;
     justify-content: center;
-
   img{
     border-radius: 45px;
     border: 3px;
@@ -19,15 +17,13 @@ const Img = styled.div`
     height: auto;
     width: auto;
     margin: 0 auto;
+    margin-top: 30rem;
     /* filter: grayscale(100%) */
-
   }
   img:hover {
   transform: scaleX(-1);
 }
 `
-
-
 const Caption= styled(Jumbotron)`
     background: rgba(25, 25, 25, 0.6) !important;
     height: auto;
@@ -38,22 +34,15 @@ const Caption= styled(Jumbotron)`
     border-color: whitesmoke;
     padding: 0 1rem;
 `
-
-
 const Documentary = ({ addResource, discView, search }) => {
     const [docs, setDocs] = useState([]);
-
     const query = `${search}`;
-
-
     const getDocs = async (query) => {
-
         await axios.get(`/youTube/${query}`)
         .then(({data}) => {
             setDocs(data);
         }).catch()
     }
-
     // const getDocs = (query) => {
     //     axios.get(`/youTube/${query}`)
     //     .then(({data}) => {
@@ -63,10 +52,8 @@ const Documentary = ({ addResource, discView, search }) => {
     useEffect(() => {
         getDocs(query);
     }, [discView])
-
     return (
         <div className="youtube">
-
             <Carousel fade>
                 {docs.map((doc, i) => (
                     <Carousel.Item className="mb-5 m5-5"
@@ -103,5 +90,4 @@ const Documentary = ({ addResource, discView, search }) => {
         </div>
     );
 }
-
 export default Documentary;
