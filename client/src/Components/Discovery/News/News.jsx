@@ -6,6 +6,7 @@ import { Button } from '@material-ui/core'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
+
 const StyledCard = styled(Card)`
     transform-origin: top center;
     transition: transform 300ms;
@@ -27,56 +28,52 @@ const StyledCard = styled(Card)`
     border-radius: 45px;
 }
 `
-// const ContainerStyled = styled.div`
-//     background-color: rgb(9, 11, 23);
-//     height: 100%;
-//     width: 100%;
-//     display: flex;
-//     justify-content: center;
-//     text-align: center;
-// `
-const News = ({ addResource, discView }) => {
+
+const News = ({ addResource, discView, search }) => {
     const [news, setNews] = useState([]);
-    const query = `${discView}`;
+
+    const query = `${search}`;
+
     const getNews = (query) => {
         axios.get(`/newsQ/:${query}`)
         .then(({data}) => {
             setNews(data);
         }).catch()
     }
+
     useEffect(() => {
         getNews(query);
     }, [discView])
+
     return (
-        // <ContainerStyled>
-            <div className="container-fluid">
+        <div className="container-fluid">
             <Row md={4}>
                 {news.map((article, i) => (
                     <StyledCard className="mb-4 mt-4 mr-4 ml-4"
                     text="muted"
                     bg="light"
+                    key={i * Math.random()}
                     >
                     <Image src={article.urlToImage}
                         key={i}
                         className="news-img-top"
                         >
-                        {console.log(article)}
+                        {/* {console.log(article)} */}
                     </Image>
                         <Card.Body>
                             <Card.Title>{article.title}</Card.Title>
                             <Card.Text>{article.description}</Card.Text>
                             <p>Read Full Article
-                    <a
-                        href={article.url}
-                        target="_blank"
-                        onClick={() => { addResource(article, 'article'); }}
-                    > Here</a></p>
+                                <a
+                                    href={article.url}
+                                    target="_blank"
+                                    onClick={() => { addResource(article, 'article'); }}
+                                > Here</a></p>
                         </Card.Body>
                     </StyledCard>
-                    ))}
+                ))}
             </Row>
-            </div>
-        // </ContainerStyled>
+        </div>
       );
 };
 export default News;

@@ -4,26 +4,26 @@ import axios from 'axios';
 import styled from 'styled-components';
 import YoutubeEmbed from './YoutubeEmbed.jsx';
 
-const Img = styled.div`
-    height: 100vh;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-  img{
-    border-radius: 45px;
-    border: 3px;
-    border-color: whitesmoke;
-    padding: 0 1rem;
-    height: auto;
-    width: auto;
-    margin: 0 auto;
-    margin-top: 30rem;
-    /* filter: grayscale(100%) */
-  }
-  img:hover {
-  transform: scaleX(-1);
-}
-`
+// const Img = styled.div`
+//     height: 100vh;
+//     width: 100%;
+//     display: flex;
+//     justify-content: center;
+//   img{
+//     border-radius: 45px;
+//     border: 3px;
+//     border-color: whitesmoke;
+//     padding: 0 1rem;
+//     height: auto;
+//     width: auto;
+//     margin: 0 auto;
+//     margin-top: 30rem;
+//     /* filter: grayscale(100%) */
+//   }
+//   img:hover {
+//   transform: scaleX(-1);
+// }
+// `
 const Caption= styled(Jumbotron)`
     background: rgba(25, 25, 25, 0.6) !important;
     height: auto;
@@ -54,7 +54,7 @@ const Documentary = ({ addResource, discView, search }) => {
     }, [discView])
     return (
         <div className="youtube">
-            <Carousel fade>
+            <Carousel fade style={{marginTop: '2rem' }}>
                 {docs.map((doc, i) => (
                     <Carousel.Item className="mb-5 m5-5"
                     key={i}>

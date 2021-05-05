@@ -52,6 +52,13 @@ const GlobalStyles = createGlobalStyle`
   }
   .youtube{
     padding-bottom: 250px;
+    max-width: 65%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    /* left: 50%; */
   }
   .top-container{
 
@@ -61,6 +68,18 @@ const GlobalStyles = createGlobalStyle`
   }
   .bottom-container{
 
+  }
+  .news-cards{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    background-color: ghostwhite;
+  }
+  .add-YT-btn{
+    color: #736bfb;
+    /* background-color: #736bfb; */
   }
 
   .news-cards{
