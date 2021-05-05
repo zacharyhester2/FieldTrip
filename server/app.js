@@ -187,9 +187,40 @@ app.post('/challenge', (req, res) => {
   const { title, category, date } = req.body;
   Users.findOne({ id: req.cookies.FieldTripId })
     .then((user) => {
-      user.stamps = [...user.stamps, {title: title, category: category, date: date}];
+
       user.challenges = [...user.challenges, {title: title, category: category, date: date}];
-      Users.updateOne({ id : req.cookies.FieldTripId }, {stamps: user.stamps, challenges: user.challenges})
+      user.stamps = [...user.stamps, {title: title, category: category, date: date}];
+
+      const uniqueChallenge = (array) => {
+        let flags = [], output = [];
+        for(let i = 0; i < array.length; i++) {
+          if(flags[array[i].date]) continue;
+          flags[array[i].date] = true;
+          output.push(array[i]);
+        }
+        output = output.filter(item => item !== null);
+        return output;
+      };
+
+      const uniqueStamp = (array) => {
+        let flags = [], output = [];
+        for(let i = 0; i < array.length; i++) {
+          if (array[i].title !== 'trophy') {
+            if(flags[array[i].title]) continue;
+            flags[array[i].title] = true;
+            output.push(array[i]);
+          } else {
+            if(flags[array[i].date]) continue;
+            flags[array[i].date] = true;
+            output.push(array[i]);
+          }
+        }
+        output = output.filter(item => item !== null);
+        return output;
+      };
+
+
+      Users.updateOne({ id : req.cookies.FieldTripId }, {stamps: uniqueStamp(user.stamps), challenges: uniqueChallenge(user.challenges)})
       .then((data) => res.sendStatus(200))
       .catch()
     })
