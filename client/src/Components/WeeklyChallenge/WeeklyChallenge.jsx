@@ -43,9 +43,10 @@ opacity: 85%;
 
 const ParDiv = styled.div`
   top: 150%;
-  /* margin: 50px; */
-  text-align: right !important;
-  justify-content: center;
+  margin: 40px;
+  display: flex;
+  text-align: left!important;
+  justify-content: left;
   position: absolute; 
 `
 
