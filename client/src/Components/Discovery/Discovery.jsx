@@ -13,7 +13,7 @@ font-family: 'Raleway', sans-serif;
 const Discovery = ({ addResource, discView, search }) => {
 
 
-  const query = '';
+  // const query = '';
 
 
   return (

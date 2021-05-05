@@ -69,7 +69,7 @@ const Documentary = ({ addResource, discView, search }) => {
                                         <a
                                             href={`https://www.youtube.com/embed/${doc.id.videoId}`}
                                             target="_blank"
-                                            onClick={() => { addResource(doc, 'youTube'); }}
+                                            onClick={() => { addResource(doc, 'documentary'); }}
                                         > Her</a>
                                         e to watch on YouTube.
                                     </p>

@@ -44,18 +44,6 @@ const userSchema = mongoose.Schema({
   challenges: Array,
 });
 
-const saveStamp = () => {
-  return Resources.find({ id: Resources.id })
-    .then((data) => {
-      if (!data.length) {
-        const newStamp= new Users.stamp({
-          stamps: Resources.image,
-
-        });
-        return newStamp.save();
-      }
-    });
-}
 
 const Users = mongoose.model('User', userSchema);
 
@@ -63,5 +51,4 @@ module.exports = {
   Users,
   Resources,
   Badges,
-  saveStamp
 }
