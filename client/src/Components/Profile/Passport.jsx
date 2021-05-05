@@ -2,13 +2,13 @@ import React from 'react';
 import Stamp from './Stamp.jsx'
 import styled from 'styled-components';
 const Container = styled.div`
-background-color: lavender;
-border-radius: 10px !important;
-border: 3px !important;
-border-color: whitesmoke !important;
-margin: 3rem auto;
-margin-bottom: 5rem;
-padding: 20px;
+  background-color: lavender;
+  border-radius: 10px !important;
+  border: 3px !important;
+  border-color: whitesmoke !important;
+  margin: 3rem auto;
+  margin-bottom: 5rem;
+  padding: 20px;
   display: flex;
   flex-flow: row wrap;
   width: 80%;

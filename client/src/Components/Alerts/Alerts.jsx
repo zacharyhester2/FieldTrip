@@ -7,7 +7,7 @@ const Container = styled.div`
     width: fit-content;
     margin: 5px auto;
     padding: 5px 1rem;
-    display: block !important;
+    display: inline !important;
 `
 
 const Alerts = ({user}) => {
