@@ -198,6 +198,7 @@ app.post('/challenge', (req, res) => {
       user.challenges = [...user.challenges, {title: title, category: category, date: date}];
       user.stamps = [...user.stamps, {title: title, category: category, date: date}];
 
+      // removes duplicates from challenges array
       const uniqueChallenge = (array) => {
         let flags = [], output = [];
         for(let i = 0; i < array.length; i++) {
@@ -209,19 +210,26 @@ app.post('/challenge', (req, res) => {
         return output;
       };
 
+      // removes duplicates from stamps array which contains both trophies and stamps
       const uniqueStamp = (array) => {
         let flags = [], output = [];
-        for(let i = 0; i < array.length; i++) {
-          if (array[i].title !== 'trophy') {
-            if(flags[array[i].title]) continue;
-            flags[array[i].title] = true;
-            output.push(array[i]);
-          } else {
-            if(flags[array[i].date]) continue;
-            flags[array[i].date] = true;
-            output.push(array[i]);
+        const trophy = [];
+        const stamp = [];
+        array.forEach(object => {
+          object.category === 'daily challenge' ?
+            trophy.push(object) :
+            stamp.push(object);
+          });
+        for(let i = 0; i < trophy.length; i++) {
+          if(flags[trophy[i].date]) continue;
+            flags[trophy[i].date] = true;
+            output.push(trophy[i]);
           }
-        }
+        for(let j = 0; j < stamp.length; j++) {
+          if(flags[stamp[j].title]) continue;
+            flags[stamp[j].title] = true;
+            output.push(stamp[j]);
+          }
         output = output.filter(item => item !== null);
         return output;
       };

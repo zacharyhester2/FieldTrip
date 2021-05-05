@@ -14,11 +14,7 @@ const StyledCard = styled(Card)`
     z-index: 0;
     border-radius: 45px;
     outline: none;
-<<<<<<< HEAD
-    margin-bottom: 5rem;
-=======
     margin-bottom: 30rem;
->>>>>>> 5dfb95664f04b2b48b5b48bb5c5fd2d72194329b
     object-fit: cover;
     :hover {
         transform: scale(1.1);
@@ -32,27 +28,23 @@ const StyledCard = styled(Card)`
     border-radius: 45px;
 }
 `
-// const ContainerStyled = styled.div`
-//     background-color: rgb(9, 11, 23);
-//     height: 100%;
-//     width: 100%;
-//     display: flex;
-//     justify-content: center;
-//     text-align: center;
-// `
-const News = ({ addResource, discView }) => {
+
+const News = ({ addResource, discView, search }) => {
     const [news, setNews] = useState([]);
 
     const query = `${search}`;
+
     const getNews = (query) => {
         axios.get(`/newsQ/:${query}`)
         .then(({data}) => {
             setNews(data);
         }).catch()
     }
+
     useEffect(() => {
         getNews(query);
     }, [discView])
+
     return (
         <div className="container-fluid">
             <Row md={4}>
@@ -60,25 +52,26 @@ const News = ({ addResource, discView }) => {
                     <StyledCard className="mb-4 mt-4 mr-4 ml-4"
                     text="muted"
                     bg="light"
+                    key={i * Math.random()}
                     >
                     <Image src={article.urlToImage}
                         key={i}
                         className="news-img-top"
                         >
-                        {console.log(article)}
+                        {/* {console.log(article)} */}
                     </Image>
                         <Card.Body>
                             <Card.Title>{article.title}</Card.Title>
                             <Card.Text>{article.description}</Card.Text>
                             <p>Read Full Article
-                    <a
-                        href={article.url}
-                        target="_blank"
-                        onClick={() => { addResource(article, 'article'); }}
-                    > Here</a></p>
+                                <a
+                                    href={article.url}
+                                    target="_blank"
+                                    onClick={() => { addResource(article, 'article'); }}
+                                > Here</a></p>
                         </Card.Body>
                     </StyledCard>
-                    ))}
+                ))}
             </Row>
         </div>
       );

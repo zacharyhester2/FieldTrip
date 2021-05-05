@@ -21,20 +21,23 @@ top: 40%;
 left: 48%;
 transform: translate(-50%, -50%);
 opacity: 85%;
-h2{
+.challenge-header{
   color: #1d1d1d;
-  text-align: center;
-  text-decoration: underline;
+  text-align: start;
+  /* text-decoration: underline; */
   /* font-weight: bold; */
+  font-size: 44px;
 }
 .challenge{
   color: #1d1d1d;
   text-align: center;
+  font-size: 38px;
 }
 .complete{
   color: #736bfb;
   font-size: 20px;
   text-align: center;
+
 }
 `
 
@@ -99,11 +102,11 @@ const WeeklyChallenge = ({ getStamps, user }) => {
   return (
     <>
       <Container>
-        <h2>Daily Challenge:</h2>
+        <p className='challenge-header'>Daily Challenge:</p>
         <br/>
-        <h3 className='challenge'>
+        <p className='challenge'>
           {challenge}
-        </h3>
+        </p>
         <div className='complete'>
           <IconButtons clicked={clicked} handleClick={handleClick} completed={completed} setCompleted={setCompleted} challenge={challenge} />
           {
