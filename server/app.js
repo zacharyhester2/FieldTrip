@@ -157,10 +157,36 @@ app.get('/auth/google',
     });
   });
 
+  // removes duplicates from stamps array which contains both trophies and stamps
+  const uniqueStamp = (array) => {
+      //flags is stamp/challenge that we want
+      let flags = [], output = [];
+      const trophy = [];
+      const stamp = [];
+      array.forEach(object => {
+        object.category === 'daily challenge' ?
+          trophy.push(object) :
+          stamp.push(object);
+        });
+      for(let i = 0; i < trophy.length; i++) {
+        if(flags[trophy[i].date]) continue;
+          flags[trophy[i].date] = true;
+          output.push(trophy[i]);
+        }
+      for(let j = 0; j < stamp.length; j++) {
+        if(flags[stamp[j].title]) continue;
+          flags[stamp[j].title] = true;
+          output.push(stamp[j]);
+        }
+      output = output.filter(item => item !== null);
+      console.log('output', output)
+      return output;
+  };
+
   //post request -add resource to resource schema
   app.post('/resource', (req, res) => {
     const {category, date, title, author, image, url, type } = req.body;
-    // console.log('RESOURCE from req body', category, date, title, author, image, url)
+    console.log('req body', req.body)
 
     Users.findOne({ id : req.cookies.FieldTripId })
     .then((user) => {
@@ -180,7 +206,7 @@ app.get('/auth/google',
           .then((user) => {
             user.stamps = [...user.stamps, resource];
 
-            Users.updateOne({ id : req.cookies.FieldTripId }, {stamps: user.stamps})
+            Users.updateOne({ id : req.cookies.FieldTripId }, {stamps: uniqueStamp(user.stamps)})
             .then(() => res.sendStatus(200))
             .catch()
           })
@@ -209,31 +235,6 @@ app.post('/challenge', (req, res) => {
         output = output.filter(item => item !== null);
         return output;
       };
-
-      // removes duplicates from stamps array which contains both trophies and stamps
-      const uniqueStamp = (array) => {
-        let flags = [], output = [];
-        const trophy = [];
-        const stamp = [];
-        array.forEach(object => {
-          object.category === 'daily challenge' ?
-            trophy.push(object) :
-            stamp.push(object);
-          });
-        for(let i = 0; i < trophy.length; i++) {
-          if(flags[trophy[i].date]) continue;
-            flags[trophy[i].date] = true;
-            output.push(trophy[i]);
-          }
-        for(let j = 0; j < stamp.length; j++) {
-          if(flags[stamp[j].title]) continue;
-            flags[stamp[j].title] = true;
-            output.push(stamp[j]);
-          }
-        output = output.filter(item => item !== null);
-        return output;
-      };
-
 
       Users.updateOne({ id : req.cookies.FieldTripId }, {stamps: uniqueStamp(user.stamps), challenges: uniqueChallenge(user.challenges)})
       .then((data) => res.sendStatus(200))
