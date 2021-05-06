@@ -60,35 +60,23 @@ const challenges = [
 ];
 
 const WeeklyChallenge = ({ getStamps, user, stamps }) => {
-  const [daily, setDaily] = useState(0);
+  const [daily, setDaily] = useState(() => {
+    let date = new Date();
+    const day = date.getDay();
+    return day;
+  });
   const [challenge, setChallenge] = useState(challenges[daily][daily]);
-  // const [clicked, setClicked] = useState(false);
-  // const [completed, setCompleted] = useState([{ daily: challenge, complete: clicked }]);
 
     useEffect(() => {
       let date = new Date();
       const day = date.getDay();
-      console.log(day);
+      console.log('DAY from wekkChal useEffect', day);
       setChallenge(challenges[day][day])
-      // setDaily(day);
     }, []);
 
-    useEffect(() => {
-      // setChallenge(challenges[daily][daily])
-    }, [daily]);
 
     useEffect(() => {
       getStamps();
-      // ChallengeCheck();
-      //  setCompleted((prev) => {
-      //   if (prev.daily === completed.daily) {
-      //     return [ { daily: challenge, completed: !clicked } ]
-      //   } else {
-      //     return [...prev, { daily: challenge, complete: !clicked }];
-      //   }
-      // });
-      // console.log('COMPLETED', completed);
-    // }, [clicked]);
     }, []);
 
     console.log('CHALLENGE', challenge);
@@ -106,13 +94,6 @@ const WeeklyChallenge = ({ getStamps, user, stamps }) => {
           // <p>SHOULD BE CHALLENGE CHECK</p>
         <ChallengeCheck stamps={stamps} challenge={challenge} challenges={challenges} getStamps={getStamps}/>
         }
-        {/* <div className='complete'>
-          <IconButtons clicked={clicked} handleClick={handleClick} completed={completed} setCompleted={setCompleted} challenge={challenge} />
-          {
-            clicked ?
-            <div style={{textAlign: 'center' }}>Completed!</div> : null
-          }
-        </div> */}
       </Container>
       <ParDiv>
         <h3>Where can I get some?
