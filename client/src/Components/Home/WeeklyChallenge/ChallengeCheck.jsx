@@ -3,12 +3,13 @@ import axios from 'axios';
 
 
 const ChallengeCheck = ({stamps, challenge, challenges, getStamps}) => {
-  console.log(stamps, 'stamps from challnege check')
+  // console.log(stamps, 'stamps from challnege check')
   const [challengeComplete, setChallengeComplete] = useState(false);
   //reset per day
 
   const addTrophyStamp = () => {
     //conditional about changing from complete to not complete;
+
     let today = new Date().toISOString().slice(0, 10)
     axios.post('/challenge', {
       title: 'trophy',
@@ -16,7 +17,7 @@ const ChallengeCheck = ({stamps, challenge, challenges, getStamps}) => {
       date: today,
     })
       .then(() => {
-        console.log('added trophy! in Challenge Check')
+        // console.log('added trophy! in Challenge Check')
         // getStamps();
       })
       .catch();
@@ -45,7 +46,7 @@ const ChallengeCheck = ({stamps, challenge, challenges, getStamps}) => {
 
     }
 
-  const checkChallenge = () => {
+  const checkChallenge = (challenge) => {
     if(challenge === challenges[0][0]){
       //'Collect a stamp from each category.'
       if(stampCount['Earth'] >= 1 &&
@@ -68,6 +69,7 @@ const ChallengeCheck = ({stamps, challenge, challenges, getStamps}) => {
       }
     }
     if(challenge === challenges[3][3]){
+      debugger;
       // //'Collect a stamp from each category.'
       if(stampCount['Outer Space'] >= 3){
         setChallengeComplete(true);
@@ -102,7 +104,7 @@ const ChallengeCheck = ({stamps, challenge, challenges, getStamps}) => {
 
 useEffect(() => {
   sortStamps();
-  checkChallenge();
+  checkChallenge(challenge);
 }, [])
 
 

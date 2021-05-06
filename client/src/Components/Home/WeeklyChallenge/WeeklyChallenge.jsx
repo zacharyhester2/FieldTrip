@@ -68,11 +68,13 @@ const WeeklyChallenge = ({ getStamps, user, stamps }) => {
     useEffect(() => {
       let date = new Date();
       const day = date.getDay();
-      setDaily(day);
+      console.log(day);
+      setChallenge(challenges[day][day])
+      // setDaily(day);
     }, []);
 
     useEffect(() => {
-      setChallenge(challenges[daily][daily])
+      // setChallenge(challenges[daily][daily])
     }, [daily]);
 
     useEffect(() => {
@@ -89,6 +91,7 @@ const WeeklyChallenge = ({ getStamps, user, stamps }) => {
     // }, [clicked]);
     }, []);
 
+    console.log('CHALLENGE', challenge);
 
   return (
     <>
