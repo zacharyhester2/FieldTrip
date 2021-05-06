@@ -39,8 +39,8 @@ const PhotoUpload = ({imageIds}) => {
     } catch (error) {
       console.log(error);
     }
-
   }
+
   return(
     <div>
       <h1>Upload Cloudinary Image</h1>

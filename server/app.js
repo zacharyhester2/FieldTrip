@@ -271,11 +271,11 @@ app.post('/challenge', (req, res) => {
   app.post('/api/upload', async (req, res) => {
     try {
       const fileStr = req.body.data;
-      console.log(cloudinary);
+      // console.log('CLOUDINARYYYYY', cloudinary);
       const uploadedResponse = await cloudinary.uploader.upload(fileStr, {
         upload_preset: 'testImages'
       })
-      console.log('HAAAAAAAIII', uploadedResponse);
+      // console.log('HAAAAAAAIII', uploadedResponse);
       res.json({msg: "yaaay"})
 
     }catch (error) {
@@ -290,7 +290,7 @@ app.post('/challenge', (req, res) => {
     .max_results(20)
     .execute();
     const publicIds  = resources.map( file => file.public_id);
-    console.log('publicIds', publicIds)
+    console.log('publicIds------------', publicIds)
     res.send(publicIds);
   })
 

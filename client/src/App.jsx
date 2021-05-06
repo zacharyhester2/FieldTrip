@@ -95,8 +95,7 @@ const App = () => {
 
 //cloudinary
 const loadImages = () => {
-
-  const res = axios.get('/api/images')
+  axios.get('/api/images')
   .then(({data}) => {
     console.log('UPLOAD IMAGE DATA', data);
     setImageIds(data);
