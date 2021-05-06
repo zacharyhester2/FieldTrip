@@ -13,20 +13,20 @@ font-family: 'Raleway', sans-serif;
 const Discovery = ({ addResource, discView, search }) => {
 
 
-  // const query = '';
+  const query = '';
 
 
   return (
     <>
-      <LandingDisc discView={discView}/>
-        <Container className='news-cards'>
-          <StyledTitle>Articles</StyledTitle>
-          <News addResource={addResource} discView={discView} search={search} />
-        </Container>
-      <Container>
-          <StyledTitle>Documentaries</StyledTitle>
-          <Documentary addResource={addResource} discView={discView} search={search} />
-      </Container>
+    <LandingDisc discView={discView}/>
+    <Container className='news-cards'>
+      <StyledTitle>Articles</StyledTitle>
+      <News addResource={addResource} discView={discView} search={search} />
+    </Container>
+    <Container>
+      <StyledTitle>Documentaries</StyledTitle>
+      <Documentary addResource={addResource} discView={discView} search={search} />
+    </Container>
     </>
   );
 }
