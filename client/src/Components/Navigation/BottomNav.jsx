@@ -103,15 +103,15 @@ const BottomNav = () => {
         <Divider className={classes.vertDiv} orientation="vertical" flexItem />
         <Divider className={classes.vertDiv} orientation="vertical" flexItem />
 
-        {/* <BottomNavigationAction
+        <BottomNavigationAction
           label="Camera"
           value="photoUpload"
           icon={<CameraAltSharpIcon fontSize="large" />}
           component={Link}
           to="/PhotoUpload"
-        /> */}
-        {/* <Divider className={classes.vertDiv} orientation="vertical" flexItem /> */}
-        {/* <Divider className={classes.vertDiv} orientation="vertical" flexItem /> */}
+        />
+        <Divider className={classes.vertDiv} orientation="vertical" flexItem />
+        <Divider className={classes.vertDiv} orientation="vertical" flexItem />
 
       </BottomNavigation>
     </ThemeProvider>

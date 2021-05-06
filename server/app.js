@@ -8,6 +8,7 @@ const cookieParser = require('cookie-parser');
 const CLIENT_PATH = path.resolve(__dirname, '../client/dist');
 const mongoose = require('mongoose');
 const axios = require('axios');
+// const { cloudinary } = require('./utils/cloudinary')
 require('./OAuth/passport.js');
 require('dotenv').config()
 
@@ -17,10 +18,10 @@ const { Users, Resources, Badges } = require('../server/database/schema.js');
 
 
 const app = express();
-app.use(express.json());
+app.use(express.json({ limit: '50mb'}));
 app.use('/', express.static(CLIENT_PATH));
 app.use(cookieParser());
-// app.use(express.urlencoded({extended: false}))
+app.use(express.urlencoded({limit: '50mb', extended: true}))
 
 //KEYS
 const newsKey = process.env.NEWS_KEY;
@@ -31,6 +32,14 @@ const ClientSecret = process.env.ClientSecret;
 const youTubeKey = process.env.YOUTUBE_KEY;
 
 let userInfo = null;
+
+const cloudinary = require('cloudinary').v2;
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+
+})
 
 // const youtubeApi = process.env.YOUTUBE_API_KEY;
 
@@ -256,6 +265,34 @@ app.post('/challenge', (req, res) => {
     res.sendFile(path.resolve(CLIENT_PATH, 'index.html'))
   })
 
+
+  //CLOUDINARY
+
+  app.post('/api/upload', async (req, res) => {
+    try {
+      const fileStr = req.body.data;
+      console.log(cloudinary);
+      const uploadedResponse = await cloudinary.uploader.upload(fileStr, {
+        upload_preset: 'testImages'
+      })
+      console.log('HAAAAAAAIII', uploadedResponse);
+      res.json({msg: "yaaay"})
+
+    }catch (error) {
+      console.log(error)
+      res.status(500).json({err: 'something wrong!'})
+    }
+  })
+
+  app.get('/api/images', async (req, res) => {
+    const {images} = await cloudinary.search.expression('folder:testImages')
+    .sort_by('public_id', 'desc')
+    .max_results(20)
+    .execute();
+    const publicIds  = resources.map( file => file.public_id);
+    console.log('publicIds', publicIds)
+    res.send(publicIds);
+  })
 
 module.exports = {
     app,

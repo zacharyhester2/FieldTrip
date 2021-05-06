@@ -78,6 +78,7 @@ const App = () => {
     const [theme, setTheme] = useState('headerDefault');
     const [search, setSearch] = useState('');
     const [alerts, setAlerts] = useState([])
+    const [imageIds, setImageIds] = useState();
 
     const currClass = classes[`${theme}`];
 
@@ -92,23 +93,21 @@ const App = () => {
     }
   };
 
-  // // NO LOOP
-  // const addResource = (resource) => {
-  //   //post request to user table
-  //   axios.post('/resource', {
-  //     category: discView,
-  //     date: Date.now,
-  //     title: resource.title,
-  //     author: resource.author,
-  //     image: resource.urlToImage,
-  //     url: resource.url,
-  //     userId: user.id
-  //   })
-  //   .then(() => {
-  //     getStamps()
-  //   })
-  //   .catch()
-  // };
+//cloudinary
+const loadImages = () => {
+
+  const res = axios.get('/api/images')
+  .then(({data}) => {
+    console.log('UPLOAD IMAGE DATA', data);
+    setImageIds(data);
+
+  })
+
+
+  //   .catch (error) {
+  //   console.log(error)
+  // }
+}
 
   //FIX THIS BEFORE IT LOOPS
   const addResource = (resource, resType) => {
@@ -180,6 +179,7 @@ const App = () => {
 
   useEffect(() => {
     getUser();
+    loadImages();
     // getAlerts();
   }, [])
 
@@ -219,7 +219,7 @@ const App = () => {
                   <Alerts user={user} alerts={alerts} />
               </Route>
               <Route path="/PhotoUpload">
-                  <PhotoUpload />
+                  <PhotoUpload imageIds={imageIds}/>
               </Route>
             </Switch>
 
