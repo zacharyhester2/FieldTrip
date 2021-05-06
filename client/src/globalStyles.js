@@ -61,6 +61,10 @@ const GlobalStyles = createGlobalStyle`
   .bottom-container{
 
   }
-
+  .news-cards{
+    display: flex;
+    position: center;
+    align-items: center;
+  }
 `;
 export default GlobalStyles;
