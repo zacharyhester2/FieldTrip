@@ -1,7 +1,8 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import {AdvancedImage} from '@cloudinary/react';
 import {Cloudinary} from "@cloudinary/base";
-import ImageLibrary from './ImageLibrary.jsx'
+import ImageLibrary from './ImageLibrary.jsx';
+import axios from 'axios';
 
 const PhotoUpload = ({imageIds}) => {
   console.log('imageIds', imageIds)
@@ -40,6 +41,21 @@ const PhotoUpload = ({imageIds}) => {
       console.log(error);
     }
   }
+
+const loadImages = () => {
+  axios.get('/api/images')
+  .then(({data}) => {
+    console.log('UPLOAD IMAGE DATA', data);
+    setImageIds(data);
+  })
+    .catch ((error) => {
+    console.log('image upload threw an error:', error)
+  })
+}
+
+    useEffect(()=> {
+      loadImages();
+    }, [])
 
   return(
     <div>

@@ -130,8 +130,7 @@ passport.deserializeUser((user, done) => {
 });
 app.get('/auth/google',
   passport.authenticate('google', { scope: ['email', 'profile'] }));
-  app.get(
-    '/auth/google/callback',
+app.get('/auth/google/callback',
     passport.authenticate('google', { failureRedirect: '/logout' }),
     (req, res) => {
       const newUser = new Users({
@@ -261,9 +260,7 @@ app.post('/challenge', (req, res) => {
     res.status(200).json(userInfo);
   });
 
-  app.get('*', (req, res) => {
-    res.sendFile(path.resolve(CLIENT_PATH, 'index.html'))
-  })
+
 
 
   //CLOUDINARY
@@ -285,13 +282,24 @@ app.post('/challenge', (req, res) => {
   })
 
   app.get('/api/images', async (req, res) => {
-    const {images} = await cloudinary.search.expression('folder:testImages')
-    .sort_by('public_id', 'desc')
-    .max_results(20)
-    .execute();
-    const publicIds  = resources.map( file => file.public_id);
-    console.log('publicIds------------', publicIds)
-    res.send(publicIds);
+    console.log('YOU MADE IT TO IMAGE UPLOAD')
+    try{
+      const {images} = await cloudinary.search.expression('folder: testImages')
+      .sort_by('public_id', 'desc')
+      .max_results(20)
+      .execute();
+      const publicIds = images.map( file => file.public_id);
+      console.log('publicIds------------', publicIds)
+      res.send(publicIds);
+    } catch(error) {
+      console.log(error)
+      res.send(404, error);
+    }
+
+  })
+
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(CLIENT_PATH, 'index.html'))
   })
 
 module.exports = {
