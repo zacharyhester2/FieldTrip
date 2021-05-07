@@ -8,7 +8,6 @@ const ChallengeCheck = ({stamps, challenge, challenges, getStamps}) => {
 
   const addTrophyStamp = () => {
     console.log(challenge, 'challn from challnege check')
-    //conditional about changing from complete to not complete;
     let today = new Date().toISOString().slice(0, 10)
     axios.post('/challenge', {
       title: challenge,
@@ -17,7 +16,6 @@ const ChallengeCheck = ({stamps, challenge, challenges, getStamps}) => {
     })
       .then(() => {
         // console.log('added trophy! in Challenge Check')
-        // getStamps();
       })
       .catch();
     }

@@ -70,7 +70,6 @@ const WeeklyChallenge = ({ getStamps, user, stamps }) => {
     useEffect(() => {
       let date = new Date();
       const day = date.getDay();
-      console.log('DAY from wekkChal useEffect', day);
       setChallenge(challenges[day][day])
     }, []);
 
@@ -90,8 +89,7 @@ const WeeklyChallenge = ({ getStamps, user, stamps }) => {
           {challenge}
         </p>
         { !stamps.length ?
-          <p>Explore on the Discovery Tab to earn stamps!</p> :
-          // <p>SHOULD BE CHALLENGE CHECK</p>
+          <p style={{color:"#1d1d1d"}}>Explore on the Discovery Tab to earn stamps!</p> :
         <ChallengeCheck stamps={stamps} challenge={challenge} challenges={challenges} getStamps={getStamps}/>
         }
       </Container>
