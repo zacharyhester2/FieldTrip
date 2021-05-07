@@ -3,16 +3,15 @@ import axios from 'axios';
 
 
 const ChallengeCheck = ({stamps, challenge, challenges, getStamps}) => {
-  // console.log(stamps, 'stamps from challnege check')
   const [challengeComplete, setChallengeComplete] = useState(false);
   //reset per day
 
   const addTrophyStamp = () => {
+    console.log(challenge, 'challn from challnege check')
     //conditional about changing from complete to not complete;
-
     let today = new Date().toISOString().slice(0, 10)
     axios.post('/challenge', {
-      title: 'trophy',
+      title: challenge,
       category: 'daily challenge',
       date: today,
     })
