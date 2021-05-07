@@ -105,7 +105,7 @@ const App = () => {
 //   }
 // }
 
-  //FIX THIS BEFORE IT LOOPS
+
   const addResource = (resource, resType) => {
     let pars = {};
     //if resource is article:
@@ -155,18 +155,6 @@ const App = () => {
     }
   };
 
-  //  const getAlerts = () => {
-  //   //  debugger;
-  //   if (user) {
-  //     axios.get(`/user/${user.id}`)
-  //       .then(({ data }) => {
-  //         console.log('FROM Alerts', data)
-  //         setAlerts(data);
-  //       })
-  //       .catch();
-  //   }
-  // };
-
   const logout = () => {
     axios.get('/logout').then(() => {
       setUser(null);
@@ -177,6 +165,7 @@ const App = () => {
     getUser();
     // loadImages();
     // getAlerts();
+    getStamps();
   }, [])
 
     return (
@@ -203,7 +192,7 @@ const App = () => {
             <BottomNav />
             <Switch>
               <Route exact path="/">
-                  <Home user={user} logout={logout} getStamps={getStamps}/>
+                  <Home user={user} logout={logout} getStamps={getStamps} stamps={stamps}/>
               </Route>
               <Route path="/profile">
                   <Profile user={user} logout={logout} stamps={stamps} getStamps={getStamps}/>

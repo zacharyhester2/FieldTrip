@@ -13,6 +13,7 @@ const Container = styled.div`
   flex-flow: row wrap;
   width: 80%;
   justify-content: center;
+  color: black;
 h3{
   color: black;
   text-align: center;
@@ -25,7 +26,9 @@ const Passport = ({stamps}) => {
   return (
       <Container className="stamp-container">
         <h3>Passport</h3>
-        {stamps.reverse().map((stamp, i) => <Stamp stamp={stamp} key={i}/>)}
+        {!stamps.length ?
+        <p>Explore on the discovery tab to earn stamps!</p> :
+        stamps.reverse().map((stamp, i) => <Stamp stamp={stamp} key={i}/>)}
       </Container>
   );
 };

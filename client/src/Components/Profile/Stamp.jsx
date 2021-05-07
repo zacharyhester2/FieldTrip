@@ -65,7 +65,6 @@ const Img = styled.div`
   }
 `
 const Stamp = ({stamp}) => {
-  // console.log(stamp);
   return (
       <Img>
       {stamp.category !== "daily challenge" ?
@@ -97,6 +96,7 @@ const Stamp = ({stamp}) => {
             </div>
             <div class="flip-card-back">
               <p>You completed the Daily Challenge!</p>
+              <p>{stamp.title}</p>
             </div>
           </div>
         </div>
