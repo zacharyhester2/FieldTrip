@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import WeeklyChallenge from '../WeeklyChallenge/WeeklyChallenge.jsx'
+import React, { useState, useEffect } from 'react';
+import WeeklyChallenge from './WeeklyChallenge/WeeklyChallenge.jsx'
 import styled from 'styled-components';
 import LandingHome from './LandingHome.jsx';
 import AboutFT from './AboutFT.jsx';
@@ -7,11 +7,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container } from 'react-bootstrap/';
 
 
+
 const HomeStyles = styled.div`
   padding-bottom: 5rem;
 `;
 
-const Home = ({user, logout, getStamps}) => {
+const Home = ({user, logout, getStamps, stamps}) => {
 
   return (
       <HomeStyles>
@@ -20,7 +21,7 @@ const Home = ({user, logout, getStamps}) => {
         {
         user ?
         <div>
-          <WeeklyChallenge getStamps={getStamps} user={user}/>
+          <WeeklyChallenge getStamps={getStamps} user={user} stamps={stamps}/>
         </div>
         : null
         }
