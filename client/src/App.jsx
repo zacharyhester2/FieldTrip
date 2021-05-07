@@ -94,19 +94,16 @@ const App = () => {
   };
 
 //cloudinary
-const loadImages = () => {
-  axios.get('/api/images')
-  .then(({data}) => {
-    console.log('UPLOAD IMAGE DATA', data);
-    setImageIds(data);
-
-  })
-
-
-  //   .catch (error) {
-  //   console.log(error)
-  // }
-}
+// const loadImages = () => {
+//   axios.get('/images')
+//   .then(({data}) => {
+//     console.log('UPLOAD IMAGE DATA', data);
+//     setImageIds(data);
+//   })
+//     .catch (error) {
+//     console.log(error)
+//   }
+// }
 
   //FIX THIS BEFORE IT LOOPS
   const addResource = (resource, resType) => {
@@ -178,7 +175,7 @@ const loadImages = () => {
 
   useEffect(() => {
     getUser();
-    loadImages();
+    // loadImages();
     // getAlerts();
   }, [])
 
