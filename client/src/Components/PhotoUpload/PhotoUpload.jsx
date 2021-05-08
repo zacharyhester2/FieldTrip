@@ -1,9 +1,18 @@
 import React, {useState, useEffect} from 'react'
-import {AdvancedImage} from '@cloudinary/react';
-import {Cloudinary} from "@cloudinary/base";
+// import {AdvancedImage} from '@cloudinary/react';
+// import {Cloudinary} from "@cloudinary/base";
 import ImageLibrary from './ImageLibrary.jsx';
 import axios from 'axios';
+import styled from'styled-components';
 
+
+const StyledForm = styled.form`
+  background-color: purple;
+  button{
+    color: whitesmoke;
+
+  }
+`
 
 const PhotoUpload = () => {
   // console.log('imageIds', imageIds)
@@ -62,17 +71,17 @@ const loadImages = () => {
 
   return(
     <div>
-      <h1>Upload Cloudinary Image</h1>
-      <form onSubmit={handleSubmitFile}>
+      <h1>Upload Your Discoveries</h1>
+      <StyledForm onSubmit={handleSubmitFile}>
         <input
           type="file" name="image" className="form-input" onChange={handleFileInputChange} value={fileInputState}
         />
-        <button className="btn" type="submit">Submit</button>
-      </form>
+        <button className="btn" type="submit" onClick={()=> loadImages()}>Submit</button>
+      </StyledForm>
       {previewSource && (
         <img src={previewSource} alt="chosen" style={{height: '300px'}}/>
       )}
-      <ImageLibrary imageIds={imageIds}/>
+      <ImageLibrary imageIds={imageIds} loadImages={loadImages}/>
     </div>
   )
 }

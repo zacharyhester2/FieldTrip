@@ -276,7 +276,7 @@ app.post('/challenge', (req, res) => {
       res.json({msg: "yaaay"})
 
     }catch (error) {
-      console.log('ERROR FORM UPLOAD', error)
+      console.log('ERROR FROM UPLOAD', error)
       res.status(500).json({err: 'something wrong!'})
     }
   })
@@ -286,7 +286,7 @@ app.post('/challenge', (req, res) => {
     try{
       const {resources} = await cloudinary.search.expression('folder:testImages/*')
         .sort_by('public_id', 'desc')
-        .max_results(20)
+        .max_results(30)
         .execute();
 
         const publicIds = resources.map( file => file.public_id);
