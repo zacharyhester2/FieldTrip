@@ -4,11 +4,13 @@ import {Cloudinary} from "@cloudinary/base";
 import ImageLibrary from './ImageLibrary.jsx';
 import axios from 'axios';
 
-const PhotoUpload = ({imageIds}) => {
-  console.log('imageIds', imageIds)
+
+const PhotoUpload = () => {
+  // console.log('imageIds', imageIds)
   const [fileInputState, setFileInputState] = useState('');
   const [selectedFile, useSelectedFile] = useState('');
   const [previewSource, setPreviewSource] = useState();
+  const [imageIds, setImageIds] = useState();
 
   const handleFileInputChange = (e) => {
     const file = e.target.files[0];
@@ -37,6 +39,7 @@ const PhotoUpload = ({imageIds}) => {
         body: JSON.stringify({data: base64EncodedImage}),
         headers: {'Content-type': 'application/json'}
       })
+      loadImages();
     } catch (error) {
       console.log(error);
     }
@@ -69,7 +72,7 @@ const loadImages = () => {
       {previewSource && (
         <img src={previewSource} alt="chosen" style={{height: '300px'}}/>
       )}
-    <ImageLibrary imageIds={imageIds}/>
+      <ImageLibrary imageIds={imageIds}/>
     </div>
   )
 }

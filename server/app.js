@@ -272,11 +272,11 @@ app.post('/challenge', (req, res) => {
       const uploadedResponse = await cloudinary.uploader.upload(fileStr, {
         upload_preset: 'testImages'
       })
-      // console.log('HAAAAAAAIII', uploadedResponse);
+      console.log('HAAAAAAAIII');
       res.json({msg: "yaaay"})
 
     }catch (error) {
-      console.log(error)
+      console.log('ERROR FORM UPLOAD', error)
       res.status(500).json({err: 'something wrong!'})
     }
   })
@@ -284,16 +284,18 @@ app.post('/challenge', (req, res) => {
   app.get('/api/images', async (req, res) => {
     console.log('YOU MADE IT TO IMAGE UPLOAD')
     try{
-      const {images} = await cloudinary.search.expression('folder: testImages')
-      .sort_by('public_id', 'desc')
-      .max_results(20)
-      .execute();
-      const publicIds = images.map( file => file.public_id);
-      console.log('publicIds------------', publicIds)
-      res.send(publicIds);
+      const {resources} = await cloudinary.search.expression('folder:testImages/*')
+        .sort_by('public_id', 'desc')
+        .max_results(20)
+        .execute();
+
+        const publicIds = resources.map( file => file.public_id);
+          console.log('publicIds------------', publicIds)
+          // console.log('publicIds------------')
+        res.status(200).json(publicIds);
     } catch(error) {
-      console.log(error)
-      res.send(404, error);
+      console.log('Error was thrown: ', error)
+      res.sendStatus(404).send(error);
     }
 
   })

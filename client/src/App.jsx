@@ -78,7 +78,6 @@ const App = () => {
     const [theme, setTheme] = useState('headerDefault');
     const [search, setSearch] = useState('');
     const [alerts, setAlerts] = useState([])
-    const [imageIds, setImageIds] = useState();
 
     const currClass = classes[`${theme}`];
 
@@ -204,7 +203,7 @@ const App = () => {
                   <Alerts user={user} alerts={alerts} />
               </Route>
               <Route path="/PhotoUpload">
-                  <PhotoUpload imageIds={imageIds}/>
+                  <PhotoUpload />
               </Route>
             </Switch>
 
