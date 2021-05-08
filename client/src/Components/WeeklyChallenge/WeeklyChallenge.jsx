@@ -18,7 +18,7 @@ width: 50%;
 justify-content: center;
 position: absolute;
 top: 130%;
-left: 47%; 
+left: 47%;
 transform: translate(-50%, -50%);
 opacity: 85%;
 .challenge-header{
@@ -47,7 +47,7 @@ const ParDiv = styled.div`
   display: flex;
   text-align: left!important;
   justify-content: left;
-  position: absolute; 
+  position: absolute;
 `
 
 const challenges = [
@@ -60,7 +60,7 @@ const challenges = [
   { 6: 'six' },
 ];
 
-const WeeklyChallenge = ({ getStamps, user }) => {
+const WeeklyChallenge = ({ getStamps, user, font }) => {
   const [daily, setDaily] = useState(0);
   const [challenge, setChallenge] = useState(challenges[daily][daily]);
   const [clicked, setClicked] = useState(false);
@@ -111,7 +111,7 @@ const WeeklyChallenge = ({ getStamps, user }) => {
   return (
     <>
       <Container>
-        <p className='challenge-header'>Daily Challenge:</p>
+        <p className='challenge-header' style={{ fontSize: font + 14 }}>Daily Challenge:</p>
         <br/>
         <p className='challenge'>
           {challenge}
@@ -120,14 +120,14 @@ const WeeklyChallenge = ({ getStamps, user }) => {
           <IconButtons clicked={clicked} handleClick={handleClick} completed={completed} setCompleted={setCompleted} challenge={challenge} />
           {
             clicked ?
-            <div style={{textAlign: 'center' }}>Completed!</div> : null
+            <div style={{ textAlign: 'center', fontSize: font }}>Completed!</div> : null
           }
         </div>
       </Container>
       <ParDiv>
-        <h3>Where can I get some?
+        <p style={{ fontSize: font + 10 }}>Where can I get some?
               There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.
-        </h3>
+        </p>
 
       </ParDiv>
     </>

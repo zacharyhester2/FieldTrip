@@ -10,7 +10,7 @@ const StyledTitle = styled.h3`
 font-family: 'Raleway', sans-serif;
 `
 
-const Discovery = ({ addResource, discView, search }) => {
+const Discovery = ({ addResource, discView, search, font }) => {
 
 
   const query = '';
@@ -18,13 +18,13 @@ const Discovery = ({ addResource, discView, search }) => {
 
   return (
     <>
-    <LandingDisc discView={discView}/>
-    <Container className='news-cards'>
-      <StyledTitle>Articles</StyledTitle>
-      <News addResource={addResource} discView={discView} search={search} />
-    </Container>
+    <LandingDisc discView={discView} font={font}/>
+    {/* <Container className='news-cards'> */}
+      <StyledTitle style={{ fontSize: font + 35 }}>Articles</StyledTitle>
+      <News addResource={addResource} discView={discView} search={search} font={font} />
+    {/* </Container> */}
     <Container>
-      <StyledTitle>Documentaries</StyledTitle>
+      <StyledTitle style={{ fontSize: font + 35 }}>Documentaries</StyledTitle>
       <Documentary addResource={addResource} discView={discView} search={search} />
     </Container>
     </>

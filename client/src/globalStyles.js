@@ -8,6 +8,8 @@ const GlobalStyles = createGlobalStyle`
   }
 
   body{
+    font-family: 'Spartan', sans-serif;
+    /* font-family: 'Comfortaa', cursive; */
     background-color: rgb(9, 11, 23);
     color: whitesmoke;
   }
@@ -15,7 +17,7 @@ const GlobalStyles = createGlobalStyle`
   header{
     background-color: rgb(9, 11, 23);
     padding: 10px 10px;
-    font-size: 60px;
+    /* font-size: 60px; */
     margin: 0;
     overflow: hidden;
     /* box-shadow: 0px 0px 7px 0px rgb(255,255,255); */
@@ -61,10 +63,34 @@ const GlobalStyles = createGlobalStyle`
   .bottom-container{
 
   }
-  .news-cards{
+  /* .news-cards{
     display: flex;
     position: center;
     align-items: center;
+  } */
+  /* .news-cards{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+    align-items: stretch;
+    align-content: center;
+  } */
+  /* .news-container{
+    display: grid;
+    flex-flow: row wrap !important;
+    justify-content: space-evenly;
+    align-items: center;
+    align-content: space-between;
+  } */
+  .news-container{
+    display: flex-inline;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    align-content: space-between;
+  }
+  .card-top img{
+    max-width: 200px;
   }
 `;
 export default GlobalStyles;

@@ -24,6 +24,8 @@ import earth from './themes/earth.jpg';
 import dinos from './themes/dinos.jpg';
 import { makeStyles } from '@material-ui/core/styles';
 
+import TextSize from './Components/Accessibility/TextSize.jsx';
+
 
 // const themeShuffle = array => {
 //     const newThemeArray = array.slice();
@@ -78,6 +80,7 @@ const App = () => {
     const [theme, setTheme] = useState('headerDefault');
     const [search, setSearch] = useState('');
     const [alerts, setAlerts] = useState([])
+    const [font, setFont] = useState(16)
 
     const currClass = classes[`${theme}`];
 
@@ -184,13 +187,13 @@ const App = () => {
   }, [])
 
     return (
-    <div className={currClass}>
+    <div className={currClass} style={{ fontSize: font }}>
       <AppBarHeader user={user} logout={logout} discView={discView} setDiscView={setDiscView} theme={theme} setTheme={setTheme} search={search} setSearch={setSearch} />
       {!user
       ?(
         <div >
           <Home />
-          <Button variant="contained" style={{ marginLeft: "25px" }}>
+          <Button variant="contained" style={{ marginLeft: '25px', position: 'absolute' }}>
           <a
             className="login-button"
             href="/auth/google"
@@ -207,13 +210,13 @@ const App = () => {
             <BottomNav />
             <Switch>
               <Route exact path="/">
-                  <Home user={user} logout={logout} getStamps={getStamps}/>
+                  <Home user={user} logout={logout} getStamps={getStamps} font={font} />
               </Route>
               <Route path="/profile">
                   <Profile user={user} logout={logout} stamps={stamps} getStamps={getStamps}/>
               </Route>
               <Route path="/discovery">
-                  <Discovery addResource={addResource} discView={discView} setDiscView={setDiscView} search={search} setSearch={setSearch}/>
+                  <Discovery addResource={addResource} discView={discView} setDiscView={setDiscView} search={search} setSearch={setSearch} font={font}/>
               </Route>
               <Route path="/alerts">
                   <Alerts user={user} alerts={alerts} />
@@ -225,6 +228,7 @@ const App = () => {
 
       </Router>
        )}
+       <TextSize font={font} setFont={setFont}/>
     </div>
     )
 }

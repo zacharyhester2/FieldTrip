@@ -10,11 +10,11 @@ const LandingHomeStyled = styled.div`
   background-repeat: 'no-repeat' !important;
 `
 
-const LandingHome = () => {
+const LandingHome = ({ font }) => {
 
   return (
     <LandingHomeStyled>
-        <AboutFT/>
+        <AboutFT style={{ fontSize: font + 26 }}/>
     </LandingHomeStyled>
   );
 }
