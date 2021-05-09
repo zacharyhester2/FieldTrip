@@ -48,8 +48,9 @@ let randomSpaceTheme = randomizeTheme(spaceThemes);
 
 const useStyles = makeStyles((theme) => ({
   spaceTheme: {
-    backgroundImage: `url(${randomSpaceTheme})`,
-    height: '100vh',
+    backgroundImage: `url(${space2})`,
+    width: '100%',
+    height: 'auto',
     backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat',
     paddingBottom: '5rem',
@@ -79,8 +80,10 @@ const App = () => {
     const [discView, setDiscView] = useState('')
     const [theme, setTheme] = useState('headerDefault');
     const [search, setSearch] = useState('');
-    const [alerts, setAlerts] = useState([])
-    const [font, setFont] = useState(16)
+    const [alerts, setAlerts] = useState([]);
+    const [font, setFont] = useState(16);
+    const [resourceValue, setResourceValue] = useState(1);
+    const [saved, setSaved] = useState([]);
 
     const currClass = classes[`${theme}`];
 
@@ -149,18 +152,63 @@ const App = () => {
     .catch()
   };
 
-
-   const getStamps = () => {
+  const getStamps = () => {
     //  debugger;
     if (user) {
       axios.get(`/user/${user.id}`)
         .then(({ data }) => {
-          console.log('FROM STAMPS', data)
+          // console.log('FROM STAMPS', data)
           setStamps(data);
           setAlerts(data);
         })
         .catch();
     }
+  };
+
+  const getSaved = () => {
+    //  debugger;
+    if (user) {
+      axios.get(`/saved/${user.id}`)
+        .then(({ data }) => {
+          console.log('FROM SAVED', data)
+          setSaved(data);
+        })
+        .catch();
+    }
+  };
+
+  const addSaved = (resource, resType) => {
+    let pars = {};
+    //if resource is article:
+    if(resType === 'article'){
+      pars= {
+        category: discView,
+        date: Date.now,
+        title: resource.title,
+        author: resource.author,
+        image: resource.urlToImage,
+        url: resource.url,
+        userId: user.id,
+        type: resType
+      }
+    } else if(resType === 'documentary'){
+      pars= {
+        category: discView,
+        date: Date.now,
+        title: resource.snippet.title,
+        // author: null,
+        image: resource.snippet.thumbnails.high.url,
+        url: `https://www.youtube.com/embed/${resource.id.videoId}`,
+        userId: user.id,
+        type: resType
+      }
+    }
+    axios.post('/saved', pars)
+      .then(() => {
+        getSaved()
+        console.log('SAVED', saved)
+      })
+      .catch()
   };
 
   //  const getAlerts = () => {
@@ -186,9 +234,13 @@ const App = () => {
     // getAlerts();
   }, [])
 
+    const handleResourceChange = (event, newValue) => {
+      setResourceValue(newValue);
+    };
+
     return (
     <div className={currClass} style={{ fontSize: font }}>
-      <AppBarHeader user={user} logout={logout} discView={discView} setDiscView={setDiscView} theme={theme} setTheme={setTheme} search={search} setSearch={setSearch} />
+      <AppBarHeader user={user} logout={logout} discView={discView} setDiscView={setDiscView} theme={theme} setTheme={setTheme} search={search} setSearch={setSearch}  />
       {!user
       ?(
         <div >
@@ -203,8 +255,7 @@ const App = () => {
           </Button>
         </div>
       )
-      :(
-
+        : (
         <Router>
 
             <BottomNav />
@@ -216,7 +267,7 @@ const App = () => {
                   <Profile user={user} logout={logout} stamps={stamps} getStamps={getStamps}/>
               </Route>
               <Route path="/discovery">
-                  <Discovery addResource={addResource} discView={discView} setDiscView={setDiscView} search={search} setSearch={setSearch} font={font}/>
+                  <Discovery addResource={addResource} discView={discView} setDiscView={setDiscView} search={search} setSearch={setSearch} font={font} resourceValue={resourceValue} handleResourceChange={handleResourceChange} saved={saved} addSaved={addSaved} getSaved={getSaved} />
               </Route>
               <Route path="/alerts">
                   <Alerts user={user} alerts={alerts} />

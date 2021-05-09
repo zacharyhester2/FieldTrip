@@ -157,6 +157,12 @@ app.get('/auth/google',
     });
   });
 
+  app.get('/saved/:id', (req, res) => {
+    Users.findOne({ id: req.params.id }).then((userInfo) => {
+      res.send(userInfo.saved);
+    });
+  });
+
   // removes duplicates from stamps array which contains both trophies and stamps
   const uniqueStamp = (array) => {
       //flags is stamp/challenge that we want
@@ -239,6 +245,20 @@ app.post('/challenge', (req, res) => {
       Users.updateOne({ id : req.cookies.FieldTripId }, {stamps: uniqueStamp(user.stamps), challenges: uniqueChallenge(user.challenges)})
       .then((data) => res.sendStatus(200))
       .catch()
+    })
+});
+
+
+// SAVED/FAVORITES/READorWATCH LATER
+app.post('/saved', (req, res) => {
+  const { category, date, title, author, image, url, type } = req.body;
+  Users.findOne({ id: req.cookies.FieldTripId })
+    .then((user) => {
+      user.saved = [...user.saved, { category: category, date: date, title: title, author: author, image: image, url: url, type: type }]
+
+      Users.updateOne({ id : req.cookies.FieldTripId }, {saved: user.saved})
+        .then((data) => res.sendStatus(200))
+        .catch()
     })
 });
 

@@ -9,8 +9,8 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     position: 'fixed',
-    top: '11%',
-    left: '1%',
+    top: '20%',
+    right: '1%',
     '& > *': {
       margin: theme.spacing(1),
     },
@@ -57,27 +57,6 @@ const TextSize = ({ font, setFont }) => {
         </Tooltip>
       </ButtonGroup>
     </div>
-    //   <ButtonGroup
-    //     orientation="vertical"
-    //     color="primary"
-    //     aria-label="vertical contained primary button group"
-    //     variant="contained"
-    //   >
-    //     <Button>Increase</Button>
-    //     <Button>Reset</Button>
-    //     <Button>Decrease</Button>
-    //   </ButtonGroup>
-    //   <ButtonGroup
-    //     orientation="vertical"
-    //     color="primary"
-    //     aria-label="vertical contained primary button group"
-    //     variant="text"
-    //   >
-    //     <Button>Increase</Button>
-    //     <Button>Reset</Button>
-    //     <Button>Decrease</Button>
-    //   </ButtonGroup>
-    // </div>
   );
 }
 

@@ -12,6 +12,7 @@ const GlobalStyles = createGlobalStyle`
     /* font-family: 'Comfortaa', cursive; */
     background-color: rgb(9, 11, 23);
     color: whitesmoke;
+    min-height: 325vh;
   }
 
   header{
@@ -26,6 +27,7 @@ const GlobalStyles = createGlobalStyle`
     /* box-shadow: 0px 30px 22px -15px rgba(148,148,148,0.42); */
     /* box-shadow: 0px 43px 11px -26px rgba(115,107,251,0.44); */
     opacity: 87%;
+    backdrop-filter: blur(8px);
   }
 
   .logo{
@@ -54,15 +56,6 @@ const GlobalStyles = createGlobalStyle`
   .youtube{
     padding-bottom: 250px;
   }
-  .top-container{
-
-  }
-  .mid-container{
-
-  }
-  .bottom-container{
-
-  }
   /* .news-cards{
     display: flex;
     position: center;
@@ -83,14 +76,44 @@ const GlobalStyles = createGlobalStyle`
     align-content: space-between;
   } */
   .news-container{
-    display: flex-inline;
+    /* display: flex-inline; */
+    /* position: center;
+    display: flex;
     flex-flow: row wrap;
-    justify-content: space-evenly;
+    justify-content: space-around;
     align-items: center;
-    align-content: space-between;
+    align-content: center;
+    left: 52%; */
+    display: flex;
+    position: center;
+    align-items: center;
+    padding-top: 3rem;
   }
   .card-top img{
     max-width: 200px;
   }
+
+  #basicTabs{
+      background: rgb(9, 11, 23);
+      color: #736bfb;
+
+      margin-top: 0;
+      opacity: 100%;
+      box-shadow: 0px 0px 7px 0px #736bfb;
+
+    }
+    #tab{
+      /* color: #736bfb; */
+      color: whitesmoke;
+      backdrop-filter: blur(8px);
+    }
+    /* #news-container{
+      width: 100%;
+      height: auto;
+    } */
+    #news-card-paper{
+      background-color: rgb(9, 11, 23);
+      opacity: 87%;
+    }
 `;
 export default GlobalStyles;
