@@ -20,9 +20,10 @@ const Img = styled.div`
     filter: drop-shadow(0 0 0.5rem rgba(0, 0, 0, 0.6));
   }
 `
-const Profile = ({user, getStamps, stamps}) => {
+const Profile = ({user, getStamps, stamps, getBadges, badges}) => {
   useEffect(() => {
     getStamps();
+    getBadges();
   }, []);
   return (
     <ProfileStyles>
@@ -33,7 +34,7 @@ const Profile = ({user, getStamps, stamps}) => {
           <img src={profilePic} alt="Avatar"/>
         </Img>
       </div>
-      <Passport stamps={stamps}/>
+      <Passport stamps={stamps} badges={badges}/>
     </ProfileStyles>
   );
 };

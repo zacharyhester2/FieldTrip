@@ -68,12 +68,12 @@ const Stamp = ({stamp}) => {
   return (
       <Img>
       {stamp.category !== "daily challenge" ?
-        <div class="flip-card">
-          <div class="flip-card-inner">
-            <div class="flip-card-front">
+        <div className="flip-card">
+          <div className="flip-card-inner">
+            <div className="flip-card-front">
               <img src={stamp.image} alt="stamp" />
             </div>
-            <div class="flip-card-back">
+            <div className="flip-card-back">
               {
                 stamp.type === 'article' ?
                 <p>You read an {stamp.type}, <i>{stamp.title}</i> from the {stamp.category} category!</p> :
@@ -86,15 +86,15 @@ const Stamp = ({stamp}) => {
           </div>
         </div>
         :
-        <div class="flip-card">
-          <div class="flip-card-inner">
-            <div class="flip-card-front">
+        <div className="flip-card">
+          <div className="flip-card-inner">
+            <div className="flip-card-front">
               <div>
                 <img src={trophy} alt="trophy"/>
 
               </div>
             </div>
-            <div class="flip-card-back">
+            <div className="flip-card-back">
               <p>You completed the Daily Challenge!</p>
               <p>{stamp.title}</p>
             </div>

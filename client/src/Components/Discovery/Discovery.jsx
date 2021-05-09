@@ -23,9 +23,10 @@ const Discovery = ({ addResource, discView, search }) => {
           <StyledTitle>Articles</StyledTitle>
           <News addResource={addResource} discView={discView} search={search} />
         </Container>
+        <LandingDisc discView={discView}/>
       <Container>
           <StyledTitle>Documentaries</StyledTitle>
-          <Documentary addResource={addResource} discView={discView} search={search} />
+          {/* <Documentary addResource={addResource} discView={discView} search={search} /> */}
       </Container>
     </>
   );

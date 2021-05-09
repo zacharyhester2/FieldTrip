@@ -78,6 +78,7 @@ const App = () => {
     const [theme, setTheme] = useState('headerDefault');
     const [search, setSearch] = useState('');
     const [alerts, setAlerts] = useState([])
+    const [badges, setBadges] = useState([]);
 
     const currClass = classes[`${theme}`];
 
@@ -128,7 +129,7 @@ const App = () => {
     .catch()
   };
 
-
+ //USED FOR BADGE D3 DATA AS WELL
    const getStamps = () => {
     //  debugger;
     if (user) {
@@ -141,6 +142,30 @@ const App = () => {
         .catch();
     }
   };
+
+  //DATA FOR BADGE CONSTRUCTION/ D3
+  const getBadges = () => {
+    if (user) {
+      axios.get(`/user/${user.id}`)
+        .then(({ data }) => {
+          console.log('BADGES DATA', data)
+          setBadges(data);
+        })
+        .catch();
+    }
+  };
+
+  //  const getAlerts = () => {
+  //   //  debugger;
+  //   if (user) {
+  //     axios.get(`/user/${user.id}`)
+  //       .then(({ data }) => {
+  //         console.log('FROM Alerts', data)
+  //         setAlerts(data);
+  //       })
+  //       .catch();
+  //   }
+  // };
 
   const logout = () => {
     axios.get('/logout').then(() => {
@@ -177,10 +202,10 @@ const App = () => {
             <BottomNav />
             <Switch>
               <Route exact path="/">
-                  <Home user={user} logout={logout} getStamps={getStamps} stamps={stamps}/>
+                  <Home user={user} logout={logout} getStamps={getStamps} stamps={stamps} getBadges={getBadges}/>
               </Route>
               <Route path="/profile">
-                  <Profile user={user} logout={logout} stamps={stamps} getStamps={getStamps}/>
+                  <Profile user={user} logout={logout} stamps={stamps} getStamps={getStamps} badges={badges} getBadges={getBadges}/>
               </Route>
               <Route path="/discovery">
                   <Discovery addResource={addResource} discView={discView} setDiscView={setDiscView} search={search} setSearch={setSearch}/>
