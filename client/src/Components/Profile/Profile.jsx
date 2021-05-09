@@ -1,7 +1,8 @@
-import React, {useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import Passport from './Passport.jsx';
-import profilePic from '../../assets/cape.jpg'
 import styled from 'styled-components';
+import DialogSelectAvatar from './DialogSelectAvatar.jsx';
+import defaultAvatar from '../../assets/defaultAvatar.jpg';
 
 const ProfileStyles = styled.div`
   .profileInfo{
@@ -14,13 +15,17 @@ const ProfileStyles = styled.div`
 `;
 const Img = styled.div`
   img{
-    border-radius: 50%;
     width: 200px;
     height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
     filter: drop-shadow(0 0 0.5rem rgba(0, 0, 0, 0.6));
   }
 `
 const Profile = ({user, getStamps, stamps}) => {
+  const [avatar, setAvatar] = useState('')
+  console.log('avatar from profile', avatar);
+
   useEffect(() => {
     getStamps();
   }, []);
@@ -30,9 +35,10 @@ const Profile = ({user, getStamps, stamps}) => {
         <h1>Profile</h1>
         <h3>{user.name}</h3>
         <Img>
-          <img src={profilePic} alt="Avatar"/>
+          <img src={!avatar ? defaultAvatar : avatar} alt="Avatar"/>
         </Img>
       </div>
+      <DialogSelectAvatar setAvatar={setAvatar}/>
       <Passport stamps={stamps}/>
     </ProfileStyles>
   );
