@@ -82,6 +82,7 @@ const App = () => {
     const [font, setFont] = useState(16);
     const [resourceValue, setResourceValue] = useState(1);
     const [saved, setSaved] = useState([]);
+    const [badges, setBadges] = useState([]);
 
     const currClass = classes[`${theme}`];
 
@@ -144,7 +145,8 @@ const App = () => {
     .catch()
   };
 
-  const getStamps = () => {
+ //USED FOR BADGE D3 DATA AS WELL
+   const getStamps = () => {
     //  debugger;
     if (user) {
       axios.get(`/user/${user.id}`)
@@ -165,6 +167,17 @@ const App = () => {
         .then(({ data }) => {
           // console.log('FROM SAVED', data)
           setSaved(data);
+        })
+      }
+      };
+          
+  //DATA FOR BADGE CONSTRUCTION/ D3
+  const getBadges = () => {
+    if (user) {
+      axios.get(`/user/${user.id}`)
+        .then(({ data }) => {
+          console.log('BADGES DATA', data)
+          setBadges(data);
         })
         .catch();
     }
@@ -255,10 +268,10 @@ const App = () => {
             <BottomNav />
             <Switch>
               <Route exact path="/">
-                  <Home user={user} logout={logout} getStamps={getStamps} stamps={stamps} font={font} />
+                  <Home user={user} logout={logout} getStamps={getStamps} stamps={stamps} font={font} getBadges={getBadges}/>
               </Route>
               <Route path="/profile">
-                  <Profile user={user} logout={logout} stamps={stamps} getStamps={getStamps}/>
+                  <Profile user={user} logout={logout} stamps={stamps} getStamps={getStamps} badges={badges} getBadges={getBadges}/>
               </Route>
               <Route path="/discovery">
                   <Discovery addResource={addResource} discView={discView} setDiscView={setDiscView} search={search} setSearch={setSearch} font={font} resourceValue={resourceValue} handleResourceChange={handleResourceChange} saved={saved} addSaved={addSaved} getSaved={getSaved} />
@@ -277,5 +290,6 @@ const App = () => {
     </div>
     )
 }
+
 
 export default App;
