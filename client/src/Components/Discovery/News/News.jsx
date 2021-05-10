@@ -1,37 +1,11 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
-import { Card, Container, Row, Col, CardDeck, Jumbotron, Image } from 'react-bootstrap/';
+import { Card, Row, Image } from 'react-bootstrap/';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { makeStyles } from '@material-ui/core/styles';
-// import { Grid, Card, CardMedia, CardContent, CardActions, CardActionArea, Button, Typography } from '@material-ui/core'
-import FavoriteBorderSharpIcon from '@material-ui/icons/FavoriteBorderSharp';
 import FavoriteSharpIcon from '@material-ui/icons/FavoriteSharp';
 import IconButton from '@material-ui/core/IconButton';
-
-// const StyledCard = styled.div`
-//     max-width: 15rem;
-//     transform-origin: top center;
-//     transition: transform 300ms;
-//     position: relative;
-//     z-index: 0;
-//     border-radius: 1rem;
-//     outline: none;
-//     margin-bottom: 30rem;
-//     object-fit: cover;
-//     :hover {
-//         transform: scale(1.1);
-//         z-index: 1;
-//         box-shadow: 0 0 0.7rem rgba(0, 0, 0, 0.9);
-//     }
-//     .card-top img{
-//     width: 100%;
-//     height: 15vw;
-//     object-fit: cover;
-//     border-radius: 1rem 1rem 0 0;
-//     max-width: 2rem;
-// }
-// `;
 
 const StyledCard = styled(Card)`
     transform-origin: top center;
@@ -55,7 +29,6 @@ const StyledCard = styled(Card)`
 }
 `;
 
-
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 2,
@@ -68,19 +41,17 @@ const useStyles = makeStyles((theme) => ({
     right: 0,
     position: 'absolute',
   },
-
 }));
-
-    // const buttonColor = {
-    //     unclicked: 'rgb(9, 11, 23)',
-    //     clicked: 'rgb(251 58 139)'
-    // }
-    // const IconContext = React.createContext(buttonColor.unclicked)
 
 const News = ({ addResource, discView, search, font, saved, addSaved }) => {
     const [news, setNews] = useState([]);
-    const [iconColor, setIconColor] = useState('rgb(80 80 80 / 46%)');
-
+    // a state for each favorite button on each news card
+    const [iconColor1, setIconColor1] = useState('rgb(80 80 80 / 46%)');
+    const [iconColor2, setIconColor2] = useState('rgb(80 80 80 / 46%)');
+    const [iconColor3, setIconColor3] = useState('rgb(80 80 80 / 46%)');
+    const [iconColor4, setIconColor4] = useState('rgb(80 80 80 / 46%)');
+    const [iconColor5, setIconColor5] = useState('rgb(80 80 80 / 46%)');
+    const [iconColor6, setIconColor6] = useState('rgb(80 80 80 / 46%)');
     const classes = useStyles();
     const query = `${search}`;
 
@@ -91,75 +62,270 @@ const News = ({ addResource, discView, search, font, saved, addSaved }) => {
         }).catch()
     }
 
-    // const Btn = () => {
-    //     const theme = useContext(IconContext);
-    //     return (
-    //         <IconButton
-    //             onClick={() => {
-    //                 addSaved(article, 'article');
-    //                 setIconColor('rgb(251 58 139)')
-    //             }}
-    //             // className={classes.saved}
-    //         >
-    //             <FavoriteSharpIcon style={{ color: theme }} />
-    //         </IconButton>
-    //     );
-    // };
-
-
-
-    // const handleSaveClick = () => {
-    //     setSaveClicked(true);
-    //     addSaved();
-    // }
-
     useEffect(() => {
         getNews(query);
-    }, [discView])
+    }, [discView]);
 
-    return (
+    // sets the 6 news objects to their own card
+    // this was done so that when article is favorited, only that one article favorite button changes state
+    const individualNewsCards = () => {
+        if(!news.length) {
+            getNews(query);
+        } else {
+            return (
         <div className="news-container">
             <Row md={4} style={{ position: 'center' }}>
-                {news.map((article, i) => (
-                    <StyledCard className="mb-4 mt-4 mr-4 ml-4"
-                    text="muted"
-                    bg="light"
-                    key={i * Math.random()}
+
+                <StyledCard
+                        className="mb-4 mt-4 mr-4 ml-4"
+                        text="muted"
+                        bg="light"
+                        key={1000 * Math.random()}
                     >
-                    <Image src={article.urlToImage}
-                        key={i}
-                        className="news-img-top"
-                        >
-                        {/* {console.log(article)} */}
-                    </Image>
+                        <Image src={news[0].urlToImage}
+                            key={1000 * Math.random()}
+                            className="news-img-top"
+                            >
+                        </Image>
                         <Card.Body>
-                            <Card.Title style={{ fontSize: font + 4, fontWeight: '900', color: 'rgb(0, 0, 0)' }}>{article.title}</Card.Title>
-                            <Card.Text style={{ fontSize: font, color: 'rgb(92 92 92)', fontWeight: 'lighter' }}>{article.description}</Card.Text>
+                            <Card.Title style={{ fontSize: font + 4}}>{news[0].title}</Card.Title>
+                            <Card.Text style={{ fontSize: font }}>{news[0].description}</Card.Text>
                             <p>Read Full Article
                                 <a
-                                    href={article.url}
+                                    href={news[0].url}
                                     target="_blank"
-                                    onClick={() => { addResource(article, 'article'); }}
-                                > Here</a></p>
-                                {/* <IconContext.Provider value={buttonColor.clicked}> */}
-                                    <IconButton
-                                        onClick={() => {
-                                            addSaved(article, 'article');
-                                            setIconColor('rgb(251 58 139)');
-                                        }}
-                                        className={classes.saved}
-                                        >
-                                        <FavoriteSharpIcon style={{ color: iconColor }}/>
-                                    </IconButton>
-
-                                    {/* {Btn()} */}
-                                {/* </IconContext.Provider> */}
+                                    onClick={() => { addResource(news[0], 'article'); }}
+                                > Here</a>
+                            </p>
+                            <IconButton
+                                onClick={() => {
+                                    addSaved(news[0], 'article');
+                                    setIconColor1('rgb(251 58 139)');
+                                }}
+                                className={classes.saved}
+                            >
+                                <FavoriteSharpIcon style={{ color: iconColor1 }}/>
+                            </IconButton>
                         </Card.Body>
                     </StyledCard>
-                ))}
+
+                    <StyledCard
+                        className="mb-4 mt-4 mr-4 ml-4"
+                        text="muted"
+                        bg="light"
+                        key={1000 * Math.random()}
+                    >
+                        <Image src={news[1].urlToImage}
+                            key={1000 * Math.random()}
+                            className="news-img-top"
+                            >
+                        </Image>
+                        <Card.Body>
+                            <Card.Title style={{ fontSize: font + 4}}>{news[1].title}</Card.Title>
+                            <Card.Text style={{ fontSize: font }}>{news[1].description}</Card.Text>
+                            <p>Read Full Article
+                                <a
+                                    href={news[1].url}
+                                    target="_blank"
+                                    onClick={() => { addResource(news[1], 'article'); }}
+                                > Here</a>
+                            </p>
+                            <IconButton
+                                onClick={() => {
+                                    addSaved(news[1], 'article');
+                                    setIconColor2('rgb(251 58 139)');
+                                }}
+                                className={classes.saved}
+                            >
+                                <FavoriteSharpIcon style={{ color: iconColor2 }}/>
+                            </IconButton>
+                        </Card.Body>
+                    </StyledCard>
+
+                    <StyledCard
+                        className="mb-4 mt-4 mr-4 ml-4"
+                        text="muted"
+                        bg="light"
+                        key={1000 * Math.random()}
+                    >
+                        <Image src={news[2].urlToImage}
+                            key={1000 * Math.random()}
+                            className="news-img-top"
+                            >
+                        </Image>
+                        <Card.Body>
+                            <Card.Title style={{ fontSize: font + 4}}>{news[2].title}</Card.Title>
+                            <Card.Text style={{ fontSize: font }}>{news[2].description}</Card.Text>
+                            <p>Read Full Article
+                                <a
+                                    href={news[2].url}
+                                    target="_blank"
+                                    onClick={() => { addResource(news[2], 'article'); }}
+                                > Here</a>
+                            </p>
+                            <IconButton
+                                onClick={() => {
+                                    addSaved(news[2], 'article');
+                                    setIconColor3('rgb(251 58 139)');
+                                }}
+                                className={classes.saved}
+                            >
+                                <FavoriteSharpIcon style={{ color: iconColor3 }}/>
+                            </IconButton>
+                        </Card.Body>
+                    </StyledCard>
+
+                    <StyledCard
+                        className="mb-4 mt-4 mr-4 ml-4"
+                        text="muted"
+                        bg="light"
+                        key={1000 * Math.random()}
+                    >
+                        <Image src={news[3].urlToImage}
+                            key={1000 * Math.random()}
+                            className="news-img-top"
+                            >
+                        </Image>
+                        <Card.Body>
+                            <Card.Title style={{ fontSize: font + 4}}>{news[3].title}</Card.Title>
+                            <Card.Text style={{ fontSize: font }}>{news[3].description}</Card.Text>
+                            <p>Read Full Article
+                                <a
+                                    href={news[3].url}
+                                    target="_blank"
+                                    onClick={() => { addResource(news[3], 'article'); }}
+                                > Here</a>
+                            </p>
+                            <IconButton
+                                onClick={() => {
+                                    addSaved(news[3], 'article');
+                                    setIconColor4('rgb(251 58 139)');
+                                }}
+                                className={classes.saved}
+                            >
+                                <FavoriteSharpIcon style={{ color: iconColor4 }}/>
+                            </IconButton>
+                        </Card.Body>
+                    </StyledCard>
+
+                    <StyledCard
+                        className="mb-4 mt-4 mr-4 ml-4"
+                        text="muted"
+                        bg="light"
+                        key={1000 * Math.random()}
+                    >
+                        <Image src={news[4].urlToImage}
+                            key={1000 * Math.random()}
+                            className="news-img-top"
+                            >
+                        </Image>
+                        <Card.Body>
+                            <Card.Title style={{ fontSize: font + 4}}>{news[4].title}</Card.Title>
+                            <Card.Text style={{ fontSize: font }}>{news[4].description}</Card.Text>
+                            <p>Read Full Article
+                                <a
+                                    href={news[4].url}
+                                    target="_blank"
+                                    onClick={() => { addResource(news[4], 'article'); }}
+                                > Here</a>
+                            </p>
+                            <IconButton
+                                onClick={() => {
+                                    addSaved(news[4], 'article');
+                                    setIconColor5('rgb(251 58 139)');
+                                }}
+                                className={classes.saved}
+                            >
+                                <FavoriteSharpIcon style={{ color: iconColor5 }}/>
+                            </IconButton>
+                        </Card.Body>
+                    </StyledCard>
+
+                    <StyledCard
+                        className="mb-4 mt-4 mr-4 ml-4"
+                        text="muted"
+                        bg="light"
+                        key={1000 * Math.random()}
+                    >
+                        <Image src={news[5].urlToImage}
+                            key={1000 * Math.random()}
+                            className="news-img-top"
+                            >
+                        </Image>
+                        <Card.Body>
+                            <Card.Title style={{ fontSize: font + 4}}>{news[5].title}</Card.Title>
+                            <Card.Text style={{ fontSize: font }}>{news[5].description}</Card.Text>
+                            <p>Read Full Article
+                                <a
+                                    href={news[5].url}
+                                    target="_blank"
+                                    onClick={() => { addResource(news[5], 'article'); }}
+                                > Here</a>
+                            </p>
+                            <IconButton
+                                onClick={() => {
+                                    addSaved(news[5], 'article');
+                                    setIconColor6('rgb(251 58 139)');
+                                }}
+                                className={classes.saved}
+                            >
+                                <FavoriteSharpIcon style={{ color: iconColor6 }}/>
+                            </IconButton>
+                        </Card.Body>
+                    </StyledCard>
             </Row>
         </div>
      );
-}
+        }
+    }
+
+    console.log('third', news);
+    return (
+        individualNewsCards() || null
+    );
+    // return (
+    //     <div className="news-container">
+    //         <Row md={4} style={{ position: 'center' }}>
+    //             {news.map((article, i) => (
+    //                 <StyledCard className="mb-4 mt-4 mr-4 ml-4"
+    //                 text="muted"
+    //                 bg="light"
+    //                 key={i * Math.random()}
+    //                 >
+    //                 <Image src={article.urlToImage}
+    //                     key={i}
+    //                     className="news-img-top"
+    //                     >
+    //                     {/* {console.log(article)} */}
+    //                 </Image>
+    //                     <Card.Body>
+    //                         <Card.Title style={{ fontSize: font + 4, fontWeight: '900', color: 'rgb(0, 0, 0)' }}>{article.title}</Card.Title>
+    //                         <Card.Text style={{ fontSize: font, color: 'rgb(92 92 92)', fontWeight: 'lighter' }}>{article.description}</Card.Text>
+    //                         <p>Read Full Article
+    //                             <a
+    //                                 href={article.url}
+    //                                 target="_blank"
+    //                                 onClick={() => { addResource(article, 'article'); }}
+    //                             > Here</a></p>
+    //                             {/* <IconContext.Provider value={buttonColor.clicked}> */}
+    //                                 <IconButton
+    //                                     onClick={() => {
+    //                                         addSaved(article, 'article');
+    //                                         setIconColor('rgb(251 58 139)');
+    //                                     }}
+    //                                     className={classes.saved}
+    //                                     >
+    //                                     <FavoriteSharpIcon style={{ color: iconColor }}/>
+    //                                 </IconButton>
+
+    //                                 {/* {Btn()} */}
+    //                             {/* </IconContext.Provider> */}
+    //                     </Card.Body>
+    //                 </StyledCard>
+    //             ))}
+    //         </Row>
+    //     </div>
+    //  );
+    }
 
 export default News;

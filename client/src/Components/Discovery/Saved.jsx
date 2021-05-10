@@ -26,27 +26,26 @@ const StyledCard = styled(Card)`
 }
 `;
 
-const Saved = ({ saved, font, getSaved }) => {
+const Saved = ({ saved, font, getSaved, addResource }) => {
 
 
 
-  const filteredSave = () => {
-    return saved.filter(resource => resource.title !== 'trophy');
-  };
+  const filteredSave = saved.filter(resource => resource.title !== 'trophy');
+  const newSaved = [...new Set(filteredSave)];
 
   useEffect(() => {
     getSaved();
   }, []);
-
+  console.log('SAVED', saved, 'FILTERED_SAVE', filteredSave, 'NEW_SAVED', newSaved);
   return (
-    <div>
-      {filteredSave().map((article, i) => (
+    <div style={{ width: '50%', position: 'absolute', left: '25%', paddingBottom: '15rem' }}>
+      {newSaved.map((article, i) => (
         <StyledCard className="mb-4 mt-4 mr-4 ml-4"
         text="muted"
         bg="light"
         key={i * Math.random()}
         >
-        <Image src={article.urlToImage}
+        <Image src={article.image}
             key={i}
             className="news-img-top"
             >

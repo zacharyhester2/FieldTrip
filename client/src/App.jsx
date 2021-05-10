@@ -170,7 +170,7 @@ const App = () => {
     if (user) {
       axios.get(`/saved/${user.id}`)
         .then(({ data }) => {
-          console.log('FROM SAVED', data)
+          // console.log('FROM SAVED', data)
           setSaved(data);
         })
         .catch();

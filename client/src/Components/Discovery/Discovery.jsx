@@ -31,7 +31,7 @@ const Discovery = ({ addResource, discView, search, font, resourceValue, handleR
         </Container>
         )
         : resourceValue === 1
-          ? <Saved saved={saved} font={font} getSaved={getSaved} />
+          ? <Saved saved={saved} font={font} getSaved={getSaved} addResource={addResource} />
           : resourceValue === 2
             ? <Documentary addResource={addResource} discView={discView} search={search} saved={saved} addSaved={addSaved} />
             : null
