@@ -20,6 +20,9 @@ const Container = styled.div`
   left: 47%;
   transform: translate(-50%, -50%);
   opacity: 85%;
+p{
+  color: #1d1d1d;
+}
 .challenge-header{
   color: #1d1d1d;
   text-align: start;
@@ -87,7 +90,7 @@ const WeeklyChallenge = ({ getStamps, user, stamps, font }) => {
           {challenge}
         </p>
         { !stamps.length ?
-          <p style={{color:"#1d1d1d"}}>Explore on the Discovery Tab to earn stamps!</p> :
+          <p>Explore on the Discovery Tab to earn stamps!</p> :
         <ChallengeCheck stamps={stamps} challenge={challenge} challenges={challenges} getStamps={getStamps}/>
         }
       </Container>

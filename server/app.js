@@ -8,6 +8,7 @@ const cookieParser = require('cookie-parser');
 const CLIENT_PATH = path.resolve(__dirname, '../client/dist');
 const mongoose = require('mongoose');
 const axios = require('axios');
+// const { cloudinary } = require('./utils/cloudinary')
 require('./OAuth/passport.js');
 require('dotenv').config()
 
@@ -17,10 +18,10 @@ const { Users, Resources, Badges } = require('../server/database/schema.js');
 
 
 const app = express();
-app.use(express.json());
+app.use(express.json({ limit: '50mb'}));
 app.use('/', express.static(CLIENT_PATH));
 app.use(cookieParser());
-// app.use(express.urlencoded({extended: false}))
+app.use(express.urlencoded({limit: '50mb', extended: true}))
 
 //KEYS
 const newsKey = process.env.NEWS_KEY;
@@ -31,6 +32,14 @@ const ClientSecret = process.env.ClientSecret;
 const youTubeKey = process.env.YOUTUBE_KEY;
 
 let userInfo = null;
+
+const cloudinary = require('cloudinary').v2;
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+
+})
 
 // const youtubeApi = process.env.YOUTUBE_API_KEY;
 
@@ -121,8 +130,7 @@ passport.deserializeUser((user, done) => {
 });
 app.get('/auth/google',
   passport.authenticate('google', { scope: ['email', 'profile'] }));
-  app.get(
-    '/auth/google/callback',
+app.get('/auth/google/callback',
     passport.authenticate('google', { failureRedirect: '/logout' }),
     (req, res) => {
       const newUser = new Users({
@@ -272,10 +280,49 @@ app.post('/saved', (req, res) => {
     res.status(200).json(userInfo);
   });
 
+
+
+
+  //CLOUDINARY
+
+  app.post('/api/upload', async (req, res) => {
+    try {
+      const fileStr = req.body.data;
+      // console.log('CLOUDINARYYYYY', cloudinary);
+      const uploadedResponse = await cloudinary.uploader.upload(fileStr, {
+        upload_preset: 'testImages'
+      })
+      console.log('HAAAAAAAIII');
+      res.json({msg: "yaaay"})
+
+    }catch (error) {
+      console.log('ERROR FROM UPLOAD', error)
+      res.status(500).json({err: 'something wrong!'})
+    }
+  })
+
+  app.get('/api/images', async (req, res) => {
+    console.log('YOU MADE IT TO IMAGE UPLOAD')
+    try{
+      const {resources} = await cloudinary.search.expression('folder:testImages/*')
+        .sort_by('public_id', 'desc')
+        .max_results(30)
+        .execute();
+
+        const publicIds = resources.map( file => file.public_id);
+          console.log('publicIds------------', publicIds)
+          // console.log('publicIds------------')
+        res.status(200).json(publicIds);
+    } catch(error) {
+      console.log('Error was thrown: ', error)
+      res.sendStatus(404).send(error);
+    }
+
+  })
+
   app.get('*', (req, res) => {
     res.sendFile(path.resolve(CLIENT_PATH, 'index.html'))
   })
-
 
 module.exports = {
     app,

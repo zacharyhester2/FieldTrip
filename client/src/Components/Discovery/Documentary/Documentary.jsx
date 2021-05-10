@@ -30,9 +30,9 @@ const Caption= styled(Jumbotron)`
     width: auto;
     margin: auto;
     border: 3px;
-    border-radius: 60 px;
     border-color: whitesmoke;
     padding: 0 1rem;
+
 `
 const Documentary = ({ addResource, discView, search }) => {
     const [docs, setDocs] = useState([]);
@@ -57,7 +57,8 @@ const Documentary = ({ addResource, discView, search }) => {
             <Carousel fade style={{marginTop: '2rem' }}>
                 {docs.map((doc, i) => (
                     <Carousel.Item className="mb-5 m5-5"
-                    key={i}>
+                    key={i} style={{ maxWidth: '60%', left: '20%', height: 'auto' }}
+                    >
                             {/* <Img>
                                 <img className="mx-auto"
                                 src={doc.snippet.thumbnails.high.url}/>
@@ -70,8 +71,8 @@ const Documentary = ({ addResource, discView, search }) => {
                                             href={`https://www.youtube.com/embed/${doc.id.videoId}`}
                                             target="_blank"
                                             onClick={() => { addResource(doc, 'documentary'); }}
-                                        > Her</a>
-                                        e to watch on YouTube.
+                                        > Here</a>
+                                        to watch on YouTube.
                                     </p>
                             </Caption>
                             {/* <Caption>

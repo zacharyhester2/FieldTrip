@@ -5,7 +5,7 @@ import DialogSelectAvatar from './DialogSelectAvatar.jsx';
 import defaultAvatar from '../../assets/defaultAvatar.jpg';
 
 const ProfileStyles = styled.div`
-  padding-bottom: 3rem;
+  padding-top: 3rem;
   .profileInfo{
     margin: 0 auto;
     display: flex;

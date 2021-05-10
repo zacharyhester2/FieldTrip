@@ -6,7 +6,7 @@ const YoutubeEmbed = ({ embedId }) => (
     <iframe
       // width="853"
       // height="480"
-      maxWidth='200'
+      maxWidth='150'
       height='390'
       src={`https://www.youtube.com/embed/${embedId}`}
       frameBorder="0"
