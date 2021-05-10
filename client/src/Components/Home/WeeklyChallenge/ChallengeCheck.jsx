@@ -111,7 +111,7 @@ useEffect(() => {
         challengeComplete ?
           <p className='complete'>CONGRATS! You've completed the daily challenge!</p> :
 
-          <p>Keep exploring to meet the daily challenge!</p>
+          <p style={{color:"#1d1d1d"}}>Keep exploring to meet the daily challenge!</p>
       }
     </div>
   )
