@@ -88,12 +88,12 @@ const WeeklyChallenge = ({ getStamps, user, stamps, font }) => {
       <Container>
         <p className='challenge-header' style={{ fontSize: font + 14 }}>Daily Challenge:</p>
         <br/>
-        <p className='challenge'>
+        <p className='challenge' style={{ fontSize: font + 12}}>
           {challenge}
         </p>
         { !stamps.length ?
-          <p>Explore on the Discovery Tab to earn stamps!</p> :
-        <ChallengeCheck stamps={stamps} challenge={challenge} challenges={challenges} getStamps={getStamps}/>
+          <p style={{ fontSize: font}}>Explore on the Discovery Tab to earn stamps!</p> :
+        <ChallengeCheck stamps={stamps} challenge={challenge} challenges={challenges} getStamps={getStamps} font={font}/>
         }
       </Container>
     </>

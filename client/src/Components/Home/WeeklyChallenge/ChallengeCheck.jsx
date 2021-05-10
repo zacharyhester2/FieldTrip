@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import axios from 'axios';
 
 
-const ChallengeCheck = ({stamps, challenge, challenges, getStamps}) => {
+const ChallengeCheck = ({stamps, challenge, challenges, getStamps, font}) => {
   const [challengeComplete, setChallengeComplete] = useState(false);
   //reset per day
 
@@ -108,7 +108,7 @@ useEffect(() => {
     <div>
       {
         challengeComplete ?
-          <p className='complete'>CONGRATS! You've completed the daily challenge!</p> :
+          <p className='complete' style={{ fontSize: font, color: "#736bfb"}}>CONGRATS! You've completed the daily challenge!</p> :
 
           <p style={{color:"#1d1d1d"}}>Keep exploring to meet the daily challenge!</p>
       }
