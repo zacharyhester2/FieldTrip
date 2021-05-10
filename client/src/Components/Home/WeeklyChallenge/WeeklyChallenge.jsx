@@ -71,6 +71,11 @@ const WeeklyChallenge = ({ getStamps, user, stamps, font }) => {
   });
   const [challenge, setChallenge] = useState(challenges[daily][daily]);
 
+  const [isComplete, setIsComplete] = useState(false);
+  const challengeCheckCallback = (challengeChecker) => {
+    setIsComplete(challengeChecker);
+  };
+
 
     useEffect(() => {
       let date = new Date();
@@ -82,18 +87,27 @@ const WeeklyChallenge = ({ getStamps, user, stamps, font }) => {
     useEffect(() => {
       getStamps();
     }, []);
+    useEffect(() => {
+      console.log('ISCOMPLETE!!!!!!!!!!!!', isComplete);
+    }, [isComplete]);
 
   return (
     <>
       <Container>
         <p className='challenge-header' style={{ fontSize: font + 14 }}>Daily Challenge:</p>
         <br/>
-        <p className='challenge' style={{ fontSize: font + 12}}>
+        {
+          isComplete ?
+        (<p className='challenge' style={{ fontSize: font + 12, textDecoration: 'line-through'}}>
           {challenge}
-        </p>
+        </p>) :
+        (<p className='challenge' style={{ fontSize: font + 12}}>
+          {challenge}
+        </p>)
+        }
         { !stamps.length ?
           <p style={{ fontSize: font}}>Explore on the Discovery Tab to earn stamps!</p> :
-        <ChallengeCheck stamps={stamps} challenge={challenge} challenges={challenges} getStamps={getStamps} font={font}/>
+        <ChallengeCheck stamps={stamps} challenge={challenge} challenges={challenges} getStamps={getStamps} font={font} challengeCheckCallback={challengeCheckCallback}/>
         }
       </Container>
     </>
