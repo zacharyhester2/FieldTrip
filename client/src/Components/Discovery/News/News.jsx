@@ -88,7 +88,7 @@ const News = ({ addResource, discView, search, font, saved, addSaved }) => {
                             >
                         </Image>
                         <Card.Body>
-                            <Card.Title style={{ fontSize: font + 4}}>{news[0].title}</Card.Title>
+                            <Card.Title style={{ fontSize: font + 4, color: '#070707', fontWeight: 'bolder' }}>{news[0].title}</Card.Title>
                             <Card.Text style={{ fontSize: font }}>{news[0].description}</Card.Text>
                             <p>Read Full Article
                                 <a
@@ -121,7 +121,7 @@ const News = ({ addResource, discView, search, font, saved, addSaved }) => {
                             >
                         </Image>
                         <Card.Body>
-                            <Card.Title style={{ fontSize: font + 4}}>{news[1].title}</Card.Title>
+                            <Card.Title style={{ fontSize: font + 4, color: '#070707', fontWeight: 'bolder' }}>{news[1].title}</Card.Title>
                             <Card.Text style={{ fontSize: font }}>{news[1].description}</Card.Text>
                             <p>Read Full Article
                                 <a
@@ -154,7 +154,7 @@ const News = ({ addResource, discView, search, font, saved, addSaved }) => {
                             >
                         </Image>
                         <Card.Body>
-                            <Card.Title style={{ fontSize: font + 4}}>{news[2].title}</Card.Title>
+                            <Card.Title style={{ fontSize: font + 4, color: '#070707', fontWeight: 'bolder' }}>{news[2].title}</Card.Title>
                             <Card.Text style={{ fontSize: font }}>{news[2].description}</Card.Text>
                             <p>Read Full Article
                                 <a
@@ -187,7 +187,7 @@ const News = ({ addResource, discView, search, font, saved, addSaved }) => {
                             >
                         </Image>
                         <Card.Body>
-                            <Card.Title style={{ fontSize: font + 4}}>{news[3].title}</Card.Title>
+                            <Card.Title style={{ fontSize: font + 4, color: '#070707', fontWeight: 'bolder' }}>{news[3].title}</Card.Title>
                             <Card.Text style={{ fontSize: font }}>{news[3].description}</Card.Text>
                             <p>Read Full Article
                                 <a
@@ -220,7 +220,7 @@ const News = ({ addResource, discView, search, font, saved, addSaved }) => {
                             >
                         </Image>
                         <Card.Body>
-                            <Card.Title style={{ fontSize: font + 4}}>{news[4].title}</Card.Title>
+                            <Card.Title style={{ fontSize: font + 4, color: '#070707', fontWeight: 'bolder' }}>{news[4].title}</Card.Title>
                             <Card.Text style={{ fontSize: font }}>{news[4].description}</Card.Text>
                             <p>Read Full Article
                                 <a
@@ -253,7 +253,7 @@ const News = ({ addResource, discView, search, font, saved, addSaved }) => {
                             >
                         </Image>
                         <Card.Body>
-                            <Card.Title style={{ fontSize: font + 4}}>{news[5].title}</Card.Title>
+                            <Card.Title style={{ fontSize: font + 4, color: '#070707', fontWeight: 'bolder' }}>{news[5].title}</Card.Title>
                             <Card.Text style={{ fontSize: font }}>{news[5].description}</Card.Text>
                             <p>Read Full Article
                                 <a

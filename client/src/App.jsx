@@ -98,25 +98,7 @@ const App = () => {
     }
   };
 
-  // // NO LOOP
-  // const addResource = (resource) => {
-  //   //post request to user table
-  //   axios.post('/resource', {
-  //     category: discView,
-  //     date: Date.now,
-  //     title: resource.title,
-  //     author: resource.author,
-  //     image: resource.urlToImage,
-  //     url: resource.url,
-  //     userId: user.id
-  //   })
-  //   .then(() => {
-  //     getStamps()
-  //   })
-  //   .catch()
-  // };
 
-  //FIX THIS BEFORE IT LOOPS
   const addResource = (resource, resType) => {
     let pars = {};
     //if resource is article:
@@ -164,6 +146,7 @@ const App = () => {
         .catch();
     }
   };
+
 
   const getSaved = () => {
     //  debugger;
@@ -222,7 +205,6 @@ const App = () => {
   //       .catch();
   //   }
   // };
-
   const logout = () => {
     axios.get('/logout').then(() => {
       setUser(null);
@@ -231,7 +213,7 @@ const App = () => {
 
   useEffect(() => {
     getUser();
-    // getAlerts();
+    getStamps();
   }, [])
 
     const handleResourceChange = (event, newValue) => {
@@ -261,7 +243,7 @@ const App = () => {
             <BottomNav />
             <Switch>
               <Route exact path="/">
-                  <Home user={user} logout={logout} getStamps={getStamps} font={font} />
+                  <Home user={user} logout={logout} getStamps={getStamps} stamps={stamps} font={font} />
               </Route>
               <Route path="/profile">
                   <Profile user={user} logout={logout} stamps={stamps} getStamps={getStamps}/>
