@@ -13,6 +13,7 @@ import AstroJelly from '../../assets/astrojelly.jpg';
 import MammothBabe from '../../assets/mammothbabe.jpg';
 import GoogleyCactus from '../../assets/googleycactus.jpg';
 import FlyingCape from '../../assets/cape.jpg';
+import defaultAvatar from '../../assets/defaultAvatar.jpg';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -30,12 +31,13 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
- const DialogSelectAvatar = ({avatar, setAvatar}) => {
+ const DialogSelectAvatar = ({avatar, setAvatar, saveAvatar}) => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
   const handleChange = (event) => {
-    setAvatar(String(event.target.value) || '');
+    setAvatar(String(event.target.value) || defaultAvatar);
+    saveAvatar(String(event.target.value) || defaultAvatar);
   };
 
   const handleClickOpen = () => {

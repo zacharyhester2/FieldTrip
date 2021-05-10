@@ -158,7 +158,7 @@ app.get('/auth/google/callback',
     });
   });
 
-  //STAMPS 
+  //STAMPS
   //USED FOR BADGE D3 DATA AS WELL
   app.get('/user/:id', (req, res) => {
     Users.findOne({ id: req.params.id }).then((userInfo) => {
@@ -209,7 +209,7 @@ app.get('/auth/google/callback',
   //   .then((badgeInfo)=> {
   //     Resources.find({badeInfo}) => {
 
-      
+
   //   };
   // });
 
@@ -290,14 +290,12 @@ app.post('/saved', (req, res) => {
 //SPOTIFY
 
 
+
   app.get('/logout', (req, res) => {
     userInfo = null;
     res.clearCookie('FieldTripId');
     res.status(200).json(userInfo);
   });
-
-
-
 
   //CLOUDINARY
 
@@ -326,14 +324,33 @@ app.post('/saved', (req, res) => {
         .execute();
 
         const publicIds = resources.map( file => file.public_id);
-          console.log('publicIds------------', publicIds)
-          // console.log('publicIds------------')
+          // console.log('publicIds------------', publicIds)
         res.status(200).json(publicIds);
     } catch(error) {
       console.log('Error was thrown: ', error)
       res.sendStatus(404).send(error);
     }
+  })
 
+  //avatar
+  app.post('/avatar/:id', (req, res) => {
+    const { avatar } = req.body;
+
+    Users.findOne({ id: req.cookies.FieldTripId })
+      .then((user) => {
+        user.avatar = avatar;
+        Users.updateOne({ id : req.cookies.FieldTripId }, {avatar: user.avatar})
+          .then((data) => {
+            res.sendStatus(200)})
+          .catch()
+      })
+  })
+
+  app.get('/avatar/:id', (req, res) => {
+    Users.findOne({ id: req.cookies.FieldTripId })
+    .then((userInfo) => {
+      res.send(userInfo.avatar);
+    });
   })
 
   app.get('*', (req, res) => {
