@@ -158,9 +158,11 @@ app.get('/auth/google/callback',
     });
   });
 
-  //STAMPS
+  //STAMPS 
+  //USED FOR BADGE D3 DATA AS WELL
   app.get('/user/:id', (req, res) => {
     Users.findOne({ id: req.params.id }).then((userInfo) => {
+      // console.log(userInfo.stamps, 'STAMPS INFO');
       res.send(userInfo.stamps);
     });
   });
@@ -196,6 +198,20 @@ app.get('/auth/google/callback',
       // console.log('output', output)
       return output;
   };
+
+  //RESOURCES GET REQUEST FOR BADGES
+
+  // app.get('/resource', (req, res) => {
+  //   Users.findOne({ id: req.cookies.FieldTripId })
+  //   .then((stamps) => {
+  //     res.send(stamps);
+  //   })
+  //   .then((badgeInfo)=> {
+  //     Resources.find({badeInfo}) => {
+
+      
+  //   };
+  // });
 
   //post request -add resource to resource schema
   app.post('/resource', (req, res) => {

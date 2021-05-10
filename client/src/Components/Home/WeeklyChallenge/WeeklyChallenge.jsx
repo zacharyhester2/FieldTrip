@@ -11,7 +11,7 @@ const Container = styled.div`
   border-color: whitesmoke !important;
   margin: 50px;
   padding: 50px;
-  display: flex;
+  /* display: flex; */
   /* flex-flow: column; */
   width: 50%;
   justify-content: center;
@@ -29,6 +29,7 @@ p{
   /* text-decoration: underline; */
   /* font-weight: bold; */
   font-size: 44px;
+  color: black;
 }
 .challenge{
   color: #1d1d1d;
@@ -39,16 +40,17 @@ p{
   color: #736bfb;
   font-size: 20px;
   text-align: center;
+  color: black;
+
 }
 `
 
 const ParDiv = styled.div`
-  top: 150%;
-  margin: 40px;
-  display: flex;
-  text-align: left!important;
-  justify-content: left;
-  position: absolute;
+
+    position: absolute;
+    /* top: 150%; */
+    /* left: 50%; */
+    transform: translate(-50%, -50%);
 `
 
 const challenges = [
@@ -94,12 +96,6 @@ const WeeklyChallenge = ({ getStamps, user, stamps, font }) => {
         <ChallengeCheck stamps={stamps} challenge={challenge} challenges={challenges} getStamps={getStamps}/>
         }
       </Container>
-      <ParDiv>
-        <p style={{ fontSize: font + 10 }}>Where can I get some?
-              There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.
-        </p>
-
-      </ParDiv>
     </>
   );
 };

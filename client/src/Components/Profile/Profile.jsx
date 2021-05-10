@@ -26,12 +26,12 @@ const Img = styled.div`
     filter: drop-shadow(0 0 0.5rem rgba(0, 0, 0, 0.6));
   }
 `
-const Profile = ({user, getStamps, stamps}) => {
+const Profile = ({user, getStamps, stamps, getBadges, badges}) => {
   const [avatar, setAvatar] = useState('')
-  console.log('avatar from profile', avatar);
-
+  
   useEffect(() => {
     getStamps();
+    getBadges();
   }, []);
   return (
     <ProfileStyles>

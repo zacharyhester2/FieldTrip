@@ -6,8 +6,10 @@ import AboutFT from './AboutFT.jsx';
 const LandingHomeStyled = styled.div`
   height: 100vh;
   width: 100%;
-  background-image: url('https://images.unsplash.com/photo-1605666807892-8c11d020bede?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1502&q=80');
-  background-repeat: 'no-repeat' !important;
+  background-image: url('https://img.rawpixel.com/s3fs-private/rawpixel_images/website_content/pdmet-julian-03-gloy_0.jpg?w=800&dpr=1&fit=default&crop=default&q=65&vib=3&con=3&usm=15&bg=F4F4F3&ixlib=js-2.2.1&s=91f1263a708e7512549c8d165dc59c73');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  margin-bottom: 40rem;
 `
 
 const LandingHome = ({ font }) => {
