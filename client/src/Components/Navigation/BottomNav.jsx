@@ -37,8 +37,9 @@ const useStyles = makeStyles({
     bottom: '0',
     width: '100%',
     'z-index': '100',
-    backgroundColor: 'rgb(9,11,23)',
-    opacity: '92%',
+    backgroundColor: 'rgba(9,11,23, 0.92)',
+    backdropFilter: 'blur(8px)',
+    boxShadow: '0px 0px 7px 0px #736bfb'
     // backgroundColor: 'rgb(115,107,251, 0.65)',
   },
   vertDiv: {

@@ -6,6 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import CategoryDialog from '../Home/CategoryDialog.jsx';
 import logo from '../../assets/LogoNoBack.png';
+import ResourceTabs from '../Discovery/ResourceTabs.jsx';
 
 
 
@@ -25,6 +26,7 @@ const useStyles = makeStyles((theme) => ({
   },
   headerDefault: {
     background: '#090b17',
+    backdropFilter: 'blur(8px)',
   },
 }));
 

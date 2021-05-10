@@ -42,6 +42,8 @@ const userSchema = mongoose.Schema({
     ref: Badges,
   },
   challenges: Array,
+  // saved: Array,
+  saved: Array,
 });
 
 

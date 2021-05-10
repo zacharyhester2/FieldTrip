@@ -24,6 +24,8 @@ import earth from './themes/earth.jpg';
 import dinos from './themes/dinos.jpg';
 import { makeStyles } from '@material-ui/core/styles';
 
+import TextSize from './Components/Accessibility/TextSize.jsx';
+
 
 // const themeShuffle = array => {
 //     const newThemeArray = array.slice();
@@ -46,8 +48,9 @@ let randomSpaceTheme = randomizeTheme(spaceThemes);
 
 const useStyles = makeStyles((theme) => ({
   spaceTheme: {
-    backgroundImage: `url(${randomSpaceTheme})`,
-    height: '100vh',
+    backgroundImage: `url(${space2})`,
+    width: '100%',
+    height: 'auto',
     backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat',
     paddingBottom: '5rem',
@@ -77,7 +80,10 @@ const App = () => {
     const [discView, setDiscView] = useState('')
     const [theme, setTheme] = useState('headerDefault');
     const [search, setSearch] = useState('');
-    const [alerts, setAlerts] = useState([])
+    const [alerts, setAlerts] = useState([]);
+    const [font, setFont] = useState(16);
+    const [resourceValue, setResourceValue] = useState(1);
+    const [saved, setSaved] = useState([]);
 
     const currClass = classes[`${theme}`];
 
@@ -140,13 +146,12 @@ const App = () => {
     .catch()
   };
 
-
-   const getStamps = () => {
+  const getStamps = () => {
     //  debugger;
     if (user) {
       axios.get(`/user/${user.id}`)
         .then(({ data }) => {
-          console.log('FROM STAMPS', data)
+          // console.log('FROM STAMPS', data)
           setStamps(data);
           setAlerts(data);
         })
@@ -154,6 +159,64 @@ const App = () => {
     }
   };
 
+
+  const getSaved = () => {
+    //  debugger;
+    if (user) {
+      axios.get(`/saved/${user.id}`)
+        .then(({ data }) => {
+          // console.log('FROM SAVED', data)
+          setSaved(data);
+        })
+        .catch();
+    }
+  };
+
+  const addSaved = (resource, resType) => {
+    let pars = {};
+    //if resource is article:
+    if(resType === 'article'){
+      pars= {
+        category: discView,
+        date: Date.now,
+        title: resource.title,
+        author: resource.author,
+        image: resource.urlToImage,
+        url: resource.url,
+        userId: user.id,
+        type: resType
+      }
+    } else if(resType === 'documentary'){
+      pars= {
+        category: discView,
+        date: Date.now,
+        title: resource.snippet.title,
+        // author: null,
+        image: resource.snippet.thumbnails.high.url,
+        url: `https://www.youtube.com/embed/${resource.id.videoId}`,
+        userId: user.id,
+        type: resType
+      }
+    }
+    axios.post('/saved', pars)
+      .then(() => {
+        getSaved()
+        console.log('SAVED', saved)
+      })
+      .catch()
+  };
+
+  //  const getAlerts = () => {
+  //   //  debugger;
+  //   if (user) {
+  //     axios.get(`/user/${user.id}`)
+  //       .then(({ data }) => {
+  //         console.log('FROM Alerts', data)
+  //         setAlerts(data);
+  //       })
+  //       .catch();
+  //   }
+  // };
   const logout = () => {
     axios.get('/logout').then(() => {
       setUser(null);
@@ -167,14 +230,18 @@ const App = () => {
     getStamps();
   }, [])
 
+    const handleResourceChange = (event, newValue) => {
+      setResourceValue(newValue);
+    };
+
     return (
-    <div className={currClass}>
-      <AppBarHeader user={user} logout={logout} discView={discView} setDiscView={setDiscView} theme={theme} setTheme={setTheme} search={search} setSearch={setSearch} />
+    <div className={currClass} style={{ fontSize: font }}>
+      <AppBarHeader user={user} logout={logout} discView={discView} setDiscView={setDiscView} theme={theme} setTheme={setTheme} search={search} setSearch={setSearch}  />
       {!user
       ?(
         <div >
           <Home />
-          <Button variant="contained" style={{ marginLeft: "25px" }}>
+          <Button variant="contained" style={{ marginLeft: '25px', position: 'absolute' }}>
           <a
             className="login-button"
             href="/auth/google"
@@ -184,20 +251,19 @@ const App = () => {
           </Button>
         </div>
       )
-      :(
-
+        : (
         <Router>
 
             <BottomNav />
             <Switch>
               <Route exact path="/">
-                  <Home user={user} logout={logout} getStamps={getStamps} stamps={stamps}/>
+                  <Home user={user} logout={logout} getStamps={getStamps} stamps={stamps} font={font} />
               </Route>
               <Route path="/profile">
                   <Profile user={user} logout={logout} stamps={stamps} getStamps={getStamps}/>
               </Route>
               <Route path="/discovery">
-                  <Discovery addResource={addResource} discView={discView} setDiscView={setDiscView} search={search} setSearch={setSearch}/>
+                  <Discovery addResource={addResource} discView={discView} setDiscView={setDiscView} search={search} setSearch={setSearch} font={font} resourceValue={resourceValue} handleResourceChange={handleResourceChange} saved={saved} addSaved={addSaved} getSaved={getSaved} />
               </Route>
               <Route path="/alerts">
                   <Alerts user={user} alerts={alerts} />
@@ -209,6 +275,7 @@ const App = () => {
 
       </Router>
        )}
+       <TextSize font={font} setFont={setFont}/>
     </div>
     )
 }

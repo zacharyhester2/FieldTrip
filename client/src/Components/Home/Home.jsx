@@ -12,16 +12,17 @@ const HomeStyles = styled.div`
   padding-bottom: 5rem;
 `;
 
-const Home = ({user, logout, getStamps, stamps}) => {
+
+const Home = ({user, logout, getStamps, stamps, font}) => {
 
   return (
       <HomeStyles>
-        <LandingHome/>
+        <LandingHome font={font} />
         <Container className='home-landing-page'>
         {
         user ?
         <div>
-          <WeeklyChallenge getStamps={getStamps} user={user} stamps={stamps}/>
+          <WeeklyChallenge getStamps={getStamps} user={user} stamps={stamps} font={font} />
         </div>
         : null
         }

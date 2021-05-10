@@ -11,6 +11,8 @@ const LandingStyled = styled.div`
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.44);
+    padding: 0.5%;
   }
 `
 
