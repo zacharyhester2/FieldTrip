@@ -13,66 +13,17 @@ import Profile from './Components/Profile/Profile.jsx'
 import Discovery from './Components/Discovery/Discovery.jsx'
 import Alerts from './Components/Alerts/Alerts.jsx'
 import PhotoUpload from './Components/PhotoUpload/PhotoUpload.jsx'
-// import logo from './assets/LogoNoBack.png'
 import AppBarHeader from './Components/Home/AppBarHeader.jsx';
 import { Button } from '@material-ui/core'
 
-import space1 from './themes/space1.jpg';
-import space2 from './themes/space2.jpg';
-import space5 from './themes/space5.jpg';
 import earth from './themes/earth.jpg';
 import dinos from './themes/dinos.jpg';
 import { makeStyles } from '@material-ui/core/styles';
-
 import TextSize from './Components/Accessibility/TextSize.jsx';
 
 
-// const themeShuffle = array => {
-//     const newThemeArray = array.slice();
-//     for (let i = newThemeArray.length - 1; i > 0; i--) {
-//         const random = Math.floor(Math.random() * (i + 1));
-//         [newThemeArray[i], newThemeArray[random]] = [newThemeArray[random], newThemeArray[i]];
-//     }
-//     return newThemeArray;
-// };
-
-const spaceThemes = [space1, space2, space5];
-
-const randomizeTheme = (arr) => {
-  const randomIndex = Math.floor((Math.random() * arr.length));
-  return arr[randomIndex];
-};
-
-let randomSpaceTheme = randomizeTheme(spaceThemes);
-
-
-const useStyles = makeStyles((theme) => ({
-  spaceTheme: {
-    backgroundImage: `url(${space2})`,
-    height: '220vh',
-    backgroundPosition: 'center',
-    backgroundRepeat: 'no-repeat',
-    paddingBottom: '5rem',
-  },
-  earthTheme: {
-    backgroundImage: `url(${earth})`,
-    height: '220vh',
-    backgroundPosition: 'center',
-    backgroundRepeat: 'no-repeat',
-    paddingBottom: '5rem',
-  },
-  historyTheme: {
-    backgroundImage: `url(${dinos})`,
-    height: '220vh',
-    backgroundPosition: 'center',
-    backgroundRepeat: 'no-repeat',
-    paddingBottom: '5rem',
-  },
-}))
-
 
 const App = () => {
-  const classes = useStyles();
     const [user, setUser] = useState();
     const [stamps, setStamps] = useState([])
     const [discView, setDiscView] = useState('')
@@ -83,8 +34,38 @@ const App = () => {
     const [resourceValue, setResourceValue] = useState(1);
     const [saved, setSaved] = useState([]);
     const [badges, setBadges] = useState([]);
+    const [nasaPic, setNasaPic] = useState();
 
-    const currClass = classes[`${theme}`];
+
+const useStyles = makeStyles((theme) => ({
+  spaceTheme: {
+    backgroundImage: `url(${nasaPic})`,
+    height: '220vh',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
+    paddingBottom: '5rem',
+    backgroundSize: 'cover',
+  },
+  earthTheme: {
+    backgroundImage: `url(${earth})`,
+    height: '220vh',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
+    paddingBottom: '5rem',
+    backgroundSize: 'cover',
+  },
+  historyTheme: {
+    backgroundImage: `url(${dinos})`,
+    height: '220vh',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
+    paddingBottom: '5rem',
+    backgroundSize: 'cover',
+  },
+}));
+const classes = useStyles();
+const currClass = classes[`${theme}`];
+
 
   const getUser = () => {
     if (!user) {
@@ -96,6 +77,24 @@ const App = () => {
         .catch();
     }
   };
+
+  const getNasaPic = () => {
+    if (discView === 'Outer Space') {
+      axios.get('/nasaPic')
+      .then(({ data }) => {
+
+        const { explanation, title, url } = data;
+        // console.log('NASA FOTD', explanation, title, url);
+        setNasaPic(url);
+      })
+      .catch();
+    }
+  };
+
+  useEffect(() => {
+  console.log('DISCvIEW', discView, 'THEME', theme)
+    getNasaPic();
+  }, [discView]);
 
 //cloudinary
 // const loadImages = () => {
@@ -170,7 +169,7 @@ const App = () => {
         })
       }
       };
-          
+
   //DATA FOR BADGE CONSTRUCTION/ D3
   const getBadges = () => {
     if (user) {
