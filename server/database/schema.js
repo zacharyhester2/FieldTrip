@@ -35,6 +35,7 @@ const userSchema = mongoose.Schema({
   id: String,
   name: String,
   cloudinaryId: String,
+  avatar: String,
   interests: String,
   stamps: Array,
   badges: {

@@ -3,6 +3,7 @@ import Passport from './Passport.jsx';
 import styled from 'styled-components';
 import DialogSelectAvatar from './DialogSelectAvatar.jsx';
 import defaultAvatar from '../../assets/defaultAvatar.jpg';
+import axios from 'axios';
 
 const ProfileStyles = styled.div`
   padding-top: 3rem;
@@ -27,21 +28,39 @@ const Img = styled.div`
   }
 `
 const Profile = ({user, getStamps, stamps, getBadges, badges}) => {
-  const [avatar, setAvatar] = useState('')
-  
+  const [avatar, setAvatar] = useState(defaultAvatar)
+
+  const getAvatar = () => {
+    axios.get(`/avatar/${user.id}`)
+    .then(({data}) => {
+      setAvatar(data || defaultAvatar);
+    })
+  }
+
+  const saveAvatar = (avatarToSave) => {
+      axios.post(`/avatar/${user.id}`, {avatar: avatarToSave})
+      .then(() => {
+        getAvatar();
+      })
+      .catch();
+
+  }
+
+
   useEffect(() => {
     getStamps();
     getBadges();
+    getAvatar();
   }, []);
   return (
     <ProfileStyles>
       <div className="profileInfo">
         <Img>
-          <img src={!avatar ? defaultAvatar : avatar} alt="Avatar"/>
+          <img src={avatar} alt="Avatar"/>
         </Img>
         <h3>{user.name}</h3>
       </div>
-      <DialogSelectAvatar setAvatar={setAvatar}/>
+      <DialogSelectAvatar setAvatar={setAvatar} saveAvatar={saveAvatar}/>
       <Passport stamps={stamps}/>
     </ProfileStyles>
   );
