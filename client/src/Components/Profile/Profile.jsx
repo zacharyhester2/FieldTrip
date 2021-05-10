@@ -5,12 +5,16 @@ import DialogSelectAvatar from './DialogSelectAvatar.jsx';
 import defaultAvatar from '../../assets/defaultAvatar.jpg';
 
 const ProfileStyles = styled.div`
+  padding-bottom: 3rem;
   .profileInfo{
     margin: 0 auto;
     display: flex;
     flex-flow: column;
     max-width: 300px;
     text-align: center;
+  }
+  .profileInfo h3{
+    padding-top: 1.25rem;
   }
 `;
 const Img = styled.div`
@@ -32,11 +36,10 @@ const Profile = ({user, getStamps, stamps}) => {
   return (
     <ProfileStyles>
       <div className="profileInfo">
-        <h1>Profile</h1>
-        <h3>{user.name}</h3>
         <Img>
           <img src={!avatar ? defaultAvatar : avatar} alt="Avatar"/>
         </Img>
+        <h3>{user.name}</h3>
       </div>
       <DialogSelectAvatar setAvatar={setAvatar}/>
       <Passport stamps={stamps}/>

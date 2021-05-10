@@ -36,7 +36,6 @@ const Container = styled.div`
   color: #736bfb;
   font-size: 20px;
   text-align: center;
-
 }
 `
 
@@ -59,13 +58,14 @@ const challenges = [
   { 6: 'Watch 1 documentary and read 1 article from any category' },
 ];
 
-const WeeklyChallenge = ({ getStamps, user, stamps }) => {
+const WeeklyChallenge = ({ getStamps, user, stamps, font }) => {
   const [daily, setDaily] = useState(() => {
     let date = new Date();
     const day = date.getDay();
     return day;
   });
   const [challenge, setChallenge] = useState(challenges[daily][daily]);
+
 
     useEffect(() => {
       let date = new Date();
@@ -78,12 +78,10 @@ const WeeklyChallenge = ({ getStamps, user, stamps }) => {
       getStamps();
     }, []);
 
-    console.log('CHALLENGE', challenge);
-
   return (
     <>
       <Container>
-        <p className='challenge-header'>Daily Challenge:</p>
+        <p className='challenge-header' style={{ fontSize: font + 14 }}>Daily Challenge:</p>
         <br/>
         <p className='challenge'>
           {challenge}
@@ -94,9 +92,9 @@ const WeeklyChallenge = ({ getStamps, user, stamps }) => {
         }
       </Container>
       <ParDiv>
-        <h3>Where can I get some?
+        <p style={{ fontSize: font + 10 }}>Where can I get some?
               There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.
-        </h3>
+        </p>
 
       </ParDiv>
     </>

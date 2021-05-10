@@ -5,18 +5,20 @@ const GlobalStyles = createGlobalStyle`
   *{
     /* margin: 0; */
     box-sizing: border-box;
-    font-family: 'Raleway', sans-serif;
   }
 
   body{
+    font-family: 'Spartan', sans-serif;
+    /* font-family: 'Comfortaa', cursive; */
     background-color: rgb(9, 11, 23);
     color: whitesmoke;
+    min-height: 325vh;
   }
 
   header{
     background-color: rgb(9, 11, 23);
     padding: 10px 10px;
-    font-size: 60px;
+    /* font-size: 60px; */
     margin: 0;
     overflow: hidden;
     /* box-shadow: 0px 0px 7px 0px rgb(255,255,255); */
@@ -25,6 +27,7 @@ const GlobalStyles = createGlobalStyle`
     /* box-shadow: 0px 30px 22px -15px rgba(148,148,148,0.42); */
     /* box-shadow: 0px 43px 11px -26px rgba(115,107,251,0.44); */
     opacity: 87%;
+    backdrop-filter: blur(8px);
   }
 
   .logo{
@@ -52,53 +55,65 @@ const GlobalStyles = createGlobalStyle`
   }
   .youtube{
     padding-bottom: 250px;
-    max-width: 65%;
-    height: auto;
+  }
+  /* .news-cards{
     display: flex;
-    justify-content: center;
+    position: center;
     align-items: center;
-    margin: auto;
-    /* left: 50%; */
-  }
-  .top-container{
-
-  }
-  .mid-container{
-
-  }
-  .bottom-container{
-
-  }
-  .news-cards{
-    height: 100%;
-    width: 100%;
+  } */
+  /* .news-cards{
     display: flex;
-    justify-content: center;
-    text-align: center;
-    background-color: ghostwhite;
-  }
-  .add-YT-btn{
-    color: #736bfb;
-    /* background-color: #736bfb; */
-  }
-
-  .home-landing-page{
-    height: 100vh;
-    width: 100%;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+    align-items: stretch;
+    align-content: center;
+  } */
+  /* .news-container{
+    display: grid;
+    flex-flow: row wrap !important;
+    justify-content: space-evenly;
+    align-items: center;
+    align-content: space-between;
+  } */
+  .news-container{
+    /* display: flex-inline; */
+    /* position: center;
     display: flex;
-    justify-content: center;
-    text-align: center;
-    background-color: rgb(9, 11, 23);
-  }
-
-  .news-cards{
-    height: 100%;
-    width: 100%;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+    left: 52%; */
     display: flex;
-    justify-content: center;
-    text-align: center;
-    background-color: rgb(9, 11, 23);
+    position: center;
+    align-items: center;
+    padding-top: 3rem;
+  }
+  .card-top img{
+    max-width: 200px;
   }
 
+  #basicTabs{
+      background: rgb(9, 11, 23);
+      color: #736bfb;
+
+      margin-top: 0;
+      opacity: 100%;
+      box-shadow: 0px 0px 7px 0px #736bfb;
+
+    }
+    #tab{
+      /* color: #736bfb; */
+      color: whitesmoke;
+      backdrop-filter: blur(8px);
+    }
+    /* #news-container{
+      width: 100%;
+      height: auto;
+    } */
+    #news-card-paper{
+      background-color: rgb(9, 11, 23);
+      opacity: 87%;
+    }
 `;
 export default GlobalStyles;
