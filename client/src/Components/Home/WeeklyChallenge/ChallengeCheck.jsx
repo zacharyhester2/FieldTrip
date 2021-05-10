@@ -2,12 +2,12 @@ import React, {useState, useEffect} from 'react'
 import axios from 'axios';
 
 
-const ChallengeCheck = ({stamps, challenge, challenges, getStamps}) => {
+const ChallengeCheck = ({stamps, challenge, challenges, getStamps, font}) => {
   const [challengeComplete, setChallengeComplete] = useState(false);
   //reset per day
 
   const addTrophyStamp = () => {
-    console.log(challenge, 'challn from challnege check')
+    console.log(challenge, 'challenge from challenge check')
     let today = new Date().toISOString().slice(0, 10)
     axios.post('/challenge', {
       title: challenge,
@@ -15,7 +15,7 @@ const ChallengeCheck = ({stamps, challenge, challenges, getStamps}) => {
       date: today,
     })
       .then(() => {
-        // console.log('added trophy! in Challenge Check')
+        console.log('added trophy! in Challenge Check')
       })
       .catch();
     }
@@ -45,8 +45,8 @@ const ChallengeCheck = ({stamps, challenge, challenges, getStamps}) => {
 
   const checkChallenge = (challenge) => {
     if(challenge === challenges[0][0]){
-      //'Collect a stamp from each category.'
-      if(stampCount['Earth'] >= 1 &&
+      //Collect a stamp from each category
+      if(stampCount['Planet Earth'] >= 1 &&
       stampCount['Outer Space'] >= 1 &&
       stampCount['Natural History'] >= 1
       ){
@@ -54,38 +54,37 @@ const ChallengeCheck = ({stamps, challenge, challenges, getStamps}) => {
       }
     }
     if(challenge === challenges[1][1]){
-      //'Collect a stamp from each category.'
-      if(stampCount['Earth'] >= 3){
+      //Earn at least 3 \'Earth\' stamps
+      if(stampCount['Planet Earth'] >= 3){
         setChallengeComplete(true);
       }
     }
     if(challenge === challenges[2][2]){
-      //'Collect a stamp from each category.'
+      //Read at least 5 news articles
       if(stampCount['article'] >= 5){
         setChallengeComplete(true);
       }
     }
     if(challenge === challenges[3][3]){
-      debugger;
-      // //'Collect a stamp from each category.'
+      //Earn at least 3 \'Space\' stamps
       if(stampCount['Outer Space'] >= 3){
         setChallengeComplete(true);
       }
     }
     if(challenge === challenges[4][4]){
-      //'Collect a stamp from each category.'
+      //Watch at least 1 documentary in the category of your choice
       if(stampCount['documentary'] >= 1){
         setChallengeComplete(true);
       }
     }
     if(challenge === challenges[5][5]){
-      //'Collect a stamp from each category.'
+      //Earn at least 3 \'Natural History\' stamps
       if(stampCount['Natural History'] >= 3){
         setChallengeComplete(true);
       }
     }
     if(challenge === challenges[6][6]){
-      //'Collect a stamp from each category.'
+      //Watch 1 documentary and read 1 article from any category
       if(stampCount['documentary'] >= 1 && stampCount['article'] >= 1){
         setChallengeComplete(true);
       }
@@ -109,7 +108,7 @@ useEffect(() => {
     <div>
       {
         challengeComplete ?
-          <p className='complete'>CONGRATS! You've completed the daily challenge!</p> :
+          <p className='complete' style={{ fontSize: font, color: "#736bfb"}}>CONGRATS! You've completed the daily challenge!</p> :
 
           <p style={{color:"#1d1d1d"}}>Keep exploring to meet the daily challenge!</p>
       }

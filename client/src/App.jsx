@@ -128,7 +128,6 @@ const currClass = classes[`${theme}`];
         category: discView,
         date: Date.now,
         title: resource.snippet.title,
-        // author: null,
         image: resource.snippet.thumbnails.high.url,
         url: `https://www.youtube.com/embed/${resource.id.videoId}`,
         userId: user.id,
