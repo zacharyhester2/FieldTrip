@@ -16,8 +16,8 @@ const Container = styled.div`
   width: 50%;
   justify-content: center;
   position: absolute;
-  /* top: 130%;
-  left: 47%; */
+  top: 130%;
+  left: 47%;
   transform: translate(-50%, -50%);
   opacity: 85%;
 p{
