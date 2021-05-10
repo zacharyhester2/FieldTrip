@@ -36,7 +36,7 @@ const Saved = ({ saved, font, getSaved, addResource }) => {
   useEffect(() => {
     getSaved();
   }, []);
-  console.log('SAVED', saved, 'FILTERED_SAVE', filteredSave, 'NEW_SAVED', newSaved);
+  // console.log('SAVED', saved, 'FILTERED_SAVE', filteredSave, 'NEW_SAVED', newSaved);
   return (
     <div style={{ width: '50%', position: 'absolute', left: '25%', paddingBottom: '15rem' }}>
       {newSaved.map((article, i) => (
