@@ -5,13 +5,24 @@ import ImageLibrary from './ImageLibrary.jsx';
 import axios from 'axios';
 import styled from'styled-components';
 
-
+const StyledTitle =  styled.h1`
+  text-align: center;
+  width: 100%;
+  margin-bottom: 1rem;
+  margin-top: 0.25rem;
+`
 const StyledForm = styled.form`
-  background-color: purple;
+  background-color: #736BFB;
+  justify-content: center;
+  border-radius: 10px;
   button{
     color: whitesmoke;
-
+    margin-left: 2rem;
   }
+  input{
+    justify-content: center;
+  }
+
 `
 
 const PhotoUpload = () => {
@@ -71,7 +82,7 @@ const loadImages = () => {
 
   return(
     <div>
-      <h1>Upload Your Discoveries</h1>
+      <StyledTitle>Upload Your Discoveries</StyledTitle>
       <StyledForm onSubmit={handleSubmitFile}>
         <input
           type="file" name="image" className="form-input" onChange={handleFileInputChange} value={fileInputState}
@@ -79,7 +90,7 @@ const loadImages = () => {
         <button className="btn" type="submit" onClick={()=> loadImages()}>Submit</button>
       </StyledForm>
       {previewSource && (
-        <img src={previewSource} alt="chosen" style={{height: '300px'}}/>
+        <img src={previewSource} alt="chosen" style={{height: '150px'}}/>
       )}
       <ImageLibrary imageIds={imageIds} loadImages={loadImages}/>
     </div>

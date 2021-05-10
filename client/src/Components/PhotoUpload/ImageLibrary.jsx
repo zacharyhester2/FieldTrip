@@ -3,37 +3,51 @@ import styled from 'styled-components';
 import {Cloudinary} from 'cloudinary-core';
 const cloudinaryCore = new Cloudinary({cloud_name: 'dntf1x5a6'});
 
-const ImageContainer = styled.div`
+const ImageLibraryContainer = styled.div`
+  width: 100%;
   display: flex;
   flex-flow: row wrap;
+
+.ImageContainer {
+  height: fit-content;
+  margin: 1rem 1rem;
+  justify-content: center;
   align-items: flex-start;
-  /* padding: 1rem; */
-  margin: 1rem;
+
+}
   img{
+    /* display: block; */
     border-radius: 10px;
-    width: 300px;
-    height: grid-auto-flow;
+    width: auto;
+    height: 300px;
+  }
+  h3{
+    text-align: center;
+    width: 100%;
+    margin-bottom: 1rem;
+    margin-top: 0.25rem;
   }
 `
 
-const ImageLibrary = ({imageIds}) => {
+
+const ImageLibrary = ({imageIds, loadImages}) => {
 // console.log('LAST HURRAY imageIds', imageIds)
 
-// useEffect(() => {
-//   loadImages()
-// }, []);
+useEffect(() => {
+  loadImages()
+}, []);
 
   return(
-    <div>
+    <ImageLibraryContainer>
       <h3>Images Library</h3>
         {imageIds ?
         imageIds.map((imageId, i) => (
-          <ImageContainer  key={i}>
+          <div className="ImageContainer"  key={i}>
             <img src={cloudinaryCore.url(`http://res.cloudinary.com/dntf1x5a6/image/upload/${imageId}.jpg`)}/>
-          </ImageContainer >)
+          </div >)
          )
       : <p>No images to view</p>}
-    </div>
+    </ImageLibraryContainer>
   )
 }
 

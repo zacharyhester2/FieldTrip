@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
 import styled from 'styled-components';
 import { Container, Row, Col } from 'react-bootstrap/';
+import Trophy from '../../assets/trophy.jpg';
 
 const AlertContainer = styled(Container)`
     background: rgba(25, 25, 25, 0.6) !important;
@@ -26,7 +27,7 @@ const AlertItem = ({alert}) => {
     <div>
       <AlertContainer>
         <div className="img-container">
-          <img src={alert.image}/>
+          <img src={!alert.image ? Trophy : alert.image}/>
         </div>
         <p>You earned a stamp in your passport!</p>
       {/* <p>{`You ${alert.action} a ${alert.resource}!`}</p> */}
