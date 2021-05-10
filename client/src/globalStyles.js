@@ -12,7 +12,7 @@ const GlobalStyles = createGlobalStyle`
     /* font-family: 'Comfortaa', cursive; */
     background-color: rgb(9, 11, 23);
     color: whitesmoke;
-    min-height: 325vh;
+    min-height: 110vh;
   }
 
   header{

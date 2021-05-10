@@ -49,28 +49,26 @@ let randomSpaceTheme = randomizeTheme(spaceThemes);
 const useStyles = makeStyles((theme) => ({
   spaceTheme: {
     backgroundImage: `url(${space2})`,
-    width: '100%',
-    height: 'auto',
+    height: '220vh',
     backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat',
     paddingBottom: '5rem',
   },
   earthTheme: {
     backgroundImage: `url(${earth})`,
-    height: '100vh',
+    height: '220vh',
     backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat',
     paddingBottom: '5rem',
   },
   historyTheme: {
     backgroundImage: `url(${dinos})`,
-    height: '100vh',
+    height: '220vh',
     backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat',
     paddingBottom: '5rem',
   },
 }))
-
 
 
 const App = () => {

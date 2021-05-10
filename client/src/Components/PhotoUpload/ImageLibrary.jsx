@@ -25,7 +25,7 @@ const ImageLibraryContainer = styled.div`
     text-align: center;
     width: 100%;
     margin-bottom: 1rem;
-    margin-top: 0.25rem;
+    margin-top: 1rem;
   }
 `
 
