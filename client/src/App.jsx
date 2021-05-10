@@ -129,7 +129,6 @@ const App = () => {
         category: discView,
         date: Date.now,
         title: resource.snippet.title,
-        // author: null,
         image: resource.snippet.thumbnails.high.url,
         url: `https://www.youtube.com/embed/${resource.id.videoId}`,
         userId: user.id,
@@ -170,7 +169,7 @@ const App = () => {
         })
       }
       };
-          
+
   //DATA FOR BADGE CONSTRUCTION/ D3
   const getBadges = () => {
     if (user) {
