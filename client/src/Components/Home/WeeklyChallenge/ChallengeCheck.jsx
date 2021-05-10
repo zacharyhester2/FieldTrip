@@ -2,18 +2,9 @@ import React, {useState, useEffect} from 'react'
 import axios from 'axios';
 
 
-const ChallengeCheck = ({stamps, challenge, challenges, getStamps, font, challengeCheckCallback}) => {
+const ChallengeCheck = ({ stamps, challenge, challenges, getStamps, font }) => {
   const [challengeComplete, setChallengeComplete] = useState(false);
   //reset per day
-
-  const sendToWeeklyChallenge = () => {
-    challengeCheckCallback(challengeComplete);
-  };
-
-  useEffect(() => {
-    sendToWeeklyChallenge();
-  }, [challengeComplete]);
-
 
   const addTrophyStamp = () => {
     console.log(challenge, 'challenge from challenge check')
