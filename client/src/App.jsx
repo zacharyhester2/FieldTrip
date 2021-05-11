@@ -15,11 +15,18 @@ import Alerts from './Components/Alerts/Alerts.jsx'
 import PhotoUpload from './Components/PhotoUpload/PhotoUpload.jsx'
 import AppBarHeader from './Components/Home/AppBarHeader.jsx';
 import { Button } from '@material-ui/core'
-
-import earth from './themes/earth.jpg';
-import dinos from './themes/dinos.jpg';
 import { makeStyles } from '@material-ui/core/styles';
 import TextSize from './Components/Accessibility/TextSize.jsx';
+
+// space theme
+import space2 from './themes/space/space2.jpg';
+
+// earth theme
+import earth from './themes/earth/earth.jpg';
+import forest from './themes/earth/forest.jpg';
+
+// history theme
+import dinos from './themes/history/dinos.jpg';
 
 
 
@@ -36,35 +43,63 @@ const App = () => {
     const [badges, setBadges] = useState([]);
     const [nasaPic, setNasaPic] = useState();
 
+    // const [themeIndex, setThemeIndex] = useState(0);
+    // const spaceThemes = [ space1, space2, space5 ];
 
-const useStyles = makeStyles((theme) => ({
-  spaceTheme: {
-    backgroundImage: `url(${nasaPic})`,
-    height: '220vh',
-    backgroundPosition: 'center',
-    backgroundRepeat: 'no-repeat',
-    paddingBottom: '5rem',
-    backgroundSize: 'cover',
-  },
-  earthTheme: {
-    backgroundImage: `url(${earth})`,
-    height: '220vh',
-    backgroundPosition: 'center',
-    backgroundRepeat: 'no-repeat',
-    paddingBottom: '5rem',
-    backgroundSize: 'cover',
-  },
-  historyTheme: {
-    backgroundImage: `url(${dinos})`,
-    height: '220vh',
-    backgroundPosition: 'center',
-    backgroundRepeat: 'no-repeat',
-    paddingBottom: '5rem',
-    backgroundSize: 'cover',
-  },
-}));
-const classes = useStyles();
-const currClass = classes[`${theme}`];
+    // const randomizeTheme = (themeArray) => {
+    //   return themeArray[Math.floor(Math.random() * themeArray.length)];
+    // };
+
+    // const cycleTheme = (themeArray) => {
+    //   let length = themeArray.length;
+    //     setThemeIndex((prev) => {
+    //       if (prev === length) {
+    //         return 0;
+    //       } else {
+    //         return prev + 1;
+    //       }
+    //     });
+    //     return themeArray[themeIndex];
+    // };
+
+    // useEffect(() => {
+    //   if (discView === 'Outer Space') {
+    //       setInterval(() => {
+    //         setTheme(cycleTheme(spaceThemes));
+    //         console.log('SET INTERVAL', themeIndex);
+    //       }, 7000)
+    //   }
+    // }, [theme]);
+
+
+    const useStyles = makeStyles((theme) => ({
+      spaceTheme: {
+        backgroundImage: `url(${nasaPic})`,
+        height: '220vh',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        paddingBottom: '5rem',
+        backgroundSize: 'cover',
+      },
+      earthTheme: {
+        backgroundImage: `url(${earth})`,
+        height: '220vh',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        paddingBottom: '5rem',
+        backgroundSize: 'cover',
+      },
+      historyTheme: {
+        backgroundImage: `url(${dinos})`,
+        height: '220vh',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        paddingBottom: '5rem',
+        backgroundSize: 'cover',
+      },
+    }));
+    const classes = useStyles();
+    const currClass = classes[`${theme}`];
 
 
   const getUser = () => {
@@ -92,7 +127,6 @@ const currClass = classes[`${theme}`];
   };
 
   useEffect(() => {
-  console.log('DISCvIEW', discView, 'THEME', theme)
     getNasaPic();
   }, [discView]);
 
