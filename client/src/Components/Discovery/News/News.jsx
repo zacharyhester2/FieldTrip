@@ -62,6 +62,13 @@ const News = ({ addResource, discView, search, font, saved, addSaved }) => {
         }).catch()
     }
 
+    // const getGeneral = () => {
+    //     axios.get(`/ticker`)
+    //     .then(({data}) => {
+    //         setNews(data);
+    //     }).catch()
+    // }
+
     useEffect(() => {
         getNews(query);
     }, [discView]);
