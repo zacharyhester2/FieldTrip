@@ -116,5 +116,9 @@ const GlobalStyles = createGlobalStyle`
       background-color: rgb(9, 11, 23);
       opacity: 87%;
     }
+    .container, .container-lg, .container-md, .container-sm, .container-xl{
+      max-width: 80%;
+      padding-bottom: 6.5rem;
+    }
 `;
 export default GlobalStyles;
