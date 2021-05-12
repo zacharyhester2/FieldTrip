@@ -38,7 +38,7 @@ const ThemeStepper = ({ setStepperCount }) => {
 
   useEffect(() => {
     setStepperCount(activeStep);
-  }, [activeStep]);
+  }, [setStepperCount, activeStep]);
 
   return (
     <div className={classes.outer}>
