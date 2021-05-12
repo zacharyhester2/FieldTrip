@@ -81,7 +81,7 @@ const News = ({ addResource, discView, search, font, saved, addSaved }) => {
         } else {
             return (
         <div className="news-container">
-            <Row md={4} style={{ position: 'center' }}>
+            <Row md={4} style={{ justifyContent: 'center', position: 'center' }}>
 
                 <StyledCard
                         className="mb-4 mt-4 mr-4 ml-4"
