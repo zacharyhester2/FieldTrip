@@ -24,10 +24,16 @@ import space2 from './themes/space/space2.jpg';
 // earth theme
 import earth from './themes/earth/earth.jpg';
 import forest from './themes/earth/forest.jpg';
+import treetopsSky from './themes/earth/treetopsSky.jpg'; // ?? //
+import treetopsGround from './themes/earth/treetopsGround.jpg'; // ** //
+import leafBorder from './themes/earth/leafBorder.jpg'; // *NEEDS ADJUSTMENTS* //
+import palmTreetops from './themes/earth/palmTreetops.jpg'; // *!!!* //
 
 // history theme
 import dinos from './themes/history/dinos.jpg';
-
+import dinoBones from './themes/history/dinoBones.jpg'; // ?? //
+import fossil from './themes/history/fossil.jpg'; // ?? //
+import dinoTri from './themes/history/triSaraTops.jpg'; // *PROBABLY TOO AGGRESSIVE THOUGH LOL* //
 
 
 const App = () => {
@@ -74,6 +80,7 @@ const App = () => {
 
     const useStyles = makeStyles((theme) => ({
       spaceTheme: {
+        // backgroundImage: `url(${space2})`,
         backgroundImage: `url(${nasaPic})`,
         height: '220vh',
         backgroundPosition: 'center',
@@ -82,7 +89,12 @@ const App = () => {
         backgroundSize: 'cover',
       },
       earthTheme: {
-        backgroundImage: `url(${earth})`,
+        // backgroundImage: `url(${earth})`,
+        // backgroundImage: `url(${forest})`,
+        // backgroundImage: `url(${treetopsSky})`,
+        // backgroundImage: `url(${treetopsGround})`,
+        // backgroundImage: `url(${leafBorder})`,
+        backgroundImage: `url(${palmTreetops})`,
         height: '220vh',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
@@ -90,7 +102,10 @@ const App = () => {
         backgroundSize: 'cover',
       },
       historyTheme: {
-        backgroundImage: `url(${dinos})`,
+        // backgroundImage: `url(${dinos})`,
+        // backgroundImage: `url(${dinoBones})`,
+        // backgroundImage: `url(${fossil})`,
+        backgroundImage: `url(${dinoTri})`,
         height: '220vh',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
