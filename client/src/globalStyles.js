@@ -116,5 +116,24 @@ const GlobalStyles = createGlobalStyle`
       background-color: rgb(9, 11, 23);
       opacity: 87%;
     }
+    .MuiMobileStepper-dot{
+      width: 8px;
+      height: 8px;
+      margin: 0 2px;
+      border-radius: 50%;
+      background-color: #bfbfbf;
+    }
+    .MuiMobileStepper-dotActive{
+      background-color: #736bfb;
+    }
+    .MuiButton-root.Mui-disabled{
+      color: rgb(109 109 109);
+    }
+    #arrows{
+      font-size: 3rem;
+    }
+    .container, .container-lg, .container-md, .container-sm, .container-xl{
+      max-width: 80%;
+    }
 `;
 export default GlobalStyles;

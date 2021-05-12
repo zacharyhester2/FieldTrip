@@ -20,6 +20,11 @@ import TextSize from './Components/Accessibility/TextSize.jsx';
 
 // space theme
 import space2 from './themes/space/space2.jpg';
+import fullMoon from './themes/space/fullMoon.jpg';
+import galaxyTilted from './themes/space/galaxyTilted.jpg';
+import moonWithGradient from './themes/space/moonWithGradient.jpg';
+import pinkStars from './themes/space/pinkStars.jpg';
+import spaceBlue from './themes/space/spaceBlue.jpg';
 
 // earth theme
 import earth from './themes/earth/earth.jpg';
@@ -49,39 +54,17 @@ const App = () => {
     const [badges, setBadges] = useState([]);
     const [nasaPic, setNasaPic] = useState();
 
-    // const [themeIndex, setThemeIndex] = useState(0);
-    // const spaceThemes = [ space1, space2, space5 ];
 
-    // const randomizeTheme = (themeArray) => {
-    //   return themeArray[Math.floor(Math.random() * themeArray.length)];
-    // };
+    const [stepperCount, setStepperCount] = useState(0);
 
-    // const cycleTheme = (themeArray) => {
-    //   let length = themeArray.length;
-    //     setThemeIndex((prev) => {
-    //       if (prev === length) {
-    //         return 0;
-    //       } else {
-    //         return prev + 1;
-    //       }
-    //     });
-    //     return themeArray[themeIndex];
-    // };
-
-    // useEffect(() => {
-    //   if (discView === 'Outer Space') {
-    //       setInterval(() => {
-    //         setTheme(cycleTheme(spaceThemes));
-    //         console.log('SET INTERVAL', themeIndex);
-    //       }, 7000)
-    //   }
-    // }, [theme]);
-
+    const earthThemes = [earth, forest, treetopsSky, treetopsGround, palmTreetops];
+    const dinoThemes = [dinos, dinoBones, fossil, dinoTri];
+    const spaceThemes = [space2, galaxyTilted, moonWithGradient, pinkStars, spaceBlue];
 
     const useStyles = makeStyles((theme) => ({
       spaceTheme: {
         // backgroundImage: `url(${space2})`,
-        backgroundImage: `url(${nasaPic})`,
+        backgroundImage: `url(${spaceThemes[stepperCount]})`,
         height: '220vh',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
@@ -89,12 +72,7 @@ const App = () => {
         backgroundSize: 'cover',
       },
       earthTheme: {
-        // backgroundImage: `url(${earth})`,
-        // backgroundImage: `url(${forest})`,
-        // backgroundImage: `url(${treetopsSky})`,
-        // backgroundImage: `url(${treetopsGround})`,
-        // backgroundImage: `url(${leafBorder})`,
-        backgroundImage: `url(${palmTreetops})`,
+        backgroundImage: `url(${earthThemes[stepperCount]})`,
         height: '220vh',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
@@ -105,7 +83,7 @@ const App = () => {
         // backgroundImage: `url(${dinos})`,
         // backgroundImage: `url(${dinoBones})`,
         // backgroundImage: `url(${fossil})`,
-        backgroundImage: `url(${dinoTri})`,
+        backgroundImage: `url(${dinoThemes[stepperCount]})`,
         height: '220vh',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
@@ -294,7 +272,7 @@ const App = () => {
 
     return (
     <div className={currClass} style={{ fontSize: font }}>
-      <AppBarHeader user={user} logout={logout} discView={discView} setDiscView={setDiscView} theme={theme} setTheme={setTheme} search={search} setSearch={setSearch}  />
+      <AppBarHeader user={user} logout={logout} discView={discView} setDiscView={setDiscView} theme={theme} setTheme={setTheme} search={search} setSearch={setSearch} setStepperCount={setStepperCount} />
       {!user
       ?(
         <div >
