@@ -15,12 +15,32 @@ import Alerts from './Components/Alerts/Alerts.jsx'
 import PhotoUpload from './Components/PhotoUpload/PhotoUpload.jsx'
 import AppBarHeader from './Components/Home/AppBarHeader.jsx';
 import { Button } from '@material-ui/core'
-
-import earth from './themes/earth.jpg';
-import dinos from './themes/dinos.jpg';
 import { makeStyles } from '@material-ui/core/styles';
 import TextSize from './Components/Accessibility/TextSize.jsx';
 
+// space theme
+import moonGradient from './themes/space/moonGradient.jpg';
+import pinkStars from './themes/space/pinkStars.jpg';
+import spaceBlue from './themes/space/spaceBlue.jpg';
+import rainbowStars from './themes/space/rainbowStars.jpg';
+import rainbowStars2 from './themes/space/rainbowStars2.jpg';
+import launch from './themes/space/launch.jpg';
+
+// earth theme
+import earth from './themes/earth/earth.jpg';
+import forest from './themes/earth/forest.jpg';
+import treetopsAbove from './themes/earth/treetopsAbove.jpg';
+import treetopsAboveEDIT from './themes/earth/treetopsAboveEDIT.jpg';
+import treetopsBelow from './themes/earth/treetopsBelow.jpg';
+import leafBorder from './themes/earth/leafBorder.jpg';
+import veryGreen from './themes/earth/veryGreen.jpg';
+import veryGreenEDIT from './themes/earth/veryGreenEDIT.jpg';
+
+
+// history theme
+import dinos from './themes/history/dinos.jpg';
+import dinoBones from './themes/history/dinoBones.jpg';
+import dinoTri from './themes/history/dinoTri.jpg';
 
 
 const App = () => {
@@ -37,34 +57,53 @@ const App = () => {
     const [nasaPic, setNasaPic] = useState();
 
 
-const useStyles = makeStyles((theme) => ({
-  spaceTheme: {
-    backgroundImage: `url(${nasaPic})`,
-    height: '220vh',
-    backgroundPosition: 'center',
-    backgroundRepeat: 'no-repeat',
-    paddingBottom: '5rem',
-    backgroundSize: 'cover',
-  },
-  earthTheme: {
-    backgroundImage: `url(${earth})`,
-    height: '220vh',
-    backgroundPosition: 'center',
-    backgroundRepeat: 'no-repeat',
-    paddingBottom: '5rem',
-    backgroundSize: 'cover',
-  },
-  historyTheme: {
-    backgroundImage: `url(${dinos})`,
-    height: '220vh',
-    backgroundPosition: 'center',
-    backgroundRepeat: 'no-repeat',
-    paddingBottom: '5rem',
-    backgroundSize: 'cover',
-  },
-}));
-const classes = useStyles();
-const currClass = classes[`${theme}`];
+    const [stepperCount, setStepperCount] = useState(0);
+
+    // const earthThemes = [forest, treetopsAbove, treetopsAboveEDIT, treetopsBelowEDIT];
+    const earthThemes = [leafBorder, veryGreen, veryGreenEDIT];
+    const historyThemes = [dinos, dinoBones, dinoTri];
+    const spaceThemes = [rainbowStars, launch, spaceBlue, rainbowStars2, moonGradient, pinkStars];
+
+    const themeLength = () => {
+      if (theme === 'spaceTheme') {
+        return spaceThemes.length;
+      } else if (theme === 'earthTheme') {
+        return earthThemes.length;
+      } else if (theme === 'historyTheme') {
+        return historyThemes.length;
+      } else {
+        return 0;
+      }
+    }
+
+    const useStyles = makeStyles((theme) => ({
+      spaceTheme: {
+        backgroundImage: `url(${spaceThemes[stepperCount]})`,
+        height: '220vh',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        paddingBottom: '5rem',
+        backgroundSize: 'cover',
+      },
+      earthTheme: {
+        backgroundImage: `url(${earthThemes[stepperCount]})`,
+        height: '220vh',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        paddingBottom: '5rem',
+        backgroundSize: 'cover',
+      },
+      historyTheme: {
+        backgroundImage: `url(${historyThemes[stepperCount]})`,
+        height: '220vh',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        paddingBottom: '5rem',
+        backgroundSize: 'cover',
+      },
+    }));
+    const classes = useStyles();
+    const currClass = classes[`${theme}`];
 
 
   const getUser = () => {
@@ -92,7 +131,6 @@ const currClass = classes[`${theme}`];
   };
 
   useEffect(() => {
-  console.log('DISCvIEW', discView, 'THEME', theme)
     getNasaPic();
   }, [discView]);
 
@@ -245,12 +283,12 @@ const currClass = classes[`${theme}`];
 
     return (
     <div className={currClass} style={{ fontSize: font }}>
-      <AppBarHeader user={user} logout={logout} discView={discView} setDiscView={setDiscView} theme={theme} setTheme={setTheme} search={search} setSearch={setSearch}  />
+      <AppBarHeader user={user} logout={logout} discView={discView} setDiscView={setDiscView} theme={theme} setTheme={setTheme} search={search} setSearch={setSearch} setStepperCount={setStepperCount} themeLength={themeLength} />
       {!user
       ?(
         <div >
           <Home />
-          <Button variant="contained" style={{ marginLeft: '25px', position: 'absolute' }}>
+          <Button variant="contained" style={{ top: '4%', right: '1%', position: 'absolute' }}>
           <a
             className="login-button"
             href="/auth/google"

@@ -7,6 +7,7 @@ import Button from '@material-ui/core/Button';
 import CategoryDialog from '../Home/CategoryDialog.jsx';
 import logo from '../../assets/LogoNoBack.png';
 import ResourceTabs from '../Discovery/ResourceTabs.jsx';
+import ThemeStepper from './ThemeStepper.jsx';
 
 
 
@@ -30,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const AppBarHeader = ({ user, logout, discView, setDiscView, theme, setTheme, search, setSearch }) => {
+const AppBarHeader = ({ user, logout, discView, setDiscView, theme, setTheme, search, setSearch, setStepperCount, themeLength }) => {
   const classes = useStyles();
 
 
@@ -45,6 +46,7 @@ const AppBarHeader = ({ user, logout, discView, setDiscView, theme, setTheme, se
             </a>
             <Typography variant="h6" className={classes.title}>
             </Typography>
+            <ThemeStepper setStepperCount={setStepperCount} themeLength={themeLength} theme={theme} />
             <>
               <CategoryDialog theme={theme} setTheme={setTheme} discView={discView} setDiscView={setDiscView} theme={theme} setTheme={setTheme} search={search} setSearch={setSearch} />
             </>
