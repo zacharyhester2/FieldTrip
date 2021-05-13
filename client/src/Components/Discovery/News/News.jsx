@@ -99,13 +99,8 @@ const News = ({ addResource, discView, search, font, saved, addSaved }) => {
             getNews(query);
         } else {
             return (
-<<<<<<< HEAD
-        <div className="news-container">
-            <Row md={4} style={{ justifyContent: 'center', position: 'center' }}>
-=======
-        // <div className="news-container">
-            <NewsContainer>
->>>>>>> e314288 (deployed)
+            <div className="news-container">
+                <Row md={4} style={{ justifyContent: 'center', position: 'center' }}>
 
                 <StyledCard
                         
@@ -316,8 +311,8 @@ const News = ({ addResource, discView, search, font, saved, addSaved }) => {
                             </IconButton>
                         </Card.Body>
                     </StyledCard>
-            </NewsContainer>
-        // </div>
+            </Row>
+         </div>
      );
         }
     }
