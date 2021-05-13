@@ -10,6 +10,7 @@ const useStyles = makeStyles({
     width: '100%',
     position: 'absolute',
     left: '41.25%',
+    top: '0',
   },
   root: {
     maxWidth: '17%',
@@ -18,13 +19,13 @@ const useStyles = makeStyles({
     // marginRight: '34%',
   },
   arrows: {
-    color: 'whitesmoke',
+    color: '#736bfb',
   },
 });
 
-const ThemeStepper = ({ setStepperCount }) => {
+const ThemeStepper = ({ setStepperCount, themeLength, theme }) => {
   const classes = useStyles();
-  const theme = useTheme();
+  const usetheme = useTheme();
   const [activeStep, setActiveStep] = useState(0);
 
   const handleNext = () => {
@@ -37,28 +38,36 @@ const ThemeStepper = ({ setStepperCount }) => {
   };
 
   useEffect(() => {
+      setActiveStep(0);
+  }, [theme]);
+
+  useEffect(() => {
     setStepperCount(activeStep);
   }, [setStepperCount, activeStep]);
 
   return (
     <div className={classes.outer}>
-    <MobileStepper
-      variant="dots"
-      steps={5}
-      position="static"
-      activeStep={activeStep}
-      className={classes.root}
-      nextButton={
-        <Button size="medium" onClick={handleNext} disabled={activeStep === 4} className={classes.arrows}>
-          {theme.direction === 'rtl' ? <ArrowLeftSharpIcon id='arrows'/> : <ArrowRightSharpIcon id='arrows'/>}
-        </Button>
+      {
+        theme === 'headerDefault' ?
+          null :
+        (<MobileStepper
+          variant="dots"
+          steps={themeLength()}
+          position="static"
+          activeStep={activeStep}
+          className={classes.root}
+          nextButton={
+            <Button size="medium" onClick={handleNext} disabled={activeStep === 4} className={classes.arrows}>
+              {usetheme.direction === 'rtl' ? <ArrowLeftSharpIcon id='arrows'/> : <ArrowRightSharpIcon id='arrows'/>}
+            </Button>
+          }
+          backButton={
+            <Button size="large" onClick={handleBack} disabled={activeStep === 0} className={classes.arrows}>
+              {usetheme.direction === 'rtl' ? <ArrowRightSharpIcon id='arrows'/> : <ArrowLeftSharpIcon id='arrows'/>}
+            </Button>
+          }
+        />)
       }
-      backButton={
-        <Button size="large" onClick={handleBack} disabled={activeStep === 0} className={classes.arrows}>
-          {theme.direction === 'rtl' ? <ArrowRightSharpIcon id='arrows'/> : <ArrowLeftSharpIcon id='arrows'/>}
-        </Button>
-      }
-    />
     </div>
   );
 }

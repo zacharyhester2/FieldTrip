@@ -19,26 +19,28 @@ import { makeStyles } from '@material-ui/core/styles';
 import TextSize from './Components/Accessibility/TextSize.jsx';
 
 // space theme
-import space2 from './themes/space/space2.jpg';
-import fullMoon from './themes/space/fullMoon.jpg';
-import galaxyTilted from './themes/space/galaxyTilted.jpg';
-import moonWithGradient from './themes/space/moonWithGradient.jpg';
+import moonGradient from './themes/space/moonGradient.jpg';
 import pinkStars from './themes/space/pinkStars.jpg';
 import spaceBlue from './themes/space/spaceBlue.jpg';
+import rainbowStars from './themes/space/rainbowStars.jpg';
+import rainbowStars2 from './themes/space/rainbowStars2.jpg';
+import launch from './themes/space/launch.jpg';
 
 // earth theme
 import earth from './themes/earth/earth.jpg';
 import forest from './themes/earth/forest.jpg';
-import treetopsSky from './themes/earth/treetopsSky.jpg'; // ?? //
-import treetopsGround from './themes/earth/treetopsGround.jpg'; // ** //
-import leafBorder from './themes/earth/leafBorder.jpg'; // *NEEDS ADJUSTMENTS* //
-import palmTreetops from './themes/earth/palmTreetops.jpg'; // *!!!* //
+import treetopsAbove from './themes/earth/treetopsAbove.jpg';
+import treetopsAboveEDIT from './themes/earth/treetopsAboveEDIT.jpg';
+import treetopsBelow from './themes/earth/treetopsBelow.jpg';
+import leafBorder from './themes/earth/leafBorder.jpg';
+import veryGreen from './themes/earth/veryGreen.jpg';
+import veryGreenEDIT from './themes/earth/veryGreenEDIT.jpg';
+
 
 // history theme
 import dinos from './themes/history/dinos.jpg';
-import dinoBones from './themes/history/dinoBones.jpg'; // ?? //
-import fossil from './themes/history/fossil.jpg'; // ?? //
-import dinoTri from './themes/history/triSaraTops.jpg'; // *PROBABLY TOO AGGRESSIVE THOUGH LOL* //
+import dinoBones from './themes/history/dinoBones.jpg';
+import dinoTri from './themes/history/dinoTri.jpg';
 
 
 const App = () => {
@@ -57,13 +59,25 @@ const App = () => {
 
     const [stepperCount, setStepperCount] = useState(0);
 
-    const earthThemes = [earth, forest, treetopsSky, treetopsGround, palmTreetops];
-    const dinoThemes = [dinos, dinoBones, fossil, dinoTri];
-    const spaceThemes = [space2, galaxyTilted, moonWithGradient, pinkStars, spaceBlue];
+    // const earthThemes = [forest, treetopsAbove, treetopsAboveEDIT, treetopsBelowEDIT];
+    const earthThemes = [leafBorder, veryGreen, veryGreenEDIT];
+    const historyThemes = [dinos, dinoBones, dinoTri];
+    const spaceThemes = [rainbowStars, launch, spaceBlue, rainbowStars2, moonGradient, pinkStars];
+
+    const themeLength = () => {
+      if (theme === 'spaceTheme') {
+        return spaceThemes.length;
+      } else if (theme === 'earthTheme') {
+        return earthThemes.length;
+      } else if (theme === 'historyTheme') {
+        return historyThemes.length;
+      } else {
+        return 0;
+      }
+    }
 
     const useStyles = makeStyles((theme) => ({
       spaceTheme: {
-        // backgroundImage: `url(${space2})`,
         backgroundImage: `url(${spaceThemes[stepperCount]})`,
         height: '220vh',
         backgroundPosition: 'center',
@@ -80,10 +94,7 @@ const App = () => {
         backgroundSize: 'cover',
       },
       historyTheme: {
-        // backgroundImage: `url(${dinos})`,
-        // backgroundImage: `url(${dinoBones})`,
-        // backgroundImage: `url(${fossil})`,
-        backgroundImage: `url(${dinoThemes[stepperCount]})`,
+        backgroundImage: `url(${historyThemes[stepperCount]})`,
         height: '220vh',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
@@ -272,7 +283,7 @@ const App = () => {
 
     return (
     <div className={currClass} style={{ fontSize: font }}>
-      <AppBarHeader user={user} logout={logout} discView={discView} setDiscView={setDiscView} theme={theme} setTheme={setTheme} search={search} setSearch={setSearch} setStepperCount={setStepperCount} />
+      <AppBarHeader user={user} logout={logout} discView={discView} setDiscView={setDiscView} theme={theme} setTheme={setTheme} search={search} setSearch={setSearch} setStepperCount={setStepperCount} themeLength={themeLength} />
       {!user
       ?(
         <div >

@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const AppBarHeader = ({ user, logout, discView, setDiscView, theme, setTheme, search, setSearch, setStepperCount }) => {
+const AppBarHeader = ({ user, logout, discView, setDiscView, theme, setTheme, search, setSearch, setStepperCount, themeLength }) => {
   const classes = useStyles();
 
 
@@ -46,7 +46,7 @@ const AppBarHeader = ({ user, logout, discView, setDiscView, theme, setTheme, se
             </a>
             <Typography variant="h6" className={classes.title}>
             </Typography>
-            <ThemeStepper setStepperCount={setStepperCount}/>
+            <ThemeStepper setStepperCount={setStepperCount} themeLength={themeLength} theme={theme} />
             <>
               <CategoryDialog theme={theme} setTheme={setTheme} discView={discView} setDiscView={setDiscView} theme={theme} setTheme={setTheme} search={search} setSearch={setSearch} />
             </>

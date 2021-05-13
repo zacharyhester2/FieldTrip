@@ -117,20 +117,20 @@ const GlobalStyles = createGlobalStyle`
       opacity: 87%;
     }
     .MuiMobileStepper-dot{
-      width: 8px;
-      height: 8px;
+      width: 6px;
+      height: 6px;
       margin: 0 2px;
       border-radius: 50%;
-      background-color: #bfbfbf;
+      background-color: #5e5e5e;
     }
     .MuiMobileStepper-dotActive{
       background-color: #736bfb;
     }
     .MuiButton-root.Mui-disabled{
-      color: rgb(109 109 109);
+      color: #5e5e5e;
     }
     #arrows{
-      font-size: 3rem;
+      font-size: 1.75rem;
     }
     .container, .container-lg, .container-md, .container-sm, .container-xl{
       max-width: 80%;
