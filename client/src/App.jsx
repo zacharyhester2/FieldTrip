@@ -59,8 +59,8 @@ const App = () => {
 
     const [stepperCount, setStepperCount] = useState(0);
 
-    // const earthThemes = [forest, treetopsAbove, treetopsAboveEDIT, treetopsBelowEDIT];
-    const earthThemes = [leafBorder, veryGreen, veryGreenEDIT];
+    const earthThemes = [forest, treetopsAbove, treetopsAboveEDIT, treetopsBelow, veryGreen];
+    // const earthThemes = [leafBorder, veryGreen, veryGreenEDIT];
     const historyThemes = [dinos, dinoBones, dinoTri];
     const spaceThemes = [rainbowStars, launch, spaceBlue, rainbowStars2, moonGradient, pinkStars];
 
