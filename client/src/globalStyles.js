@@ -134,6 +134,7 @@ const GlobalStyles = createGlobalStyle`
     }
     .container, .container-lg, .container-md, .container-sm, .container-xl{
       max-width: 80%;
+      padding-bottom: 6.5rem;
     }
 `;
 export default GlobalStyles;
