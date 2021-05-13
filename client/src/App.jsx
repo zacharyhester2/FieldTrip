@@ -288,7 +288,7 @@ const App = () => {
       ?(
         <div >
           <Home />
-          <Button variant="contained" style={{ marginLeft: '25px', position: 'absolute' }}>
+          <Button variant="contained" style={{ top: '4%', right: '1%', position: 'absolute' }}>
           <a
             className="login-button"
             href="/auth/google"
