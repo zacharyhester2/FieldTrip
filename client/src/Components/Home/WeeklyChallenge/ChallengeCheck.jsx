@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import axios from 'axios';
 
 
-const ChallengeCheck = ({stamps, challenge, challenges, getStamps, font}) => {
+const ChallengeCheck = ({ stamps, challenge, challenges, getStamps, font }) => {
   const [challengeComplete, setChallengeComplete] = useState(false);
   //reset per day
 
