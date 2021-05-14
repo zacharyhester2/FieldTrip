@@ -18,7 +18,7 @@ import { Button } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
 import TextSize from './Components/Accessibility/TextSize.jsx';
 
-// space theme
+// ?SPACE? //
 import moonGradient from './themes/space/moonGradient.jpg';
 import pinkStars from './themes/space/pinkStars.jpg';
 import spaceBlue from './themes/space/spaceBlue.jpg';
@@ -26,18 +26,17 @@ import rainbowStars from './themes/space/rainbowStars.jpg';
 import rainbowStars2 from './themes/space/rainbowStars2.jpg';
 import launch from './themes/space/launch.jpg';
 
-// earth theme
+// *EARTH* //
 import earth from './themes/earth/earth.jpg';
 import forest from './themes/earth/forest.jpg';
 import treetopsAbove from './themes/earth/treetopsAbove.jpg';
-import treetopsAboveEDIT from './themes/earth/treetopsAboveEDIT.jpg';
 import treetopsBelow from './themes/earth/treetopsBelow.jpg';
 import leafBorder from './themes/earth/leafBorder.jpg';
 import veryGreen from './themes/earth/veryGreen.jpg';
-import veryGreenEDIT from './themes/earth/veryGreenEDIT.jpg';
+import contrast from './themes/earth/contrast.jpg';
 
 
-// history theme
+// !HISTORY! //
 import dinos from './themes/history/dinos.jpg';
 import dinoBones from './themes/history/dinoBones.jpg';
 import dinoTri from './themes/history/dinoTri.jpg';
@@ -59,10 +58,10 @@ const App = () => {
 
     const [stepperCount, setStepperCount] = useState(0);
 
-    const earthThemes = [forest, treetopsAbove, treetopsAboveEDIT, treetopsBelow, veryGreen];
-    // const earthThemes = [leafBorder, veryGreen, veryGreenEDIT];
+
+    const earthThemes = [veryGreen, contrast, treetopsAbove, forest, treetopsBelow, leafBorder, earth];
     const historyThemes = [dinos, dinoBones, dinoTri];
-    const spaceThemes = [rainbowStars, launch, spaceBlue, rainbowStars2, moonGradient, pinkStars];
+    const spaceThemes = [rainbowStars, spaceBlue, rainbowStars2, moonGradient, pinkStars];
 
     const themeLength = () => {
       if (theme === 'spaceTheme') {
@@ -92,6 +91,7 @@ const App = () => {
         backgroundRepeat: 'no-repeat',
         paddingBottom: '5rem',
         backgroundSize: 'cover',
+        backgroundAttachment: 'fixed',
       },
       historyTheme: {
         backgroundImage: `url(${historyThemes[stepperCount]})`,
@@ -288,7 +288,7 @@ const App = () => {
       ?(
         <div >
           <Home />
-          <Button variant="contained" style={{ top: '4%', right: '1%', position: 'absolute' }}>
+          <Button variant="contained" style={{top: '0.25rem', right: '0.25rem', position: 'absolute' }}>
           <a
             className="login-button"
             href="/auth/google"

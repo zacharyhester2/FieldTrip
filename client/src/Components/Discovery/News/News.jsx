@@ -23,7 +23,7 @@ const StyledCard = styled(Card)`
     }
     .news-img-top {
     width: 100%;
-    height: 15vw;
+    height: auto;
     object-fit: cover;
     border-radius: 1rem 1rem 0 0;
 }
