@@ -20,7 +20,7 @@ const AlertContainer = styled(Container)`
   }
 `
 
-const AlertItem = ({alert}) => {
+const AlertItem = ({alert, font}) => {
   // console.log('alerts in Alerts.jsx', alerts);
 
   return (
@@ -29,7 +29,7 @@ const AlertItem = ({alert}) => {
         <div className="img-container">
           <img src={!alert.image ? Trophy : alert.image}/>
         </div>
-        <p>You earned a stamp in your passport!</p>
+        <p style={{ fontSize: font }}>You earned a stamp in your passport!</p>
       {/* <p>{`You ${alert.action} a ${alert.resource}!`}</p> */}
         <p>{alert.date.slice(0, 10)}</p>
       </AlertContainer>
