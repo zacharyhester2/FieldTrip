@@ -46,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Documentary = ({ addResource, discView, search, font, saved, addSaved }) => {
     const [docs, setDocs] = useState([]);
-    const [iconColor, setIconColor] = useState('rgb(80 80 80 / 46%)');
+    const [iconColor, setIconColor] = useState('whitesmoke');
     const query = `${search}`;
     const classes = useStyles();
 
