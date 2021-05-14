@@ -3,6 +3,11 @@ import axios from 'axios';
 import styled from 'styled-components';
 import { Card, Container, Row, Col, CardDeck, Jumbotron, Image } from 'react-bootstrap/';
 
+import IconButton from '@material-ui/core/IconButton';
+import CloseSharpIcon from '@material-ui/icons/CloseSharp';
+import HighlightOffSharpIcon from '@material-ui/icons/HighlightOffSharp';
+import CancelSharpIcon from '@material-ui/icons/CancelSharp';
+
 
 const StyledCard = styled(Card)`
     transform-origin: top center;
@@ -23,18 +28,40 @@ const StyledCard = styled(Card)`
     height: 15vw;
     object-fit: cover;
     border-radius: 1rem 1rem 0 0;
-}
+  }
+  .delete-btn-container {
+    right: 0;
+    bottom: 0;
+    position: absolute;
+  }
+  .delete-btn:hover{
+    transform: scale(1.3);
+    color: rgb(251 58 139);
+  }
 `;
 
 const Saved = ({ saved, font, getSaved, addResource }) => {
 
   const filteredSave = saved.filter(resource => resource.title !== 'trophy');
   const newSaved = Array.from(new Set(filteredSave.map(resource => resource.title))).map(title => filteredSave.find(resource => resource.title === title));
-  console.log('ALL_SAVED', saved, 'new Saved', newSaved);
+
+  const deleteSaved = async (title) => {
+    console.log(title);
+    try{
+      await axios.delete('/delete', { data: { title: title } })
+      // if (res.data.success) {
+      //   alert(res.data.message);
+      // }
+      getSaved();
+    } catch(error) {
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
     getSaved();
   }, []);
-  // console.log('SAVED', saved, 'FILTERED_SAVE', filteredSave, 'NEW_SAVED', newSaved);
+
   return (
     <div style={{ width: '50%', position: 'absolute', left: '25%', paddingBottom: '15rem' }}>
       {newSaved.map((resource, i) => (
@@ -67,6 +94,11 @@ const Saved = ({ saved, font, getSaved, addResource }) => {
                         onClick={() => { addResource(resource, 'documentary'); }}
                     > Here</a></p>)
                 }
+                {/* <IconButton style={{ bottom: 0, right: 0, position: 'absolute' }}> */}
+                <IconButton className='delete-btn-container' onClick={() => deleteSaved(resource.title)}>
+                  {/* <CloseSharpIcon style={{ fontSize: 30 }}/> */}
+                  <CloseSharpIcon className='delete-btn'/>
+                </IconButton>
             </Card.Body>
         </StyledCard>
         ))}

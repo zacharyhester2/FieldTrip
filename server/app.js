@@ -301,6 +301,18 @@ app.post('/saved', (req, res) => {
     })
 });
 
+// DELETE FROM SAVED
+app.delete('/delete', (req, res) => {
+     Users.findOne({ id: req.cookies.FieldTripId })
+      .then((user) => {
+        console.log('REQ BODY TITLE', req.body.title);
+      user.update({ $pull: { 'saved': { title: req.body.title }}})
+          .then((data) => { console.log('DATA', data); res.status(200).json({ success: true, message: 'saved resource was deleted' })})
+          .catch();
+      })
+      .catch();
+});
+
 
 //SPOTIFY
 
