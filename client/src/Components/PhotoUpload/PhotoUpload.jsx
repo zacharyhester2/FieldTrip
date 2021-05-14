@@ -50,6 +50,7 @@ const PhotoUpload = () => {
     e.preventDefault();
     if(!previewSource) return;
     uploadImage(previewSource);
+    setPreviewSource('');
   }
 
   const uploadImage = async (base64EncodedImage) => {
@@ -60,6 +61,7 @@ const PhotoUpload = () => {
         body: JSON.stringify({data: base64EncodedImage}),
         headers: {'Content-type': 'application/json'}
       })
+      console.log('just above loadimages')
       loadImages();
     } catch (error) {
       console.log(error);

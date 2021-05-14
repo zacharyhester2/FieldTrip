@@ -323,8 +323,10 @@ app.post('/saved', (req, res) => {
         .max_results(30)
         .execute();
 
-        const publicIds = resources.map( file => file.public_id);
-          // console.log('publicIds------------', publicIds)
+        const publicIds = resources.map( file => {
+          // console.log('----file------', file)
+          return file.public_id});
+          // console.log('publicIds------------', publicIds, )
         res.status(200).json(publicIds);
     } catch(error) {
       console.log('Error was thrown: ', error)
