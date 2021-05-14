@@ -71,7 +71,6 @@ const WeeklyChallenge = ({ getStamps, user, stamps, font }) => {
   });
   const [challenge, setChallenge] = useState(challenges[daily][daily]);
 
-
     useEffect(() => {
       let date = new Date();
       const day = date.getDay();
@@ -88,9 +87,9 @@ const WeeklyChallenge = ({ getStamps, user, stamps, font }) => {
       <Container>
         <p className='challenge-header' style={{ fontSize: font + 14 }}>Daily Challenge:</p>
         <br/>
-        <p className='challenge' style={{ fontSize: font + 12}}>
+        (<p className='challenge' style={{ fontSize: font + 12}}>
           {challenge}
-        </p>
+        </p>)
         { !stamps.length ?
           <p style={{ fontSize: font}}>Explore on the Discovery Tab to earn stamps!</p> :
         <ChallengeCheck stamps={stamps} challenge={challenge} challenges={challenges} getStamps={getStamps} font={font}/>

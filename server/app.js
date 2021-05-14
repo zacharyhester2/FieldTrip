@@ -91,18 +91,33 @@ app.get('/smithQ/:search', (req, res) => {
 });
 
 // const newsQ = 'the lost cosmonauts';
-const sortBy = 'popularity' //maybe give users the options: relevancy, popularity, publishedAt
+const sortBy = 'relevance' //maybe give users the options: relevancy, popularity, publishedAt
 // const news = `https://newsapi.org/v2/everything?q=${newsQ}&apiKey=${newsKey}&sortBy=${sortBy}`;
 
 app.get('/newsQ/:search', (req, res) => {
 
     axios.get(`https://newsapi.org/v2/everything?q=${req.params.search}&apiKey=${newsKey}&sortBy=${sortBy}`)
     .then(({data}) => {
-      res.status(200).send(data.articles.slice(0,6));
+      res.status(200).send(data.articles.slice(0,9));
+      console.log(req.params.search, 'SEARCH');
     })
     .catch((err) => {
       res.status(500).send(err);
     });
+});
+
+//DAILY NEWS TICKER
+// https://newsapi.org/v2/top-headlines?category=science&apiKey=6c070f451e104b78b4c8a13bbe279def&country=us
+
+app.get('/ticker', (req, res) => {
+
+  axios.get(`https://newsapi.org/v2/top-headlines?category=science&apiKey=${newsKey}&country=us`)
+  .then(({data}) => {
+    res.status(200).send(data.articles);
+  })
+  .catch((err) => {
+    res.status(500).send(err);
+  });
 });
 
 //CHALLENGES
