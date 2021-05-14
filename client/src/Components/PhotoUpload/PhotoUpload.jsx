@@ -10,7 +10,6 @@ const StyledTitle =  styled.h1`
   width: 100%;
   margin-bottom: 1rem;
   margin-top: 1rem;
-
 `
 const StyledForm = styled.form`
   background-color: #736BFB;
@@ -26,7 +25,7 @@ const StyledForm = styled.form`
 
 `
 
-const PhotoUpload = () => {
+const PhotoUpload = ({font}) => {
   // console.log('imageIds', imageIds)
   const [fileInputState, setFileInputState] = useState('');
   const [selectedFile, useSelectedFile] = useState('');
@@ -86,6 +85,7 @@ const loadImages = () => {
   return(
     <div>
       <StyledTitle>Upload Your Discoveries</StyledTitle>
+      <p style={{ fontSize: font }}>When you're out in the world, whether you're traveling, or taking a nature walk, or stargazing, take a look around. Explore your surroundings and upload your discoveries! Share with other Field Trippers and enjoy sharing the beauty of life with other enthusiasts.</p>
       <StyledForm onSubmit={handleSubmitFile}>
         <input
           type="file" name="image" className="form-input" onChange={handleFileInputChange} value={fileInputState}

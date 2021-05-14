@@ -10,7 +10,7 @@ const Container = styled.div`
     display: inline !important;
 `
 
-const Alerts = ({user}) => {
+const Alerts = ({user, font}) => {
   const [alerts, setAlerts] = useState([])
 
      const getAlerts = () => {
@@ -31,10 +31,10 @@ const Alerts = ({user}) => {
 
   return (
     <Fragment>
-      <h1>Alerts</h1>
+      {/* <h1>Alerts</h1> */}
       <Container className="alert-container">
         {alerts.reverse().map((alert, i) =>
-          <AlertItem alert={alert} key={i}/>
+          <AlertItem alert={alert} key={i} font={font}/>
         )}
       </Container>
     </Fragment>
