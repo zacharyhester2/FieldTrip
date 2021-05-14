@@ -14,6 +14,12 @@ import MammothBabe from '../../assets/mammothbabe.jpg';
 import GoogleyCactus from '../../assets/googleycactus.jpg';
 import FlyingCape from '../../assets/cape.jpg';
 import defaultAvatar from '../../assets/defaultAvatar.jpg';
+import pharaoh from '../../assets/pharaohAvatar.png';
+import googley from '../../assets/googleycactusNoBG.png';
+import astro from '../../assets/astrojellyNoBG.png';
+import astroNotFlipped from '../../assets/astroNOTNoBGUpsideDown.png';
+import treeHugger from '../../assets/treeHugger.png';
+import pharaohGolden from '../../assets/pharaohGolden.png';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -64,10 +70,15 @@ const useStyles = makeStyles((theme) => ({
                 input={<Input id="demo-dialog-native" />}
               >
                 <option aria-label="None" value="" />
-                <option value={AstroJelly}>Astro Jelly</option>
+                {/* <option value={AstroJelly}>Astro Jelly</option>
                 <option value={MammothBabe}>Mammoth Babe</option>
                 <option value={GoogleyCactus}>Googley Cactus</option>
-                <option value={FlyingCape}>Flying Cape</option>
+                <option value={FlyingCape}>Flying Cape</option> */}
+                <option value={astro}>Astro Jelly</option>
+                <option value={treeHugger}>Don't worry, tree happy</option>
+                <option value={googley}>Googley Cactus</option>
+                <option value={astroNotFlipped}>Astro-NOT-OKAY</option>
+                <option value={pharaohGolden}>PharWoah</option>
               </Select>
             </FormControl>
           </form>

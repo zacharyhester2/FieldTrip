@@ -25,6 +25,7 @@ const Img = styled.div`
     border-radius: 50%;
     object-fit: cover;
     filter: drop-shadow(0 0 0.5rem rgba(0, 0, 0, 0.6));
+    background-color: rgb(9, 11, 23, 0.6);
   }
 `
 const Profile = ({user, getStamps, stamps, getBadges, badges}) => {

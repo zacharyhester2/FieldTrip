@@ -57,7 +57,7 @@ const ThemeStepper = ({ setStepperCount, themeLength, theme }) => {
           activeStep={activeStep}
           className={classes.root}
           nextButton={
-            <Button size="medium" onClick={handleNext} disabled={activeStep === themeLength()} className={classes.arrows}>
+            <Button size="medium" onClick={handleNext} disabled={activeStep === (themeLength() - 1)} className={classes.arrows}>
               {usetheme.direction === 'rtl' ? <ArrowLeftSharpIcon id='arrows'/> : <ArrowRightSharpIcon id='arrows'/>}
             </Button>
           }

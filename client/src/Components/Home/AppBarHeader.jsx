@@ -48,7 +48,9 @@ const AppBarHeader = ({ user, logout, discView, setDiscView, theme, setTheme, se
             </Typography>
             <ThemeStepper setStepperCount={setStepperCount} themeLength={themeLength} theme={theme} />
             <>
-              <CategoryDialog theme={theme} setTheme={setTheme} discView={discView} setDiscView={setDiscView} theme={theme} setTheme={setTheme} search={search} setSearch={setSearch} />
+              { user ?
+              (<CategoryDialog theme={theme} setTheme={setTheme} discView={discView} setDiscView={setDiscView} theme={theme} setTheme={setTheme} search={search} setSearch={setSearch} />) : null
+              }
             </>
             <Button variant='text' color='inherit' onClick={logout}>
               {user ? 'Logout' : null}
