@@ -3,7 +3,9 @@ import { Carousel, Row, Col, Jumbotron } from 'react-bootstrap/';
 import axios from 'axios';
 import styled from 'styled-components';
 import YoutubeEmbed from './YoutubeEmbed.jsx';
-
+import { makeStyles } from '@material-ui/core/styles';
+import FavoriteSharpIcon from '@material-ui/icons/FavoriteSharp';
+import IconButton from '@material-ui/core/IconButton';
 // const Img = styled.div`
 //     height: 100vh;
 //     width: 100%;
@@ -32,11 +34,22 @@ const Caption= styled(Jumbotron)`
     border: 3px;
     border-color: whitesmoke;
     padding: 0 1rem;
+`;
 
-`
-const Documentary = ({ addResource, discView, search }) => {
+const useStyles = makeStyles((theme) => ({
+  saved:{
+    bottom: '7px',
+    right: 0,
+    position: 'absolute',
+  },
+}));
+
+const Documentary = ({ addResource, discView, search, font, saved, addSaved }) => {
     const [docs, setDocs] = useState([]);
+    const [iconColor, setIconColor] = useState('whitesmoke');
     const query = `${search}`;
+    const classes = useStyles();
+
     const getDocs = async (query) => {
         await axios.get(`/youTube/${query}`)
         .then(({data}) => {
@@ -74,6 +87,15 @@ const Documentary = ({ addResource, discView, search }) => {
                                         > Here</a>
                                         to watch on YouTube.
                                     </p>
+                                    <IconButton
+                                        onClick={() => {
+                                            addSaved(doc, 'documentary');
+                                            setIconColor('rgb(251 58 139)');
+                                        }}
+                                        className={classes.saved}
+                                    >
+                                        <FavoriteSharpIcon style={{ color: iconColor }}/>
+                                    </IconButton>
                             </Caption>
                             {/* <Caption>
                                     <h2>{doc.snippet.title}</h2>

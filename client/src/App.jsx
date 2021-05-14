@@ -58,6 +58,7 @@ const App = () => {
 
     const [stepperCount, setStepperCount] = useState(0);
 
+
     const earthThemes = [veryGreen, contrast, treetopsAbove, forest, treetopsBelow, leafBorder, earth];
     const historyThemes = [dinos, dinoBones, dinoTri];
     const spaceThemes = [rainbowStars, spaceBlue, rainbowStars2, moonGradient, pinkStars];
@@ -312,10 +313,10 @@ const App = () => {
                   <Discovery addResource={addResource} discView={discView} setDiscView={setDiscView} search={search} setSearch={setSearch} font={font} resourceValue={resourceValue} handleResourceChange={handleResourceChange} saved={saved} addSaved={addSaved} getSaved={getSaved} />
               </Route>
               <Route path="/alerts">
-                  <Alerts user={user} alerts={alerts} />
+                  <Alerts user={user} alerts={alerts} font={font}/>
               </Route>
               <Route path="/PhotoUpload">
-                  <PhotoUpload />
+                  <PhotoUpload font={font}/>
               </Route>
             </Switch>
 

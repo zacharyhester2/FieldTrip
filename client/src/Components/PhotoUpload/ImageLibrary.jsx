@@ -39,7 +39,7 @@ useEffect(() => {
 
   return(
     <ImageLibraryContainer>
-      <h3>Images Library</h3>
+      <h3>Community Photo Board</h3>
         {imageIds ?
         imageIds.map((imageId, i) => (
           <div className="ImageContainer"  key={i}>
