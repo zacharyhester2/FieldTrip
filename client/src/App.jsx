@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
-import * as d3 from 'd3';
+// import * as d3 from 'd3';
 import BottomNav from './Components/Navigation/BottomNav.jsx';
 import {
     BrowserRouter as Router,
