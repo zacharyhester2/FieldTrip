@@ -6,7 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { makeStyles } from '@material-ui/core/styles';
 import FavoriteSharpIcon from '@material-ui/icons/FavoriteSharp';
 import IconButton from '@material-ui/core/IconButton';
-
+// hello
 const StyledCard = styled(Card)`
     transform-origin: top center;
     transition: transform 300ms;
@@ -23,7 +23,7 @@ const StyledCard = styled(Card)`
     }
     .news-img-top {
     width: 100%;
-    height: auto;
+    height: 15vw;
     object-fit: cover;
     border-radius: 1rem 1rem 0 0;
 }
