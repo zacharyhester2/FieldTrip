@@ -28,38 +28,45 @@ const StyledCard = styled(Card)`
 
 const Saved = ({ saved, font, getSaved, addResource }) => {
 
-
-
   const filteredSave = saved.filter(resource => resource.title !== 'trophy');
-  const newSaved = [...new Set(filteredSave)];
-
+  const newSaved = Array.from(new Set(filteredSave.map(resource => resource.title))).map(title => filteredSave.find(resource => resource.title === title));
+  console.log('ALL_SAVED', saved, 'new Saved', newSaved);
   useEffect(() => {
     getSaved();
   }, []);
   // console.log('SAVED', saved, 'FILTERED_SAVE', filteredSave, 'NEW_SAVED', newSaved);
   return (
     <div style={{ width: '50%', position: 'absolute', left: '25%', paddingBottom: '15rem' }}>
-      {newSaved.map((article, i) => (
+      {newSaved.map((resource, i) => (
         <StyledCard className="mb-4 mt-4 mr-4 ml-4"
         text="muted"
         bg="light"
         key={i * Math.random()}
         >
-        <Image src={article.image}
+        <Image src={resource.image}
             key={i}
             className="news-img-top"
             >
             {/* {console.log(article)} */}
         </Image>
             <Card.Body>
-                <Card.Title style={{ fontSize: font + 4, fontWeight: '900', color: 'rgb(0, 0, 0)' }}>{article.title}</Card.Title>
-                <Card.Text style={{ fontSize: font, color: 'rgb(92 92 92)', fontWeight: 'lighter' }}>{article.description}</Card.Text>
-                <p>Read Full Article
+                <Card.Title style={{ fontSize: font + 4, fontWeight: '900', color: 'rgb(0, 0, 0)' }}>{resource.title}</Card.Title>
+                <Card.Text style={{ fontSize: font, color: 'rgb(92 92 92)', fontWeight: 'lighter' }}>{resource.description}</Card.Text>
+                {
+                  resource.type === 'article' ?
+                (<p>Read Full Article
                     <a
-                        href={article.url}
+                        href={resource.url}
                         target="_blank"
-                        onClick={() => { addResource(article, 'article'); }}
-                    > Here</a></p>
+                        onClick={() => { addResource(resource, 'article'); }}
+                    > Here</a></p>) :
+                    (<p>Watch Full Video
+                    <a
+                        href={resource.url}
+                        target="_blank"
+                        onClick={() => { addResource(resource, 'documentary'); }}
+                    > Here</a></p>)
+                }
             </Card.Body>
         </StyledCard>
         ))}
