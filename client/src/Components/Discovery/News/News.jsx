@@ -15,19 +15,33 @@ const StyledCard = styled(Card)`
     border-radius: 1rem;
     outline: none;
     margin-bottom: 30rem;
+    margin: 0 0 0 0;
+    margin-right: 0px !important;
+    margin-left: 0px !important;
     object-fit: cover;
+    width: 30%;
+    height: 100%;
     :hover {
         transform: scale(1.1);
         z-index: 1;
         box-shadow: 0 0 0.7rem rgba(0, 0, 0, 0.9);
     }
     .news-img-top {
-    width: 100%;
-    height: 15vw;
-    object-fit: cover;
-    border-radius: 1rem 1rem 0 0;
-}
-`;
+        width: 100%;
+        height: 15vw;
+        object-fit: cover;
+        border-radius: 1rem 1rem 0 0;
+    }
+    `;
+
+const NewsContainer = styled.div`
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-bottom: 30rem;
+
+`
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -85,11 +99,16 @@ const News = ({ addResource, discView, search, font, saved, addSaved }) => {
             getNews(query);
         } else {
             return (
+<<<<<<< HEAD
         <div className="news-container">
             <Row md={4} style={{ justifyContent: 'center', position: 'center' }}>
+=======
+        // <div className="news-container">
+            <NewsContainer>
+>>>>>>> e314288 (deployed)
 
                 <StyledCard
-                        className="mb-4 mt-4 mr-4 ml-4"
+                        
                         text="muted"
                         bg="light"
                         key={1000 * Math.random()}
@@ -297,8 +316,8 @@ const News = ({ addResource, discView, search, font, saved, addSaved }) => {
                             </IconButton>
                         </Card.Body>
                     </StyledCard>
-            </Row>
-        </div>
+            </NewsContainer>
+        // </div>
      );
         }
     }
