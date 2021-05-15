@@ -1,6 +1,6 @@
 import React, {useState, useEffect, Fragment} from 'react';
 import styled from 'styled-components';
-import AlertItem from './AlertItem.jsx'
+import AlertItem from './AlertItem.jsx';
 import axios from 'axios';
 
 const Container = styled.div`
@@ -25,13 +25,11 @@ const Alerts = ({user, font}) => {
   };
 
   useEffect(() => {
-    // debugger;
     getAlerts();
   }, []);
 
   return (
     <Fragment>
-      {/* <h1>Alerts</h1> */}
       <Container className="alert-container">
         {alerts.reverse().map((alert, i) =>
           <AlertItem alert={alert} key={i} font={font}/>

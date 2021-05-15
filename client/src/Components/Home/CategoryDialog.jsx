@@ -100,7 +100,6 @@ const CategoryDialog = ({ theme, setTheme, discView, setDiscView, search, setSea
   };
 
   const handleClose = (value, theme, searchTerm) => {
-    // console.log('VALUE_SECOND', value)
     setOpen(false);
     setSelectedValue(value);
     setSelectedTheme(theme);
@@ -109,7 +108,6 @@ const CategoryDialog = ({ theme, setTheme, discView, setDiscView, search, setSea
 
   return (
     <>
-      {/* <Typography variant="subtitle1">Selected: {discView}</Typography> */}
       <br />
       <Button variant="text" color="secondary" onClick={handleClickOpen} style={{ color: 'whitesmoke' }}>
         Categories

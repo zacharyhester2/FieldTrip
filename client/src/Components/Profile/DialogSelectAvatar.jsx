@@ -9,7 +9,8 @@ import InputLabel from '@material-ui/core/InputLabel';
 import Input from '@material-ui/core/Input';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import defaultAvatar from '../../assets/defaultAvatar.jpg';
+import avatarDefaultGrey from '../../assets/avatarDefaultGrey.jpg';
+import avatarDefaultPurple from '../../assets/avatarDefaultPurple.jpg';
 import googley from '../../assets/googleycactusNoBG.png';
 import astro from '../../assets/astrojellyNoBG.png';
 import astroNotFlipped from '../../assets/astroNOTNoBGUpsideDown.png';
@@ -37,8 +38,10 @@ const useStyles = makeStyles((theme) => ({
   const [open, setOpen] = React.useState(false);
 
   const handleChange = (event) => {
-    setAvatar(String(event.target.value) || defaultAvatar);
-    saveAvatar(String(event.target.value) || defaultAvatar);
+    // setAvatar(String(event.target.value) || avatarDefaultPurple);
+    // saveAvatar(String(event.target.value) || avatarDefaultPurple);
+    setAvatar(String(event.target.value) || avatarDefaultGrey);
+    saveAvatar(String(event.target.value) || avatarDefaultGrey);
   };
 
   const handleClickOpen = () => {

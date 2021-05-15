@@ -5,8 +5,6 @@ import { Card, Container, Row, Col, CardDeck, Jumbotron, Image } from 'react-boo
 
 import IconButton from '@material-ui/core/IconButton';
 import CloseSharpIcon from '@material-ui/icons/CloseSharp';
-import HighlightOffSharpIcon from '@material-ui/icons/HighlightOffSharp';
-import CancelSharpIcon from '@material-ui/icons/CancelSharp';
 
 
 const StyledCard = styled(Card)`
@@ -79,7 +77,6 @@ const Saved = ({ saved, font, getSaved, addResource }) => {
             key={i}
             className="news-img-top"
             >
-            {/* {console.log(article)} */}
         </Image>
             <Card.Body>
                 <Card.Title style={{ fontSize: font + 4, fontWeight: '900', color: 'rgb(0, 0, 0)' }}>{resource.title}</Card.Title>
@@ -104,9 +101,7 @@ const Saved = ({ saved, font, getSaved, addResource }) => {
                     </div>
                     )
                 }
-                {/* <IconButton style={{ bottom: 0, right: 0, position: 'absolute' }}> */}
                 <IconButton className='delete-btn-container' onClick={() => deleteSaved(resource.title)}>
-                  {/* <CloseSharpIcon style={{ fontSize: 30 }}/> */}
                   <CloseSharpIcon className='delete-btn'/>
                 </IconButton>
             </Card.Body>

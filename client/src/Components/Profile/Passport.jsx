@@ -3,7 +3,6 @@ import Stamp from './Stamp.jsx';
 import Badge from './Badge.jsx';
 import styled from 'styled-components';
 
-
 const Container = styled.div`
   background-color: lavender;
   border-radius: 10px !important;

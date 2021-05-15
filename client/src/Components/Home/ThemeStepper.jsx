@@ -16,7 +16,6 @@ const useStyles = makeStyles({
     maxWidth: '17%',
     flexGrow: 1,
     backgroundColor: 'rgb(9, 11, 23)',
-    // marginRight: '34%',
   },
   arrows: {
     color: '#736bfb',
@@ -34,7 +33,6 @@ const ThemeStepper = ({ setStepperCount, themeLength, theme }) => {
 
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
-    // console.log(earthThemes[activeStep])
   };
 
   useEffect(() => {

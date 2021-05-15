@@ -21,11 +21,8 @@ const bottomNavTheme = createMuiTheme({
     palette: {
         primary: {
             main: '#f8f8ff'
-            // main: 'rgb(9,11,23)'
         },
         text: {
-            // secondary: 'rgb(9,11,23)'
-            // secondary: '#f8f8ff'
             secondary: 'rgba(115,107,251,0.99)'
         }
     }
@@ -40,12 +37,9 @@ const useStyles = makeStyles({
     backgroundColor: 'rgba(9,11,23, 0.92)',
     backdropFilter: 'blur(8px)',
     boxShadow: '0px 0px 7px 0px #736bfb'
-    // backgroundColor: 'rgb(115,107,251, 0.65)',
   },
   vertDiv: {
     backgroundColor: 'rgba(115,107,251,0.77)'
-    // backgroundColor: 'rgb(9, 11, 23)',
-    // backgroundColor: '#f8f8ff',
   }
 });
 
