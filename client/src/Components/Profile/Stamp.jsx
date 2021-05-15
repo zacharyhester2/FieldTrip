@@ -9,6 +9,7 @@ const Img = styled.div`
   width: 150px;
   height: 150px;
   perspective: 1000px;
+  z-index: 1;
 }
 
 .flip-card-inner {
