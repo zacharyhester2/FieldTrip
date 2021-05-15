@@ -200,6 +200,7 @@ const App = () => {
       }
       };
 
+      //LANDING
   //DATA FOR BADGE CONSTRUCTION/ D3
   const getBadges = () => {
     if (user) {
