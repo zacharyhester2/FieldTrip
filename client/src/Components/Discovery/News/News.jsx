@@ -15,34 +15,19 @@ const StyledCard = styled(Card)`
     border-radius: 1rem;
     outline: none;
     margin-bottom: 30rem;
-    margin: 0 0 0 0;
-    margin-right: 0px !important;
-    margin-left: 0px !important;
     object-fit: cover;
-    width: 30%;
-    height: 100%;
     :hover {
         transform: scale(1.1);
         z-index: 1;
         box-shadow: 0 0 0.7rem rgba(0, 0, 0, 0.9);
     }
     .news-img-top {
-        width: 100%;
-        height: 15vw;
-        object-fit: cover;
-        border-radius: 1rem 1rem 0 0;
-    }
-    `;
-
-const NewsContainer = styled.div`
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-evenly;
-    align-items: center;
-    margin-bottom: 30rem;
-
-`
-
+    width: 100%;
+    height: 15vw;
+    object-fit: cover;
+    border-radius: 1rem 1rem 0 0;
+}
+`;
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 2,
@@ -61,7 +46,6 @@ const useStyles = makeStyles((theme) => ({
       position: 'relative',
   }
 }));
-
 const News = ({ addResource, discView, search, font, saved, addSaved }) => {
     const [news, setNews] = useState([]);
     // a state for each favorite button on each news card
@@ -73,25 +57,21 @@ const News = ({ addResource, discView, search, font, saved, addSaved }) => {
     const [iconColor6, setIconColor6] = useState('rgb(80 80 80 / 46%)');
     const classes = useStyles();
     const query = `${search}`;
-
     const getNews = (query) => {
         axios.get(`/newsQ/:${query}`)
         .then(({data}) => {
             setNews(data);
         }).catch()
     }
-
     // const getGeneral = () => {
     //     axios.get(`/ticker`)
     //     .then(({data}) => {
     //         setNews(data);
     //     }).catch()
     // }
-
     useEffect(() => {
         getNews(query);
     }, [discView]);
-
     // sets the 6 news objects to their own card
     // this was done so that when article is favorited, only that one article favorite button changes state
     const individualNewsCards = () => {
@@ -99,11 +79,10 @@ const News = ({ addResource, discView, search, font, saved, addSaved }) => {
             getNews(query);
         } else {
             return (
-            <div className="news-container">
-                <Row md={4} style={{ justifyContent: 'center', position: 'center' }}>
-
+        <div className="news-container">
+            <Row md={4} style={{ justifyContent: 'center', position: 'center' }}>
                 <StyledCard
-                        
+                        className="mb-4 mt-4 mr-4 ml-4"
                         text="muted"
                         bg="light"
                         key={1000 * Math.random()}
@@ -136,7 +115,6 @@ const News = ({ addResource, discView, search, font, saved, addSaved }) => {
                             </IconButton>
                         </Card.Body>
                     </StyledCard>
-
                     <StyledCard
                         className="mb-4 mt-4 mr-4 ml-4"
                         text="muted"
@@ -171,7 +149,6 @@ const News = ({ addResource, discView, search, font, saved, addSaved }) => {
                             </IconButton>
                         </Card.Body>
                     </StyledCard>
-
                     <StyledCard
                         className="mb-4 mt-4 mr-4 ml-4"
                         text="muted"
@@ -206,7 +183,6 @@ const News = ({ addResource, discView, search, font, saved, addSaved }) => {
                             </IconButton>
                         </Card.Body>
                     </StyledCard>
-
                     <StyledCard
                         className="mb-4 mt-4 mr-4 ml-4"
                         text="muted"
@@ -241,7 +217,6 @@ const News = ({ addResource, discView, search, font, saved, addSaved }) => {
                             </IconButton>
                         </Card.Body>
                     </StyledCard>
-
                     <StyledCard
                         className="mb-4 mt-4 mr-4 ml-4"
                         text="muted"
@@ -276,7 +251,6 @@ const News = ({ addResource, discView, search, font, saved, addSaved }) => {
                             </IconButton>
                         </Card.Body>
                     </StyledCard>
-
                     <StyledCard
                         className="mb-4 mt-4 mr-4 ml-4"
                         text="muted"
@@ -312,58 +286,13 @@ const News = ({ addResource, discView, search, font, saved, addSaved }) => {
                         </Card.Body>
                     </StyledCard>
             </Row>
-         </div>
+        </div>
      );
         }
     }
-
     console.log('third', news);
     return (
         individualNewsCards() || null
     );
-    // return (
-    //     <div className="news-container">
-    //         <Row md={4} style={{ position: 'center' }}>
-    //             {news.map((article, i) => (
-    //                 <StyledCard className="mb-4 mt-4 mr-4 ml-4"
-    //                 text="muted"
-    //                 bg="light"
-    //                 key={i * Math.random()}
-    //                 >
-    //                 <Image src={article.urlToImage}
-    //                     key={i}
-    //                     className="news-img-top"
-    //                     >
-    //                     {/* {console.log(article)} */}
-    //                 </Image>
-    //                     <Card.Body>
-    //                         <Card.Title style={{ fontSize: font + 4, fontWeight: '900', color: 'rgb(0, 0, 0)' }}>{article.title}</Card.Title>
-    //                         <Card.Text style={{ fontSize: font, color: 'rgb(92 92 92)', fontWeight: 'lighter' }}>{article.description}</Card.Text>
-    //                         <p>Read Full Article
-    //                             <a
-    //                                 href={article.url}
-    //                                 target="_blank"
-    //                                 onClick={() => { addResource(article, 'article'); }}
-    //                             > Here</a></p>
-    //                             {/* <IconContext.Provider value={buttonColor.clicked}> */}
-    //                                 <IconButton
-    //                                     onClick={() => {
-    //                                         addSaved(article, 'article');
-    //                                         setIconColor('rgb(251 58 139)');
-    //                                     }}
-    //                                     className={classes.saved}
-    //                                     >
-    //                                     <FavoriteSharpIcon style={{ color: iconColor }}/>
-    //                                 </IconButton>
-
-    //                                 {/* {Btn()} */}
-    //                             {/* </IconContext.Provider> */}
-    //                     </Card.Body>
-    //                 </StyledCard>
-    //             ))}
-    //         </Row>
-    //     </div>
-    //  );
     }
-
 export default News;
