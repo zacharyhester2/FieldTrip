@@ -205,7 +205,7 @@ const App = () => {
     if (user) {
       axios.get(`/user/${user.id}`)
         .then(({ data }) => {
-          console.log('BADGES DATA', data)
+          // console.log('BADGES DATA', data)
           setBadges(data);
         })
         .catch();

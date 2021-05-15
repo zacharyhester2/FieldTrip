@@ -1,17 +1,14 @@
 import { createGlobalStyle } from 'styled-components';
-
 const GlobalStyles = createGlobalStyle`
   *{
     box-sizing: border-box;
   }
-
   body{
     font-family: 'Spartan', sans-serif;
     background-color: rgb(9, 11, 23);
     color: whitesmoke;
     min-height: 110vh;
   }
-
   //test
   header{
     background-color: rgb(9, 11, 23);
@@ -22,11 +19,9 @@ const GlobalStyles = createGlobalStyle`
     opacity: 87%;
     backdrop-filter: blur(8px);
   }
-
   .logo{
     opacity: 100% !important;
   }
-
   .component{
     position: absolute;
     top: 50%;
@@ -58,15 +53,12 @@ const GlobalStyles = createGlobalStyle`
   .card-top img{
     max-width: 200px;
   }
-
   #basicTabs{
       background: rgb(9, 11, 23);
       color: #736bfb;
-
       margin-top: 0;
       opacity: 100%;
       box-shadow: 0px 0px 7px 0px #736bfb;
-
     }
     #tab{
       color: whitesmoke;
@@ -94,7 +86,6 @@ const GlobalStyles = createGlobalStyle`
     }
     .container, .container-lg, .container-md, .container-sm, .container-xl{
       max-width: 80%;
-      padding-bottom: 6.5rem;
     }
 `;
 export default GlobalStyles;
