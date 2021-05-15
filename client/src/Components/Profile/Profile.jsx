@@ -65,7 +65,7 @@ const Profile = ({user, getStamps, stamps, getBadges, badges}) => {
         <h3>{user.name}</h3>
       </div>
       <DialogSelectAvatar setAvatar={setAvatar} saveAvatar={saveAvatar}/>
-      <Passport stamps={stamps}/>
+      <Passport stamps={stamps} badges={badges}/>
     </ProfileStyles>
   );
 };

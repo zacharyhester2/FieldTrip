@@ -1,10 +1,9 @@
-import React from 'react';
-import { Carousel, Container, Row, Col, Jumbotron } from 'react-bootstrap/';
+import React, { Fragment } from 'react';
+import { Container } from 'react-bootstrap/';
 import News from './News/News.jsx';
 import Documentary from './Documentary/Documentary.jsx';
 import styled from 'styled-components';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import LandingDisc from './Documentary/LandingDisc.jsx'
 import ResourceTabs from './ResourceTabs.jsx';
 import Saved from './Saved.jsx';
 
@@ -19,10 +18,10 @@ const Discovery = ({ addResource, discView, search, font, resourceValue, handleR
 
 
   return (
-    <>
-      <>
+    <Fragment>
+      
         <ResourceTabs resourceValue={resourceValue} handleResourceChange={handleResourceChange} />
-      </>
+      
       {
         resourceValue === 0
         ? (
@@ -36,7 +35,7 @@ const Discovery = ({ addResource, discView, search, font, resourceValue, handleR
             ? <Documentary addResource={addResource} discView={discView} search={search} saved={saved} addSaved={addSaved} font={font} />
             : null
               }
-    </>
+    </Fragment>
   );
 }
 

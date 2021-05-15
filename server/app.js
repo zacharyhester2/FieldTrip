@@ -50,7 +50,7 @@ cloudinary.config({
 //YOUTUBE
 
 app.get('/youTube/:query', (req, res) => {
-  const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${req.params.query}documentary&channelType=any&key=${youTubeKey}`;
+  const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${req.params.query}documentary&type=video&videoDuration=medium&key=${youTubeKey}`;
   return axios(url)
     .then(({ data }) => data.items.slice(0, 5))
     .then((data) => res.status(200).send(data))
