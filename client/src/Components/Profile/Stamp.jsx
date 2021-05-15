@@ -98,7 +98,7 @@ const Stamp = ({stamp}) => {
       return "You watched a documentary about General Science!"
     
 }}
-
+//newpush
   return (
       <Img>
       {stamp.category !== "daily challenge" ?
