@@ -136,5 +136,10 @@ const GlobalStyles = createGlobalStyle`
       max-width: 80%;
       padding-bottom: 6.5rem;
     }
+    /* .resource-font{
+      bottom: 0 !important;
+      left: 0 !important;
+      position: absolute;
+    } */
 `;
 export default GlobalStyles;

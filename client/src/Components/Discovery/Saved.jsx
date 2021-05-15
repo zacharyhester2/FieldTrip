@@ -38,6 +38,11 @@ const StyledCard = styled(Card)`
     transform: scale(1.3);
     color: rgb(251 58 139);
   }
+  .full{
+    bottom: 0;
+    left: 0;
+    position: relative;
+  }
 `;
 
 const Saved = ({ saved, font, getSaved, addResource }) => {
@@ -81,18 +86,23 @@ const Saved = ({ saved, font, getSaved, addResource }) => {
                 <Card.Text style={{ fontSize: font, color: 'rgb(92 92 92)', fontWeight: 'lighter' }}>{resource.description}</Card.Text>
                 {
                   resource.type === 'article' ?
-                (<p>Read Full Article
-                    <a
-                        href={resource.url}
-                        target="_blank"
-                        onClick={() => { addResource(resource, 'article'); }}
-                    > Here</a></p>) :
-                    (<p>Watch Full Video
-                    <a
-                        href={resource.url}
-                        target="_blank"
-                        onClick={() => { addResource(resource, 'documentary'); }}
-                    > Here</a></p>)
+                (<div className='full'>
+                  <p style={{ fontSize: font - 3 }}>Read Full Article
+                      <a
+                          href={resource.url}
+                          target="_blank"
+                          onClick={() => { addResource(resource, 'article'); }}
+                      > Here</a></p>
+                    </div>) :
+                    (<div className='full'>
+                      <p style={{ fontSize: font - 3 }}>Watch Full Video
+                      <a
+                          href={resource.url}
+                          target="_blank"
+                          onClick={() => { addResource(resource, 'documentary'); }}
+                      > Here</a></p>
+                    </div>
+                    )
                 }
                 {/* <IconButton style={{ bottom: 0, right: 0, position: 'absolute' }}> */}
                 <IconButton className='delete-btn-container' onClick={() => deleteSaved(resource.title)}>

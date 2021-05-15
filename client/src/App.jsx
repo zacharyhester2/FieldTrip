@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
-// import * as d3 from 'd3';
 import BottomNav from './Components/Navigation/BottomNav.jsx';
 import {
     BrowserRouter as Router,
@@ -19,7 +18,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import TextSize from './Components/Accessibility/TextSize.jsx';
 
 // ?SPACE? //
-import moonGradient from './themes/space/moonGradient.jpg';
+import gradientMoon from './themes/space/gradientMoon.png';
 import pinkStars from './themes/space/pinkStars.jpg';
 import spaceBlue from './themes/space/spaceBlue.jpg';
 import rainbowStars from './themes/space/rainbowStars.jpg';
@@ -30,7 +29,6 @@ import space2 from './themes/space/space2.jpg';
 // *EARTH* //
 import earth from './themes/earth/earth.jpg';
 import forest from './themes/earth/forest.jpg';
-import treetopsAboveEDIT from './themes/earth/treetopsAboveEDIT.jpg';
 import treetopsAbove from './themes/earth/treetopsAbove.jpg';
 import treetopsBelow from './themes/earth/treetopsBelow.jpg';
 import leafBorder from './themes/earth/leafBorder.jpg';
@@ -63,7 +61,7 @@ const App = () => {
 
     const earthThemes = [veryGreen, contrast, treetopsAbove, forest, treetopsBelow, leafBorder, earth];
     const historyThemes = [dinos, dinoBones, dinoTri];
-    const spaceThemes = [rainbowStars, spaceBlue, rainbowStars2, moonGradient, pinkStars];
+    const spaceThemes = [rainbowStars, spaceBlue, rainbowStars2, gradientMoon, pinkStars];
 
     const themeLength = () => {
       if (theme === 'spaceTheme') {
@@ -85,6 +83,7 @@ const App = () => {
         backgroundRepeat: 'no-repeat',
         paddingBottom: '5rem',
         backgroundSize: 'cover',
+        backgroundAttachment: 'fixed',
       },
       earthTheme: {
         backgroundImage: `url(${earthThemes[stepperCount]})`,
@@ -102,6 +101,7 @@ const App = () => {
         backgroundRepeat: 'no-repeat',
         paddingBottom: '5rem',
         backgroundSize: 'cover',
+        backgroundAttachment: 'fixed',
       },
     }));
     const classes = useStyles();

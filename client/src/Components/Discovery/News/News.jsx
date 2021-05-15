@@ -41,6 +41,11 @@ const useStyles = makeStyles((theme) => ({
     right: 0,
     position: 'absolute',
   },
+  readFull:{
+      bottom: 0,
+      left: 0,
+      position: 'relative',
+  }
 }));
 
 const News = ({ addResource, discView, search, font, saved, addSaved }) => {
@@ -97,13 +102,15 @@ const News = ({ addResource, discView, search, font, saved, addSaved }) => {
                         <Card.Body>
                             <Card.Title style={{ fontSize: font + 4, color: '#070707', fontWeight: 'bolder' }}>{news[0].title}</Card.Title>
                             <Card.Text style={{ fontSize: font }}>{news[0].description}</Card.Text>
-                            <p>Read Full Article
-                                <a
-                                    href={news[0].url}
-                                    target="_blank"
-                                    onClick={() => { addResource(news[0], 'article'); }}
-                                > Here</a>
-                            </p>
+                            <div className={classes.readFull}>
+                                <p style={{ fontSize: font - 3 }}>Read Full Article
+                                    <a
+                                        href={news[0].url}
+                                        target="_blank"
+                                        onClick={() => { addResource(news[0], 'article'); }}
+                                    > Here</a>
+                                </p>
+                            </div>
                             <IconButton
                                 onClick={() => {
                                     addSaved(news[0], 'article');
@@ -130,13 +137,15 @@ const News = ({ addResource, discView, search, font, saved, addSaved }) => {
                         <Card.Body>
                             <Card.Title style={{ fontSize: font + 4, color: '#070707', fontWeight: 'bolder' }}>{news[1].title}</Card.Title>
                             <Card.Text style={{ fontSize: font }}>{news[1].description}</Card.Text>
-                            <p>Read Full Article
-                                <a
-                                    href={news[1].url}
-                                    target="_blank"
-                                    onClick={() => { addResource(news[1], 'article'); }}
-                                > Here</a>
-                            </p>
+                            <div className={classes.readFull}>
+                                <p style={{ fontSize: font - 3 }}>Read Full Article
+                                    <a
+                                        href={news[1].url}
+                                        target="_blank"
+                                        onClick={() => { addResource(news[1], 'article'); }}
+                                    > Here</a>
+                                </p>
+                            </div>
                             <IconButton
                                 onClick={() => {
                                     addSaved(news[1], 'article');
@@ -163,13 +172,15 @@ const News = ({ addResource, discView, search, font, saved, addSaved }) => {
                         <Card.Body>
                             <Card.Title style={{ fontSize: font + 4, color: '#070707', fontWeight: 'bolder' }}>{news[2].title}</Card.Title>
                             <Card.Text style={{ fontSize: font }}>{news[2].description}</Card.Text>
-                            <p>Read Full Article
-                                <a
-                                    href={news[2].url}
-                                    target="_blank"
-                                    onClick={() => { addResource(news[2], 'article'); }}
-                                > Here</a>
-                            </p>
+                            <div className={classes.readFull}>
+                                <p style={{ fontSize: font - 3 }}>Read Full Article
+                                    <a
+                                        href={news[2].url}
+                                        target="_blank"
+                                        onClick={() => { addResource(news[2], 'article'); }}
+                                    > Here</a>
+                                </p>
+                            </div>
                             <IconButton
                                 onClick={() => {
                                     addSaved(news[2], 'article');
@@ -196,13 +207,15 @@ const News = ({ addResource, discView, search, font, saved, addSaved }) => {
                         <Card.Body>
                             <Card.Title style={{ fontSize: font + 4, color: '#070707', fontWeight: 'bolder' }}>{news[3].title}</Card.Title>
                             <Card.Text style={{ fontSize: font }}>{news[3].description}</Card.Text>
-                            <p>Read Full Article
-                                <a
-                                    href={news[3].url}
-                                    target="_blank"
-                                    onClick={() => { addResource(news[3], 'article'); }}
-                                > Here</a>
-                            </p>
+                            <div className={classes.readFull}>
+                                <p style={{ fontSize: font - 3 }}>Read Full Article
+                                    <a
+                                        href={news[3].url}
+                                        target="_blank"
+                                        onClick={() => { addResource(news[3], 'article'); }}
+                                    > Here</a>
+                                </p>
+                            </div>
                             <IconButton
                                 onClick={() => {
                                     addSaved(news[3], 'article');
@@ -229,13 +242,15 @@ const News = ({ addResource, discView, search, font, saved, addSaved }) => {
                         <Card.Body>
                             <Card.Title style={{ fontSize: font + 4, color: '#070707', fontWeight: 'bolder' }}>{news[4].title}</Card.Title>
                             <Card.Text style={{ fontSize: font }}>{news[4].description}</Card.Text>
-                            <p>Read Full Article
-                                <a
-                                    href={news[4].url}
-                                    target="_blank"
-                                    onClick={() => { addResource(news[4], 'article'); }}
-                                > Here</a>
-                            </p>
+                            <div className={classes.readFull}>
+                                <p style={{ fontSize: font - 3 }}>Read Full Article
+                                    <a
+                                        href={news[4].url}
+                                        target="_blank"
+                                        onClick={() => { addResource(news[4], 'article'); }}
+                                    > Here</a>
+                                </p>
+                            </div>
                             <IconButton
                                 onClick={() => {
                                     addSaved(news[4], 'article');
@@ -262,13 +277,15 @@ const News = ({ addResource, discView, search, font, saved, addSaved }) => {
                         <Card.Body>
                             <Card.Title style={{ fontSize: font + 4, color: '#070707', fontWeight: 'bolder' }}>{news[5].title}</Card.Title>
                             <Card.Text style={{ fontSize: font }}>{news[5].description}</Card.Text>
-                            <p>Read Full Article
-                                <a
-                                    href={news[5].url}
-                                    target="_blank"
-                                    onClick={() => { addResource(news[5], 'article'); }}
-                                > Here</a>
-                            </p>
+                            <div className={classes.readFull}>
+                                <p style={{ fontSize: font - 3 }}>Read Full Article
+                                    <a
+                                        href={news[5].url}
+                                        target="_blank"
+                                        onClick={() => { addResource(news[5], 'article'); }}
+                                    > Here</a>
+                                </p>
+                            </div>
                             <IconButton
                                 onClick={() => {
                                     addSaved(news[5], 'article');

@@ -9,12 +9,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import Input from '@material-ui/core/Input';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import AstroJelly from '../../assets/astrojelly.jpg';
-import MammothBabe from '../../assets/mammothbabe.jpg';
-import GoogleyCactus from '../../assets/googleycactus.jpg';
-import FlyingCape from '../../assets/cape.jpg';
 import defaultAvatar from '../../assets/defaultAvatar.jpg';
-import pharaoh from '../../assets/pharaohAvatar.png';
 import googley from '../../assets/googleycactusNoBG.png';
 import astro from '../../assets/astrojellyNoBG.png';
 import astroNotFlipped from '../../assets/astroNOTNoBGUpsideDown.png';
@@ -70,10 +65,6 @@ const useStyles = makeStyles((theme) => ({
                 input={<Input id="demo-dialog-native" />}
               >
                 <option aria-label="None" value="" />
-                {/* <option value={AstroJelly}>Astro Jelly</option>
-                <option value={MammothBabe}>Mammoth Babe</option>
-                <option value={GoogleyCactus}>Googley Cactus</option>
-                <option value={FlyingCape}>Flying Cape</option> */}
                 <option value={astro}>Astro Jelly</option>
                 <option value={treeHugger}>Don't worry, tree happy</option>
                 <option value={googley}>Googley Cactus</option>
