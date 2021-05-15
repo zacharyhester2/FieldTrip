@@ -85,9 +85,9 @@ const WeeklyChallenge = ({ getStamps, user, stamps, font }) => {
   return (
     <>
       <Container>
-        <p className='challenge-header' style={{ fontSize: font + 14 }}>Daily Challenge:</p>
+        <p className='challenge-header' style={{ fontSize: font + 14, fontWeight: 'bolder' }}>Daily Challenge:</p>
         <br/>
-        (<p className='challenge' style={{ fontSize: font + 12}}>
+        (<p className='challenge' style={{ fontSize: font + 12, fontWeight: 'bold' }}>
           {challenge}
         </p>)
         { !stamps.length ?

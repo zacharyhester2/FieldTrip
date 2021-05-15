@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
-// import * as d3 from 'd3';
 import BottomNav from './Components/Navigation/BottomNav.jsx';
 import {
     BrowserRouter as Router,
@@ -19,7 +18,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import TextSize from './Components/Accessibility/TextSize.jsx';
 
 // ?SPACE? //
-import moonGradient from './themes/space/moonGradient.jpg';
+import gradientMoon from './themes/space/gradientMoon.png';
 import pinkStars from './themes/space/pinkStars.jpg';
 import spaceBlue from './themes/space/spaceBlue.jpg';
 import rainbowStars from './themes/space/rainbowStars.jpg';
@@ -30,7 +29,6 @@ import space2 from './themes/space/space2.jpg';
 // *EARTH* //
 import earth from './themes/earth/earth.jpg';
 import forest from './themes/earth/forest.jpg';
-import treetopsAboveEDIT from './themes/earth/treetopsAboveEDIT.jpg';
 import treetopsAbove from './themes/earth/treetopsAbove.jpg';
 import treetopsBelow from './themes/earth/treetopsBelow.jpg';
 import leafBorder from './themes/earth/leafBorder.jpg';
@@ -55,15 +53,12 @@ const App = () => {
     const [resourceValue, setResourceValue] = useState(1);
     const [saved, setSaved] = useState([]);
     const [badges, setBadges] = useState([]);
-    const [nasaPic, setNasaPic] = useState();
-
-
     const [stepperCount, setStepperCount] = useState(0);
-
+    // const [nasaPic, setNasaPic] = useState();
 
     const earthThemes = [veryGreen, contrast, treetopsAbove, forest, treetopsBelow, leafBorder, earth];
     const historyThemes = [dinos, dinoBones, dinoTri];
-    const spaceThemes = [rainbowStars, spaceBlue, rainbowStars2, moonGradient, pinkStars];
+    const spaceThemes = [rainbowStars, spaceBlue, rainbowStars2, gradientMoon, space2, pinkStars, launch];
 
     const themeLength = () => {
       if (theme === 'spaceTheme') {
@@ -85,6 +80,7 @@ const App = () => {
         backgroundRepeat: 'no-repeat',
         paddingBottom: '5rem',
         backgroundSize: 'cover',
+        backgroundAttachment: 'fixed',
       },
       earthTheme: {
         backgroundImage: `url(${earthThemes[stepperCount]})`,
@@ -102,11 +98,11 @@ const App = () => {
         backgroundRepeat: 'no-repeat',
         paddingBottom: '5rem',
         backgroundSize: 'cover',
+        backgroundAttachment: 'fixed',
       },
     }));
     const classes = useStyles();
     const currClass = classes[`${theme}`];
-
 
   const getUser = () => {
     if (!user) {
@@ -119,22 +115,22 @@ const App = () => {
     }
   };
 
-  const getNasaPic = () => {
-    if (discView === 'Outer Space') {
-      axios.get('/nasaPic')
-      .then(({ data }) => {
+  // const getNasaPic = () => {
+  //   if (discView === 'Outer Space') {
+  //     axios.get('/nasaPic')
+  //     .then(({ data }) => {
 
-        const { explanation, title, url } = data;
-        // console.log('NASA FOTD', explanation, title, url);
-        setNasaPic(url);
-      })
-      .catch();
-    }
-  };
+  //       const { explanation, title, url } = data;
+  //       // console.log('NASA FOTD', explanation, title, url);
+  //       setNasaPic(url);
+  //     })
+  //     .catch();
+  //   }
+  // };
 
-  useEffect(() => {
-    getNasaPic();
-  }, [discView]);
+  // useEffect(() => {
+  //   getNasaPic();
+  // }, [discView]);
 
 //cloudinary
 // const loadImages = () => {
@@ -147,7 +143,6 @@ const App = () => {
 //     console.log(error)
 //   }
 // }
-
 
   const addResource = (resource, resType) => {
     let pars = {};
@@ -185,11 +180,9 @@ const App = () => {
 
  //USED FOR BADGE D3 DATA AS WELL
    const getStamps = () => {
-    //  debugger;
     if (user) {
       axios.get(`/user/${user.id}`)
         .then(({ data }) => {
-          // console.log('FROM STAMPS', data)
           setStamps(data);
           setAlerts(data);
         })
@@ -199,11 +192,9 @@ const App = () => {
 
 
   const getSaved = () => {
-    //  debugger;
     if (user) {
       axios.get(`/saved/${user.id}`)
         .then(({ data }) => {
-          // console.log('FROM SAVED', data)
           setSaved(data);
         })
       }

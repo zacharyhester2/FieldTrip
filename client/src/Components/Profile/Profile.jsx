@@ -2,7 +2,8 @@ import React, {useState, useEffect} from 'react';
 import Passport from './Passport.jsx';
 import styled from 'styled-components';
 import DialogSelectAvatar from './DialogSelectAvatar.jsx';
-import defaultAvatar from '../../assets/defaultAvatar.jpg';
+import avatarDefaultPurple from '../../assets/avatarDefaultPurple.jpg';
+import avatarDefaultGrey from '../../assets/avatarDefaultGrey.jpg';
 import axios from 'axios';
 
 const ProfileStyles = styled.div`
@@ -29,12 +30,14 @@ const Img = styled.div`
   }
 `
 const Profile = ({user, getStamps, stamps, getBadges, badges}) => {
-  const [avatar, setAvatar] = useState(defaultAvatar)
+  // const [avatar, setAvatar] = useState(avatarDefaultPurple)
+  const [avatar, setAvatar] = useState(avatarDefaultGrey)
 
   const getAvatar = () => {
     axios.get(`/avatar/${user.id}`)
     .then(({data}) => {
-      setAvatar(data || defaultAvatar);
+      // setAvatar(data || avatarDefaultPurple);
+      setAvatar(data || avatarDefaultGrey);
     })
   }
 

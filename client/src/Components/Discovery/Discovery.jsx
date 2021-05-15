@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Carousel, Container, Row, Col, Jumbotron } from 'react-bootstrap/';
 import News from './News/News.jsx';
 import Documentary from './Documentary/Documentary.jsx';
@@ -36,15 +36,6 @@ const Discovery = ({ addResource, discView, search, font, resourceValue, handleR
             ? <Documentary addResource={addResource} discView={discView} search={search} saved={saved} addSaved={addSaved} font={font} />
             : null
               }
-    {/* <LandingDisc discView={discView} font={font}/>
-    <Container className='news-cards'>
-      <StyledTitle style={{ fontSize: font + 35 }}>Articles</StyledTitle>
-      <News addResource={addResource} discView={discView} search={search} font={font} />
-    </Container>
-    <Container>
-      <StyledTitle style={{ fontSize: font + 35 }}>Documentaries</StyledTitle>
-      <Documentary addResource={addResource} discView={discView} search={search} />
-    </Container> */}
     </>
   );
 }

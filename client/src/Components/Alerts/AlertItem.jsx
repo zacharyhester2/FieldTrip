@@ -1,7 +1,7 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import { Container, Row, Col } from 'react-bootstrap/';
-import Trophy from '../../assets/trophy.jpg';
+import { Container } from 'react-bootstrap/';
+import Trophy from '../../assets/trophy.png';
 
 const AlertContainer = styled(Container)`
     background: rgba(25, 25, 25, 0.6) !important;
@@ -21,8 +21,6 @@ const AlertContainer = styled(Container)`
 `
 
 const AlertItem = ({alert, font}) => {
-  // console.log('alerts in Alerts.jsx', alerts);
-
   return (
     <div>
       <AlertContainer>

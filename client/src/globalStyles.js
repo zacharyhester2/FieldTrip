@@ -1,15 +1,12 @@
 import { createGlobalStyle } from 'styled-components';
 
-
 const GlobalStyles = createGlobalStyle`
   *{
-    /* margin: 0; */
     box-sizing: border-box;
   }
 
   body{
     font-family: 'Spartan', sans-serif;
-    /* font-family: 'Comfortaa', cursive; */
     background-color: rgb(9, 11, 23);
     color: whitesmoke;
     min-height: 110vh;
@@ -19,14 +16,9 @@ const GlobalStyles = createGlobalStyle`
   header{
     background-color: rgb(9, 11, 23);
     padding: 10px 10px;
-    /* font-size: 60px; */
     margin: 0;
     overflow: hidden;
-    /* box-shadow: 0px 0px 7px 0px rgb(255,255,255); */
     box-shadow: 0px 0px 7px 0px #736bfb;
-    /* box-shadow: 0px 30px 22px -2px #736bfb; */
-    /* box-shadow: 0px 30px 22px -15px rgba(148,148,148,0.42); */
-    /* box-shadow: 0px 43px 11px -26px rgba(115,107,251,0.44); */
     opacity: 87%;
     backdrop-filter: blur(8px);
   }
@@ -57,34 +49,7 @@ const GlobalStyles = createGlobalStyle`
   .youtube{
     padding-bottom: 250px;
   }
-  /* .news-cards{
-    display: flex;
-    position: center;
-    align-items: center;
-  } */
-  /* .news-cards{
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-evenly;
-    align-items: stretch;
-    align-content: center;
-  } */
-  /* .news-container{
-    display: grid;
-    flex-flow: row wrap !important;
-    justify-content: space-evenly;
-    align-items: center;
-    align-content: space-between;
-  } */
   .news-container{
-    /* display: flex-inline; */
-    /* position: center;
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-around;
-    align-items: center;
-    align-content: center;
-    left: 52%; */
     display: flex;
     position: center;
     align-items: center;
@@ -104,14 +69,9 @@ const GlobalStyles = createGlobalStyle`
 
     }
     #tab{
-      /* color: #736bfb; */
       color: whitesmoke;
       backdrop-filter: blur(8px);
     }
-    /* #news-container{
-      width: 100%;
-      height: auto;
-    } */
     #news-card-paper{
       background-color: rgb(9, 11, 23);
       opacity: 87%;

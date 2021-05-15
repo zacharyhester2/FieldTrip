@@ -5,8 +5,6 @@ import { Card, Container, Row, Col, CardDeck, Jumbotron, Image } from 'react-boo
 
 import IconButton from '@material-ui/core/IconButton';
 import CloseSharpIcon from '@material-ui/icons/CloseSharp';
-import HighlightOffSharpIcon from '@material-ui/icons/HighlightOffSharp';
-import CancelSharpIcon from '@material-ui/icons/CancelSharp';
 
 
 const StyledCard = styled(Card)`
@@ -37,6 +35,11 @@ const StyledCard = styled(Card)`
   .delete-btn:hover{
     transform: scale(1.3);
     color: rgb(251 58 139);
+  }
+  .full{
+    bottom: 0;
+    left: 0;
+    position: relative;
   }
 `;
 
@@ -74,29 +77,31 @@ const Saved = ({ saved, font, getSaved, addResource }) => {
             key={i}
             className="news-img-top"
             >
-            {/* {console.log(article)} */}
         </Image>
             <Card.Body>
                 <Card.Title style={{ fontSize: font + 4, fontWeight: '900', color: 'rgb(0, 0, 0)' }}>{resource.title}</Card.Title>
                 <Card.Text style={{ fontSize: font, color: 'rgb(92 92 92)', fontWeight: 'lighter' }}>{resource.description}</Card.Text>
                 {
                   resource.type === 'article' ?
-                (<p>Read Full Article
-                    <a
-                        href={resource.url}
-                        target="_blank"
-                        onClick={() => { addResource(resource, 'article'); }}
-                    > Here</a></p>) :
-                    (<p>Watch Full Video
-                    <a
-                        href={resource.url}
-                        target="_blank"
-                        onClick={() => { addResource(resource, 'documentary'); }}
-                    > Here</a></p>)
+                (<div className='full'>
+                  <p style={{ fontSize: font - 3 }}>Read Full Article
+                      <a
+                          href={resource.url}
+                          target="_blank"
+                          onClick={() => { addResource(resource, 'article'); }}
+                      > Here</a></p>
+                    </div>) :
+                    (<div className='full'>
+                      <p style={{ fontSize: font - 3 }}>Watch Full Video
+                      <a
+                          href={resource.url}
+                          target="_blank"
+                          onClick={() => { addResource(resource, 'documentary'); }}
+                      > Here</a></p>
+                    </div>
+                    )
                 }
-                {/* <IconButton style={{ bottom: 0, right: 0, position: 'absolute' }}> */}
                 <IconButton className='delete-btn-container' onClick={() => deleteSaved(resource.title)}>
-                  {/* <CloseSharpIcon style={{ fontSize: 30 }}/> */}
                   <CloseSharpIcon className='delete-btn'/>
                 </IconButton>
             </Card.Body>

@@ -69,44 +69,32 @@ const Documentary = ({ addResource, discView, search, font, saved, addSaved }) =
         <div className="youtube">
             <Carousel fade style={{marginTop: '2rem' }}>
                 {docs.map((doc, i) => (
-                    <Carousel.Item className="mb-5 m5-5"
-                    key={i} style={{ maxWidth: '60%', left: '20%', height: 'auto' }}
+                    <Carousel.Item
+                        className="mb-5 m5-5"
+                        key={i}
+                        style={{ maxWidth: '60%', left: '20%', height: 'auto' }}
                     >
-                            {/* <Img>
-                                <img className="mx-auto"
-                                src={doc.snippet.thumbnails.high.url}/>
-                            </Img> */}
-                            <YoutubeEmbed embedId={doc.id.videoId} kind='video'/>
-                            <Caption>
-                                    <h2>{doc.snippet.title}</h2>
-                                    <p>Click
-                                        <a
-                                            href={`https://www.youtube.com/embed/${doc.id.videoId}`}
-                                            target="_blank"
-                                            onClick={() => { addResource(doc, 'documentary'); }}
-                                        > Here</a>
-                                        to watch on YouTube.
-                                    </p>
-                                    <IconButton
-                                        onClick={() => {
-                                            addSaved(doc, 'documentary');
-                                            setIconColor('rgb(251 58 139)');
-                                        }}
-                                        className={classes.saved}
-                                    >
-                                        <FavoriteSharpIcon style={{ color: iconColor }}/>
-                                    </IconButton>
-                            </Caption>
-                            {/* <Caption>
-                                    <h2>{doc.snippet.title}</h2>
-                                    <p>Watch Documentary
-                                        <a
-                                            href={`https://www.youtube.com/embed/${doc.id.videoId}`}
-                                            target="_blank"
-                                            onClick={() => { addResource(doc, 'documentary'); }}
-                                        > Here</a>
-                                    </p>
-                            </Caption> */}
+                        <YoutubeEmbed embedId={doc.id.videoId} kind='video'/>
+                        <Caption>
+                                <h2>{doc.snippet.title}</h2>
+                                <p>Click
+                                    <a
+                                        href={`https://www.youtube.com/embed/${doc.id.videoId}`}
+                                        target="_blank"
+                                        onClick={() => { addResource(doc, 'documentary'); }}
+                                    > Here</a>
+                                    to watch on YouTube.
+                                </p>
+                                <IconButton
+                                    onClick={() => {
+                                        addSaved(doc, 'documentary');
+                                        setIconColor('rgb(251 58 139)');
+                                    }}
+                                    className={classes.saved}
+                                >
+                                    <FavoriteSharpIcon style={{ color: iconColor }}/>
+                                </IconButton>
+                        </Caption>
                     </Carousel.Item>
                     ))}
             </Carousel>

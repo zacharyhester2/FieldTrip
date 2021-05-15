@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import stampImg from '../../assets/stampo.jpg';
-import trophy from '../../assets/trophy.jpg';
+import trophy from '../../assets/trophy.png';
 
 
 const Img = styled.div`
