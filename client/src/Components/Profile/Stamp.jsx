@@ -4,12 +4,17 @@ import trophy from '../../assets/trophy.png';
 
 
 const Img = styled.div`
+
+.active-card {
+  z-index: 0;
+  position: relative;
+}
+
 .flip-card {
   background-color: transparent;
-  width: 150px;
-  height: 150px;
+  width: 200px;
+  height: 200px;
   perspective: 1000px;
-  z-index: 1;
 }
 
 .flip-card-inner {
@@ -45,12 +50,15 @@ const Img = styled.div`
   border-radius: 10px;
   transform: rotateY(180deg);
   width: fit-content;
-  height: auto;
+  /* height: auto; */
   min-height: 100%;
   text-align: center;
   padding: 10px 0;
+  
   p{
     position: relative;
+    vertical-align: sub;
+    overflow: scroll;
   }
 }
   img{
@@ -64,7 +72,33 @@ const Img = styled.div`
     object-fit: cover;
   }
 `
+
 const Stamp = ({stamp}) => {
+
+  let categoryMessage = (category) => {
+      if (category === "Planet Earth") {
+          return "You read an article about Planet Earth!"
+      } else if (category === "Outer Space") {
+          return "You read an article about Outer Space!"
+      } else if (category === "Natural History") {
+          return "You read an article on Natural History!"
+      } else if (category === "science") {
+        return "You read an article about General Science!"
+      
+  }}
+
+  let docMessage = (category) => {
+    if (category === "Planet Earth") {
+        return "You watched a documentary about Planet Earth!"
+    } else if (category === "Outer Space") {
+        return "You watched a documentary about Outer Space!"
+    } else if (category === "Natural History") {
+        return "You watched a documentary on Natural History!"
+    } else if (category === "science") {
+      return "You watched a documentary about General Science!"
+    
+}}
+
   return (
       <Img>
       {stamp.category !== "daily challenge" ?
@@ -73,12 +107,12 @@ const Stamp = ({stamp}) => {
             <div className="flip-card-front">
               <img src={stamp.image} alt="stamp" />
             </div>
-            <div className="flip-card-back">
+            <div className="flip-card-back active-card">
               {
                 stamp.type === 'article' ?
-                <p>You read an {stamp.type}, <i>{stamp.title}</i> from the {stamp.category} category!</p> :
+                <p>{categoryMessage(stamp.category)}<br/><br/> <i>{stamp.title.slice(0, 70)}</i>...<br/><br/></p> :
                 stamp.type === 'documentary' ?
-                <p>You watched a {stamp.type}, <i>{stamp.title}</i> from the {stamp.category} category!</p> :
+                <p>{docMessage(stamp.category)}<br/><br/> <i>{stamp.title.slice(0, 70)}</i>...<br/><br/></p> :
                 <p>You listened to a podcast!</p>
               }
 
